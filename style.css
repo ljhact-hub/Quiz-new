@@ -307,46 +307,103 @@ body.incorrect-feedback { background-color: #f8d7da; }
 }
 
 /* ================================================================
-   [신규] 📱 모바일 반응형 수정 
-   화면 가로폭이 600px 이하일 때 적용됩니다.
+   [최종] 모바일 반응형 수정 (600px 이하)
+   - 기존 디자인 유지
+   - 모바일에서만 "조금 더 세련되게"
+   - 과하지 않게, 편안하게
 ================================================================
 */
 @media (max-width: 600px) {
     body {
-        padding: 0;
+        padding: 5px;
     }
     
     #app-container {
         min-height: 100vh;
-        padding: 10px;
+        padding: 12px;           /* 여백 줄임 */
         border-radius: 0;
-        box-shadow: none; /* 모바일에서 그림자 제거로 미니멀 */
+        box-shadow: none;
     }
     
-    h1 { font-size: 24px; font-weight: 700; } /* bold 강화 */
-    h2 { font-size: 20px; font-weight: 700; }
+    h1 { 
+        font-size: 24px; 
+        margin-bottom: 12px;
+    }
+    h2 { 
+        font-size: 22px; 
+        margin-bottom: 10px;
+    }
 
+    /* --- 버튼: 크기는 유지, 여백만 조정 --- */
     button {
-        font-size: 18px;
-        padding: 12px 16px;
-        min-width: 100%; /* 풀宽度 버튼으로 thumb-friendly */
-        border-radius: 12px;
+        font-size: 20px;         /* 원래 20px */
+        padding: 12px 16px;      /* 터치 편하게 */
+        min-height: 48px;
+        min-width: 0;            /* 전체 선택 버튼은 flex로 조정 */
+        width: 100%;
+        margin: 6px 0;           /* 여백 줄임 */
+        border-radius: 10px;
     }
     
-    .subject-grid {
-        grid-template-columns: 1fr; /* 1열로 스크롤 편하게 */
+    /* 전체 선택 / 해제 버튼은 2개 나란히 */
+    #main-menu-screen > div:nth-of-type(1) {
         gap: 8px;
     }
-    .subject-item {
+    #main-menu-screen > div:nth-of-type(1) > button {
         font-size: 18px;
-        padding: 8px;
+        padding: 10px;
     }
-    
-    #question-text { font-size: 18px; }
-    .option-label { font-size: 16px; padding: 10px; }
-    
+
+    /* --- 과목 선택: 1열로 변경 (스크롤 편하게) --- */
+    .subject-grid {
+        grid-template-columns: 1fr;   /* 1열 */
+        gap: 10px;
+    }
+    .subject-item {
+        font-size: 19px;
+        padding: 11px;
+        border-radius: 10px;          /* 살짝 더 둥글게 */
+        background-color: #f9fbfd;    /* 아주 연한 하늘색 배경 */
+        border: 1px solid #e3f2fd;
+    }
+
+    /* --- 퀴즈 화면 --- */
+    #question-text { 
+        font-size: 21px;              /* 가독성 UP */
+        line-height: 1.5;
+    }
+    .option-label { 
+        font-size: 19px; 
+        padding: 11px;
+        border-radius: 10px;
+    }
+
     select, input[type="text"] {
-        font-size: 18px;
+        font-size: 20px;
+    }
+
+    /* --- 도넛 차트 작게 --- */
+    .donut-chart-container {
+        width: 180px;
+        height: 180px;
+        margin: 15px auto;
+    }
+    .donut-chart-center {
+        font-size: 24px;
+    }
+
+    /* --- 통계 그래프 --- */
+    .stats-bar-graph-container,
+    .exam-bar-graph-container {
+        padding: 15px 10px;
+        max-width: 100%;
+    }
+
+    /* --- 타이머 --- */
+    #timer-display {
+        font-size: 24px;
+        padding: 8 tbsp 16px;
+        width: auto;
     }
 }
 
