@@ -16,92 +16,100 @@
         
         <div id="main-menu-screen" class="screen">
             <div class="header">
-                <button class="back-button" style="visibility:hidden">Left Arrow</button>
+                <button class="back-button" style="visibility:hidden">←</button>
                 <h1>임상병리 퀴즈 <span id="mode-title">3교시</span></h1>
                 <div></div>
             </div>
-
             <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
                 <div class="card">
                     <h3>과목 선택</h3>
                     <div id="subject-tags" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;"></div>
                     <div style="display:flex; gap:8px; margin-top:12px;">
-                        <button class="btn btn-secondary" id="select-all-btn" style="flex:1; font-size:15px; padding:10px;">
-                            전체 선택
-                        </button>
-                        <button class="btn btn-secondary" id="deselect-all-btn" style="flex:1; font-size:15px; padding:10px;">
-                            전체 해제
-                        </button>
+                        <button class="btn btn-secondary" id="select-all-btn" style="flex:1; font-size:15px; padding:10px;">전체 선택</button>
+                        <button class="btn btn-secondary" id="deselect-all-btn" style="flex:1; font-size:15px; padding:10px;">전체 해제</button>
                     </div>
                 </div>
-
                 <div class="card">
                     <h3>연습 모드</h3>
-                    <button class="btn" id="start-quiz-btn">퀴즈 시작</button>
-                    <button class="btn btn-secondary" id="review-btn">오답 노트 (0)</button>
+                    <button class="btn" id="start-quiz-btn">선택한 과목으로 퀴즈 시작</button>
+                    <button class="btn btn-secondary" id="review-btn">오답 노트 풀기 (0개)</button>
                     <button class="btn btn-secondary" id="problem-list-btn">문제 목록 보기</button>
                 </div>
-
                 <div class="card" id="exam-card">
                     <h3>시험 모드</h3>
-                    <button class="btn btn-exam" id="exam-start-btn">국가고시 모의시험 (65문제)</button>
+                    <button class="btn btn-exam" id="exam-start-btn">⏱️ 국가고시 모의시험 (65문제)</button>
                 </div>
-
                 <div class="card">
-                    <h3>학습 통계</h3>
-                    <button class="btn btn-stats" id="stats-btn">정답률 및 분석 보기</button>
+                    <h3>기타</h3>
+                    <button class="btn btn-stats" id="stats-btn">📊 학습 통계</button>
                 </div>
-
-                <button class="btn btn-secondary" id="switch-mode-btn" style="margin-top:8px;">
-                    1·2교시로 전환
-                </button>
+                <button class="btn btn-secondary" id="switch-mode-btn" style="margin-top:8px;">1·2교시로 전환</button>
             </div>
         </div>
-
+        
         <div id="num-select-screen" class="screen">
             <div class="header">
-                <button class="back-button" id="num-back-btn">Left Arrow</button>
-                <h1>문제 개수 선택</h1>
+                <button class="back-button" id="num-back-to-main-btn">←</button>
+                <h1>몇 문제를 푸시겠습니까?</h1>
                 <div></div>
             </div>
             <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
                 <div class="card">
-                    <h3>문제 수</h3>
+                    <p style="font-size:18px; text-align:center; margin-bottom:12px;">(선택된 과목 총 <span id="total-questions">0</span>개)</p>
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-                        <button class="btn" onclick="startQuizWithNum(10)">10문제</button>
-                        <button class="btn" onclick="startQuizWithNum(20)">20문제</button>
-                        <button class="btn" onclick="startQuizWithNum(30)">30문제</button>
-                        <button class="btn" onclick="startQuizWithNum(50)">50문제</button>
-                        <button class="btn" onclick="showCustomNumScreen()">직접 입력</button>
-                        <button class="btn btn-secondary" onclick="startQuizWithNum(getCurrentDB().length)">전체</button>
+                        <button class="btn" onclick="prepareAndRunQuiz(10)">10개</button>
+                        <button class="btn" onclick="prepareAndRunQuiz(20)">20개</button>
+                        <button class="btn" onclick="prepareAndRunQuiz(30)">30개</button>
+                        <button class="btn" onclick="prepareAndRunQuiz(50)">50개</button>
+                        <button class="btn btn-secondary" onclick="showCustomNumScreen()">사용자 지정</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div id="custom-num-screen" class="screen">
             <div class="header">
-                <button class="back-button" id="custom-back-btn">Left Arrow</button>
-                <h1>직접 입력</h1>
+                <button class="back-button" id="custom-back-btn">←</button>
+                <h1>문제 수를 입력하세요</h1>
                 <div></div>
             </div>
             <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
                 <div class="card">
-                    <input type="number" id="custom-num-input" placeholder="문제 수 입력" 
-                           style="padding:14px; font-size:17px; border:2px solid #e9ecef; border-radius:14px; margin-bottom:12px;">
-                    <button class="btn" id="custom-start-btn">시작하기</button>
+                    <p style="font-size:18px; text-align:center; margin-bottom:12px;">(최대 <span id="max-custom-num">0</span>개)</p>
+                    <input type="number" id="custom-num-input" placeholder="숫자 입력" style="padding:14px; font-size:17px; border:2px solid #e9ecef; border-radius:14px; margin-bottom:12px; width:100%;">
+                    <button class="btn" id="custom-ok-btn">확인</button>
                 </div>
             </div>
         </div>
-
+        
         <div id="quiz-screen" class="screen">
             <div id="timer-display"></div>
             <div id="quiz-content-wrapper"></div>
         </div>
-
+        
         <div id="results-screen" class="screen"></div>
-        <div id="problem-list-screen" class="screen"></div>
-        <div id="stats-screen" class="screen"></div>
+        
+        <div id="problem-list-screen" class="screen">
+            <div class="header">
+                <button class="back-button" id="list-back-to-main-btn">←</button>
+                <h1>문제 목록</h1>
+                <div></div>
+            </div>
+            <div style="padding:20px;">
+                <ul id="problem-list" style="list-style:none; padding:0;"></ul>
+            </div>
+        </div>
+        
+        <div id="stats-screen" class="screen">
+            <div class="header">
+                <button class="back-button" id="stats-back-to-main-btn">←</button>
+                <h1>학습 통계</h1>
+                <div></div>
+            </div>
+            <div style="padding:20px;">
+                <div id="stats-content"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
