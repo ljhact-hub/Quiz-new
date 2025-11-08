@@ -251,79 +251,31 @@ function stopTimer() {
 
 // --- 1. 메인 메뉴 (PyQt: show_subject_selection_menu) ---
 function showMainMenu() {
-    showScreen('main-menu-screen'); 
-    stopTimer(); 
+    showScreen('main-menu-screen');
+    stopTimer();
 
-    const subjects = [...new Set(getCurrentDB().map(q => q.subject || "기타"))].sort();
-    
-    let subjectCheckboxesHTML = subjects.map(subject => `
-        <label class="subject-item">
-            <input type="checkbox" class="subject-checkbox" value="${subject}">
-            ${subject}
-        </label>
-    `).join('');
+    const modeTitle = document.getElementById('mode-title');
+    modeTitle.textContent = currentMode === 'P3' ? '3교시' : '1·2교시';
 
-    // [수정] 시험 모드 버튼 HTML (1, 2교시일 때 숨김)
-    const examButtonHTML = (currentMode === 'P3') ? `
-        <h3 style="margin-bottom: 5px; margin-top: 20px;">시험 모드</h3>
-        <button id="exam-start-btn" class="btn-exam">⏱️ 국가고시 모의시험 (65문제)</button>
-    ` : '';
-    
-    // [수정] 교시 전환 버튼 텍스트/타겟 모드 동적 설정
-    const switchBtnText = (currentMode === 'P3') ? '1·2교시 문제 풀기' : '3교시 문제 풀기';
-    const targetMode = (currentMode === 'P3') ? 'P1_2' : 'P3';
+    document.getElementById('exam-card').style.display = currentMode === 'P3' ? 'block' : 'none';
 
-    mainMenuScreen.innerHTML = `
-        <h1>임상병리 퀴즈 (${currentMode === 'P3' ? '3교시' : '1·2교시'})</h1>
+    const reviewBtn = document.getElementById('review-btn');
+    reviewBtn.innerHTML = `오답 노트 (${INCORRECT_LOG.length})`;
+    reviewBtn.disabled = INCORRECT_LOG.length === 0;
 
-        <div style="width: 100%; max-width: 500px; display: flex; gap: 10px; margin: 10px 0;">
-            <button id="select-all-btn" style="flex: 1;">전체 선택</button>
-            <button id="deselect-all-btn" style="flex: 1;">전체 해제</button>
-        </div>
-        <div class="subject-grid">${subjectCheckboxesHTML}</div>
+    const switchBtn = document.getElementById('switch-mode-btn');
+    switchBtn.textContent = currentMode === 'P3' ? '1·2교시로 전환' : '3교시로 전환';
 
-        <h3 style="margin-bottom: 5px;">연습 모드</h3>
-        <button id="start-quiz-btn">선택한 과목으로 퀴즈 시작</button>
-        <button id="review-btn">오답 노트 풀기 (${INCORRECT_LOG.length}개)</button>
-        <button id="problem-list-btn">문제 목록 보기 (전체 ${getCurrentDB().length}개)</button>
-        
-        ${examButtonHTML} 
-        
-        <h3 style="margin-bottom: 5px; margin-top: 20px;">기타</h3>
-        <button id="stats-btn" class="btn-stats">📊 학습 통계</button>
-        <button id="exit-btn" style="background-color: #aaa;">종료 (새로고침)</button>
+    renderSubjectTags();
 
-        <h3 style="margin-bottom: 5px; margin-top: 20px;">교시 전환</h3>
-        <button id="switch-mode-btn" class="btn-mode-switch">${switchBtnText}</button>
-        `;
-    
-    // --- 이벤트 리스너 연결 ---
-    document.getElementById('select-all-btn').addEventListener('click', () => {
-        document.querySelectorAll('.subject-checkbox').forEach(cb => cb.checked = true);
-    });
-    document.getElementById('deselect-all-btn').addEventListener('click', () => {
-        document.querySelectorAll('.subject-checkbox').forEach(cb => cb.checked = false);
-    });
-    
-    document.getElementById('start-quiz-btn').addEventListener('click', handleQuizStart);
-    document.getElementById('problem-list-btn').addEventListener('click', showProblemList);
-    document.getElementById('stats-btn').addEventListener('click', showStatsScreen);
-    
-    // [수정] 교시 전환 버튼 이벤트 연결
-    document.getElementById('switch-mode-btn').addEventListener('click', () => switchMode(targetMode));
+    document.getElementById('start-quiz-btn').onclick = handleQuizStart;
+    document.getElementById('review-btn').onclick = startReviewQuiz;
+    document.getElementById('problem-list-btn').onclick = showProblemList;
+    document.getElementById('stats-btn').onclick = showStatsScreen;
+    document.getElementById('switch-mode-btn').onclick = () => switchMode(currentMode === 'P3' ? 'P1_2' : 'P3');
 
     const examBtn = document.getElementById('exam-start-btn');
-    if (examBtn) {
-        examBtn.addEventListener('click', handleExamStart); 
-    }
-    
-    const reviewBtn = document.getElementById('review-btn');
-    reviewBtn.addEventListener('click', startReviewQuiz);
-    if (INCORRECT_LOG.length === 0) {
-        reviewBtn.disabled = true;
-    }
-    
-    document.getElementById('exit-btn').addEventListener('click', () => location.reload());
+    if (examBtn) examBtn.onclick = handleExamStart;
 }
 
 // --- (신규) 문제 목록 표시 ---
@@ -363,11 +315,11 @@ function startSingleProblem(questionId) {
 
 // --- 2. 퀴즈 시작 처리 (PyQt: handle_quiz_start) ---
 function handleQuizStart() {
-    const selectedSubjects = Array.from(document.querySelectorAll('.subject-checkbox:checked'))
+    const selectedSubjects = Array.from(document.querySelectorAll('#subject-tags input[type="checkbox"]:checked'))
                                   .map(cb => cb.value);
     
     if (selectedSubjects.length === 0) {
-        alert("하나 이상의 과목을 선택해주세요."); 
+        alert("하나 이상의 과목을 선택해주세요.");
         return;
     }
     
@@ -473,72 +425,42 @@ function runQuiz(questionList, isReview = false, isSingleMode = false, isExam = 
 
 // --- 9. 문제 표시 (PyQt: show_question) ---
 function showQuestion() {
-    problemStartTime = new Date(); 
-
-    showScreen('quiz-screen');
     const q = currentQuestions[currentIndex];
-    
-    const timerDisplay = document.getElementById('timer-display'); 
+    const wrapper = document.getElementById('quiz-content-wrapper');
+    if (!wrapper) return;
 
-    let backBtnHTML = '';
-    let submitBtnText = '제출';
-
-    if (isSingleProblemMode) {
-        backBtnHTML = '<button id="back-to-list-btn" class="back-button">&lt;</button>';
-        if (timerDisplay) timerDisplay.style.display = 'none'; 
-    } else if (isExamMode) {
-        submitBtnText = (currentIndex === currentQuestions.length - 1) ? '결과 보기' : '다음 문제'; 
-        if (timerDisplay) {
-            timerDisplay.style.display = 'block'; 
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        }
-    } else {
-        if (timerDisplay) timerDisplay.style.display = 'none'; 
-    }
-
-    // ▼▼▼ [수정] image_path가 존재할 때만 이미지 태그 생성 ▼▼▼
-    let imageHTML = '';
-    if (q.image_path) { 
-        imageHTML = `<img id="quiz-image" src="${q.image_path}" alt="문제 이미지 (${q.image_path})" onerror="this.src=''; this.alt='이미지 로드 실패: ${q.image_path}';">`;
-    }
-    // ▲▲▲
-
-    let inputHTML = '';
-    if (q.type === "multiple_choice") {
-        const optionsHTML = q.options.map(option => `
-            <label class="option-label">
-                <input type="radio" name="answer" value="${option.split('.')[0]}">
-                ${option}
-            </label>
-        `).join('');
-        inputHTML = `<div class="options-container">${optionsHTML}</div>`;
-    } else { 
-        inputHTML = `
-            <input type="text" id="answer-input" placeholder="정답을 입력하세요">
-        `;
-    }
-
-    const quizContentWrapper = document.getElementById('quiz-content-wrapper');
-    if (quizContentWrapper) {
-        quizContentWrapper.innerHTML = `
-            ${backBtnHTML}
-            ${imageHTML} 
-            <p id="question-text">문제 ${currentIndex + 1}/${currentQuestions.length}\n\n${q.question}</p>
-            <div id="feedback-label"></div>
-            ${inputHTML}
-            <div id="button-container">
-                <button id="submit-btn">${submitBtnText}</button>
+    let optionsHTML = '';
+    if (q.type === 'multiple_choice') {
+        optionsHTML = `
+            <div class="options-container">
+                ${q.options.map((opt, i) => `
+                    <label class="option-label">
+                        <input type="radio" name="option" value="${i+1}">
+                        <span>${opt}</span>
+                    </label>
+                `).join('')}
             </div>
         `;
     }
-    
-    document.getElementById('submit-btn').addEventListener('click', checkAnswer);
 
-    if (isSingleProblemMode) {
-        document.getElementById('back-to-list-btn').addEventListener('click', showProblemList);
-    }
+    wrapper.innerHTML = `
+        <div style="width:100%; padding:0 20px;">
+            ${q.image_path ? `<img id="quiz-image" src="${q.image_path}" alt="문제 이미지">` : ''}
+            <p id="question-text">${q.question}</p>
+            ${optionsHTML}
+            <button id="submit-answer-btn" class="btn" style="margin-top:20px;">정답 제출</button>
+            <div id="feedback-label"></div>
+        </div>
+    `;
+
+    document.getElementById('submit-answer-btn').onclick = () => {
+        const selected = document.querySelector('input[name="option"]:checked');
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+        checkAnswer(selected.value);
+    };
 }
 
 // --- 10. 정답 확인 (PyQt: check_answer) ---
@@ -1091,3 +1013,27 @@ function closeModal() {
 
 // --- [수정] 20. 설정 화면 삭제 ---
 // (showSettingsScreen 함수 전체 삭제)
+
+// --- 과목 태그 렌더링 ---
+function renderSubjectTags() {
+    const container = document.getElementById('subject-tags');
+    if (!container) return;
+    
+    const subjects = [...new Set(getCurrentDB().map(q => q.subject || "기타"))].sort();
+    const selected = Array.from(document.querySelectorAll('#subject-tags input[type="checkbox"]:checked'))
+                          .map(cb => cb.value);
+
+    container.innerHTML = subjects.map(s => `
+        <label class="subject-tag ${selected.includes(s) ? 'selected' : ''}">
+            <input type="checkbox" value="${s}" ${selected.includes(s) ? 'checked' : ''}>
+            <span>${s}</span>
+        </label>
+    `).join('');
+
+    container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.onchange = () => {
+            const tag = cb.parentElement;
+            tag.classList.toggle('selected', cb.checked);
+        };
+    });
+}
