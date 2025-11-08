@@ -25,6 +25,14 @@
                 <div class="card">
                     <h3>과목 선택</h3>
                     <div id="subject-tags" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;"></div>
+                    <div style="display:flex; gap:8px; margin-top:12px;">
+                        <button class="btn btn-secondary" id="select-all-btn" style="flex:1; font-size:15px; padding:10px;">
+                            전체 선택
+                        </button>
+                        <button class="btn btn-secondary" id="deselect-all-btn" style="flex:1; font-size:15px; padding:10px;">
+                            전체 해제
+                        </button>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -49,19 +57,50 @@
                 </button>
             </div>
         </div>
-        
-        <div id="num-select-screen" class="screen"></div>
-        
-        <div id="custom-num-screen" class="screen"></div>
-        
+
+        <div id="num-select-screen" class="screen">
+            <div class="header">
+                <button class="back-button" id="num-back-btn">Left Arrow</button>
+                <h1>문제 개수 선택</h1>
+                <div></div>
+            </div>
+            <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
+                <div class="card">
+                    <h3>문제 수</h3>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+                        <button class="btn" onclick="startQuizWithNum(10)">10문제</button>
+                        <button class="btn" onclick="startQuizWithNum(20)">20문제</button>
+                        <button class="btn" onclick="startQuizWithNum(30)">30문제</button>
+                        <button class="btn" onclick="startQuizWithNum(50)">50문제</button>
+                        <button class="btn" onclick="showCustomNumScreen()">직접 입력</button>
+                        <button class="btn btn-secondary" onclick="startQuizWithNum(getCurrentDB().length)">전체</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="custom-num-screen" class="screen">
+            <div class="header">
+                <button class="back-button" id="custom-back-btn">Left Arrow</button>
+                <h1>직접 입력</h1>
+                <div></div>
+            </div>
+            <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
+                <div class="card">
+                    <input type="number" id="custom-num-input" placeholder="문제 수 입력" 
+                           style="padding:14px; font-size:17px; border:2px solid #e9ecef; border-radius:14px; margin-bottom:12px;">
+                    <button class="btn" id="custom-start-btn">시작하기</button>
+                </div>
+            </div>
+        </div>
+
         <div id="quiz-screen" class="screen">
             <div id="timer-display"></div>
-            
             <div id="quiz-content-wrapper"></div>
-        </div> <div id="results-screen" class="screen"></div>
+        </div>
 
+        <div id="results-screen" class="screen"></div>
         <div id="problem-list-screen" class="screen"></div>
-
         <div id="stats-screen" class="screen"></div>
     </div>
 </body>

@@ -1,4 +1,3 @@
-/* Clinical Pro - 임상병리사 국가고시 전용 프리미엄 퀴즈 앱 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -82,9 +81,6 @@ body {
     font-weight: 600;
     color: #2c3e50;
     margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 .btn {
     display: flex;
@@ -183,11 +179,6 @@ body {
     background: #e9ecef;
     border-color: #667eea;
 }
-.option-label.selected {
-    background: #eef2ff;
-    border-color: #667eea;
-    color: #667eea;
-}
 #timer-display {
     position: absolute;
     top: 80px;
@@ -202,43 +193,6 @@ body {
     backdrop-filter: blur(8px);
     display: none;
 }
-.donut-chart-container {
-    width: 180px;
-    height: 180px;
-    margin: 20px auto;
-    position: relative;
-}
-.donut-chart {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: conic-gradient(#667eea 0% var(--accuracy, 0%), #e9ecef var(--accuracy, 0%) 100%);
-}
-.donut-chart-center {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120px; height: 120px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: 800;
-    font-size: 28px;
-    color: #2c3e50;
-}
-.donut-chart-center small {
-    font-size: 14px;
-    font-weight: 500;
-    color: #6c757d;
-    margin-top: 4px;
-}
 @media (min-width: 600px) {
-    #app-container {
-        margin: 20px;
-        border-radius: 20px;
-        max-width: 420px;
-    }
+    #app-container { margin: 20px; border-radius: 20px; max-width: 420px; }
 }
