@@ -14,7 +14,41 @@
             <p id="error-message" style="color: red;"></p>
         </div>
         
-        <div id="main-menu-screen" class="screen"></div>
+        <div id="main-menu-screen" class="screen">
+            <div class="header">
+                <button class="back-button" style="visibility:hidden">Left Arrow</button>
+                <h1>임상병리 퀴즈 <span id="mode-title">3교시</span></h1>
+                <div></div>
+            </div>
+
+            <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
+                <div class="card">
+                    <h3>과목 선택</h3>
+                    <div id="subject-tags" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;"></div>
+                </div>
+
+                <div class="card">
+                    <h3>연습 모드</h3>
+                    <button class="btn" id="start-quiz-btn">퀴즈 시작</button>
+                    <button class="btn btn-secondary" id="review-btn">오답 노트 (0)</button>
+                    <button class="btn btn-secondary" id="problem-list-btn">문제 목록 보기</button>
+                </div>
+
+                <div class="card" id="exam-card">
+                    <h3>시험 모드</h3>
+                    <button class="btn btn-exam" id="exam-start-btn">국가고시 모의시험 (65문제)</button>
+                </div>
+
+                <div class="card">
+                    <h3>학습 통계</h3>
+                    <button class="btn btn-stats" id="stats-btn">정답률 및 분석 보기</button>
+                </div>
+
+                <button class="btn btn-secondary" id="switch-mode-btn" style="margin-top:8px;">
+                    1·2교시로 전환
+                </button>
+            </div>
+        </div>
         
         <div id="num-select-screen" class="screen"></div>
         
@@ -25,8 +59,6 @@
             
             <div id="quiz-content-wrapper"></div>
         </div> <div id="results-screen" class="screen"></div>
-        
-        <div id="results-screen" class="screen"></div>
 
         <div id="problem-list-screen" class="screen"></div>
 
