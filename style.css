@@ -1,718 +1,244 @@
-/* --- 폰트 로드 (PyQt: QFontDatabase.addApplicationFont) --- */
-@font-face {
-    font-family: 'NanumBarunGothic';
-    src: url('fonts/NanumBarunGothicUltraLight.ttf') format('truetype');
-    font-weight: 300;
-}
+/* Clinical Pro - 임상병리사 국가고시 전용 프리미엄 퀴즈 앱 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* --- 기본 스타일 (PyQt: app.setFont) --- */
-* {
-    box-sizing: border-box;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    font-family: 'NanumBarunGothic', 'Malgun Gothic', sans-serif;
-    background-color: #F5F7FA; /* 더 세련된 light gray로 변경 */
-    margin: 0;
-    padding: 0; /* 모바일에서 패딩 최소화 */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #1a1a1a;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
-    color: #333;
-    transition: background-color 0.3s ease; /* 부드러운 테마 전환 */
+    padding: 0;
+    overflow-x: hidden;
 }
-
-/* 다크 모드 지원 (JS로 토글 가능) */
-body.dark {
-    background-color: #1A1D21;
-    color: #E0E0E0;
-}
-
-body.dark button {
-    background-color: #3A3F47;
-    color: #E0E0E0;
-}
-
-body.dark button:hover {
-    background-color: #4A505A;
-}
-
-/* --- 화면 전환 로직 --- */
-.screen {
-    display: none;
-    width: 100%;
-    max-width: 1000px;
-    flex-direction: column;
-    align-items: center;
-}
-.screen.active {
-    display: flex;
-}
-
-/* --- 앱 컨테이너 (PyQt: QWidget) --- */
 #app-container {
     width: 100%;
-    max-width: 1000px;
-    min-height: 100vh; /* 모바일 풀스크린 */
-    padding: 15px; /* 모바일 친화적 패딩 */
-    background-color: #FFFFFF;
-    border-radius: 0; /* 모바일에서 둥근 모서리 제거 */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* subtle shadow */
-    transition: background-color 0.3s ease;
-}
-
-body.dark #app-container {
-    background-color: #222529;
-}
-
-/* --- 위젯 스타일 (PyQt: setStyleSheet) --- */
-h1 {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 15px; /* 여백 최적화 */
-}
-
-h2 {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-}
-h3 {
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    width: 100%;
-    max-width: 500px;
-}
-
-button {
-    font-family: inherit;
-    font-size: 22px; /* 모바일에서 약간 줄임 */
-    padding: 12px 20px; /* 터치 편하게 */
-    min-height: 48px; /* 접근성: 최소 터치 크기 */
-    min-width: 150px;
-    max-width: 100%; /* 모바일 풀宽度 */
-    margin: 8px 0;
-    cursor: pointer;
-    background: linear-gradient(135deg, #4A90E2, #357ABD); /* 세련된 gradient */
-    color: white;
-    border: none;
-    border-radius: 12px; /* 더 rounded */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-    transform: scale(1.02); /* subtle scale 애니메이션 */
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
-}
-
-button:disabled {
-    background: #E0E0E0;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-select, input[type="text"] {
-    font-family: inherit;
-    font-size: 22px;
-    padding: 10px;
-    max-width: 100%;
-    width: 100%;
-    margin: 10px 0;
-    border: 1px solid #DDD; /* 얇은 border */
-    border-radius: 8px;
-    transition: border-color 0.2s ease;
-}
-
-select:focus, input[type="text"]:focus {
-    border-color: #4A90E2; /* 포커스 하이라이트 */
-}
-
-#main-menu-screen > div:nth-of-type(1) {
+    max-width: 480px;
+    min-height: 100vh;
+    background: #ffffff;
+    border-radius: 0;
+    box-shadow: 0 0 40px rgba(0,0,0,0.15);
+    overflow: hidden;
     display: flex;
-    gap: 10px;
-    width: 100%;
-    max-width: 500px;
+    flex-direction: column;
 }
-#main-menu-screen > div:nth-of-type(1) > button {
-    flex: 1;
-}
-
-/* --- 과목 선택 (PyQt: QGridLayout) --- */
-.subject-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px; /* 여백 최적화 */
-    width: 100%;
-    max-width: 900px;
-    padding: 10px;
-}
-
-.subject-item {
-    font-size: 20px; /* 모바일 readable */
+.header {
+    padding: 16px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
     display: flex;
     align-items: center;
-    background-color: #F8F8F8;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #EEE;
-    transition: background-color 0.2s ease;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-
-.subject-item:hover {
-    background-color: #E8F0FE; /* subtle hover */
-}
-
-.subject-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin-right: 10px;
-}
-
-/* --- 퀴즈 화면 (PyQt: show_question) --- */
-#quiz-screen {
-    text-align: center;
-    position: relative;
-}
-
-/* ▼▼▼ 시험 모드 타이머 ▼▼▼ */
-#timer-display {
-    font-size: 26px;
-    font-weight: bold;
-    color: #dc3545;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 8px 16px;
-    margin-bottom: 12px;
-    width: auto;
-    text-align: center;
-    display: none;
-    animation: fadeIn 0.3s ease; /* subtle animation */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-#quiz-image {
-    max-width: 100%;
-    max-height: 350px; /* 모바일에서 높이 제한 */
-    height: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    border: 1px solid #EEE;
-    margin-bottom: 15px;
-}
-
-#question-text {
-    font-size: 22px;
-    white-space: pre-wrap;
-    margin: 12px 0;
-}
-
-#feedback-label {
+.header h1 {
     font-size: 20px;
-    font-weight: bold;
-    min-height: 50px;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 12px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    width: 100%;
-    max-width: 800px;
+    font-weight: 700;
+    color: #2c3e50;
 }
-
-/* --- 정답/오답 피드백 (PyQt: setPalette) --- */
-body.correct-feedback { background-color: #d4edda; }
-#feedback-label.correct { background-color: #d4edda; opacity: 1; }
-
-body.incorrect-feedback { background-color: #f8d7da; }
-#feedback-label.incorrect { background-color: #f8d7da; opacity: 1; }
-
+.back-button {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.back-button:hover {
+    background: #e9ecef;
+    transform: translateX(-2px);
+}
+.screen {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    padding: 0;
+    overflow-y: auto;
+}
+.screen.active { display: flex; }
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 0 20px 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+.btn:active { transform: translateY(0); }
+.btn-secondary {
+    background: #f8f9fa;
+    color: #495057;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.btn-secondary:hover {
+    background: #e9ecef;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.btn-exam {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+.btn-exam:hover { box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4); }
+.btn-stats {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+.subject-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    background: #f1f3f5;
+    border-radius: 12px;
+    margin: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.subject-tag input[type="checkbox"] { accent-color: #667eea; }
+.subject-tag.selected {
+    background: #667eea;
+    color: white;
+}
+#quiz-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 16px;
+    margin: 16px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+#question-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 16px 0;
+    font-weight: 500;
+}
 .options-container {
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* 모바일 풀宽度 */
-    width: 100%;
-    max-width: 700px;
-    margin: 12px auto;
+    gap: 12px;
+    margin: 20px 0;
 }
-
 .option-label {
-    font-size: 20px;
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border: 1px solid #EEE; /* 얇은 border */
-    border-radius: 8px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    gap: 12px;
+    border: 2px solid transparent;
 }
-
 .option-label:hover {
-    background-color: #F0F4F8; /* 세련된 hover */
-    border-color: #4A90E2;
+    background: #e9ecef;
+    border-color: #667eea;
 }
-
-.option-label input[type="radio"] {
-    width: 16px;
-    height: 16px;
-    margin-right: 12px;
+.option-label.selected {
+    background: #eef2ff;
+    border-color: #667eea;
+    color: #667eea;
 }
-
-/* --- 결과 화면 (PyQt: ResultsDialog) --- */
-#results-screen {
-    text-align: center;
+#timer-display {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background: rgba(231, 76, 60, 0.95);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    backdrop-filter: blur(8px);
+    display: none;
 }
-
-/* --- 도넛 차트 (PyQt: DonutChartWidget) --- */
 .donut-chart-container {
+    width: 180px;
+    height: 180px;
+    margin: 20px auto;
     position: relative;
-    width: 200px; /* 모바일 크기 최적화 */
-    height: 200px;
-    margin: 15px auto;
 }
-
 .donut-chart {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(
-        #4A90E2 0% var(--accuracy, 0%), 
-        #F0F0F0 var(--accuracy, 0%) 100%
-    );
-    transition: --accuracy 1s;
+    background: conic-gradient(#667eea 0% var(--accuracy, 0%), #e9ecef var(--accuracy, 0%) 100%);
 }
-
 .donut-chart-center {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    background: #FFFFFF;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px; height: 120px;
+    background: white;
     border-radius: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-/* ================================================================
-   [최종] 모바일 반응형 수정 (600px 이하)
-   - 기존 디자인 유지
-   - 모바일에서만 "조금 더 세련되게"
-   - 과하지 않게, 편안하게
-================================================================
-*/
-@media (max-width: 600px) {
-    body {
-        padding: 5px;
-    }
-    
-    #app-container {
-        min-height: 100vh;
-        padding: 12px;           /* 여백 줄임 */
-        border-radius: 0;
-        box-shadow: none;
-    }
-    
-    h1 { 
-        font-size: 24px; 
-        margin-bottom: 12px;
-    }
-    h2 { 
-        font-size: 22px; 
-        margin-bottom: 10px;
-    }
-
-    /* --- 버튼: 크기는 유지, 여백만 조정 --- */
-    button {
-        font-size: 20px;         /* 원래 20px */
-        padding: 12px 16px;      /* 터치 편하게 */
-        min-height: 48px;
-        min-width: 0;            /* 전체 선택 버튼은 flex로 조정 */
-        width: 100%;
-        margin: 6px 0;           /* 여백 줄임 */
-        border-radius: 10px;
-    }
-    
-    /* 전체 선택 / 해제 버튼은 2개 나란히 */
-    #main-menu-screen > div:nth-of-type(1) {
-        gap: 8px;
-    }
-    #main-menu-screen > div:nth-of-type(1) > button {
-        font-size: 18px;
-        padding: 10px;
-    }
-
-    /* --- 과목 선택: 1열로 변경 (스크롤 편하게) --- */
-    .subject-grid {
-        grid-template-columns: 1fr;   /* 1열 */
-        gap: 10px;
-    }
-    .subject-item {
-        font-size: 19px;
-        padding: 11px;
-        border-radius: 10px;          /* 살짝 더 둥글게 */
-        background-color: #f9fbfd;    /* 아주 연한 하늘색 배경 */
-        border: 1px solid #e3f2fd;
-    }
-
-    /* --- 퀴즈 화면 --- */
-    #question-text { 
-        font-size: 21px;              /* 가독성 UP */
-        line-height: 1.5;
-    }
-    .option-label { 
-        font-size: 19px; 
-        padding: 11px;
-        border-radius: 10px;
-    }
-
-    select, input[type="text"] {
-        font-size: 20px;
-    }
-
-    /* --- 도넛 차트 작게 --- */
-    .donut-chart-container {
-        width: 180px;
-        height: 180px;
-        margin: 15px auto;
-    }
-    .donut-chart-center {
-        font-size: 24px;
-    }
-
-    /* --- 통계 그래프 --- */
-    .stats-bar-graph-container,
-    .exam-bar-graph-container {
-        padding: 15px 10px;
-        max-width: 100%;
-    }
-
-    /* --- 타이머 --- */
-    #timer-display {
-        font-size: 24px;
-        padding: 8 tbsp 16px;
-        width: auto;
-    }
-}
-
-/* --- 문제 목록 --- */
-#problem-list-screen {
-    width: 100%;
-}
-
-.problem-list-container {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-    max-width: 800px;
-    max-height: 600px;
-    overflow-y: auto;
-    border: 1px solid #EEE;
-    border-radius: 8px;
-}
-
-.problem-list-item {
-    padding: 10px 15px;
-    font-size: 18px;
-    border-bottom: 1px solid #EEE;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    text-align: left;
-}
-
-.problem-list-item:hover {
-    background-color: #F8F8F8;
-}
-
-.problem-list-item:last-child {
-    border-bottom: none;
-}
-
-/* 퀴즈 화면의 뒤로가기 버튼 */
-.back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    font-weight: 800;
     font-size: 28px;
-    font-weight: bold;
-    padding: 0 12px;
-    min-width: 45px;
-    max-width: 55px;
-    background-color: #f0f0f0;
-    color: #555;
-    border: 1px solid #ddd;
-    line-height: 40px;
-    border-radius: 8px; /* rounded */
+    color: #2c3e50;
 }
-.back-button:hover {
-    background-color: #e0e0e0;
-    box-shadow: none;
+.donut-chart-center small {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6c757d;
+    margin-top: 4px;
 }
-
-/* --- 학습 통계 --- */
-#stats-screen {
-    width: 100%;
-    max-width: 800px;
+@media (min-width: 600px) {
+    #app-container {
+        margin: 20px;
+        border-radius: 20px;
+        max-width: 420px;
+    }
 }
-
-#stats-screen h2, #stats-screen h3 {
-    text-align: center;
-}
-
-.stats-summary {
-    display: flex;
-    justify-content: space-around;
-    margin: 15px 0;
-    flex-wrap: wrap;
-}
-
-.summary-box {
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-align: center;
-    min-width: 140px;
-    margin: 5px;
-}
-
-.summary-box h4 {
-    margin: 0 0 5px 0;
-    font-size: 16px;
-    color: #555;
-}
-
-.summary-box p {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.summary-box.weak { background-color: #f8d7da; }
-.summary-box.strong { background-color: #d4edda; }
-.summary-box.total { background-color: #e2e3e5; }
-
-.stats-bar-graph-container {
-    width: 100%;
-    margin: 20px auto;
-    padding: 15px;
-    border: 1px solid #EEE;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-}
-
-.stats-bar-graph-container .bar-item {
-    width: 100%;
-    max-width: 600px;
-}
-
-.bar-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.bar-label {
-    width: 110px;
-    font-size: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding-right: 8px;
-}
-
-.bar-wrapper {
-    flex-grow: 1;
-    height: 28px;
-    background-color: #F0F0F0;
-    border-radius: 5px;
-    position: relative;
-}
-
-.bar {
-    height: 100%;
-    background-color: #4A90E2;
-    border-radius: 5px;
-    transition: width 0.5s ease-out;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: white;
-    font-weight: bold;
-    font-size: 13px;
-    padding-right: 6px;
-    overflow: hidden;
-}
-
-.bar.high-accuracy {
-    background-color: #28a745;
-}
-.bar.low-accuracy {
-    background-color: #dc3545;
-}
-
-/* --- 통계 탭 --- */
-.tab-btn {
-    flex: 1;
-    padding: 8px 12px;
-    font-size: 16px;
-    background-color: transparent;
-    color: #555;
-    border: none;
-    border-bottom: 3px solid transparent;
-    cursor: pointer;
-    margin: 0;
-    border-radius: 0;
-    min-width: 90px;
-}
-.tab-btn:hover {
-    background-color: #f8f8f8;
-    box-shadow: none;
-}
-.tab-btn.active {
-    color: #4A90E2;
-    border-bottom-color: #4A90E2;
-    font-weight: bold;
-}
-
-.tab-content {
-    display: none;
-    width: 100%;
-}
-.tab-content.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* --- 시험 통계 (세로 막대그래프) --- */
-.exam-bar-graph-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;
-    max-width: 600px;
-    height: 260px;
-    padding: 40px 8px 0 8px;
-    margin: 20px auto;
-    border: 1px solid #EEE;
-    border-radius: 8px;
-    overflow-x: auto;
-    background: #fcfcfc;
-}
-
-.bar-vertical-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 8px;
-    min-width: 55px;
-    height: 100%;
-    justify-content: flex-end;
-}
-
-.bar-vertical {
-    width: 45px;
-    background-color: #4A90E2;
-    border-radius: 5px 5px 0 0;
-    transition: background-color 0.2s, height 0.5s ease-out;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-.bar-vertical:hover {
-    background-color: #357ABD;
-}
-
-.bar-vertical .bar-percentage {
-    position: absolute;
-    top: -22px;
-    font-weight: bold;
-    font-size: 13px;
-    color: #333;
-}
-
-.bar-vertical-label {
-    font-size: 13px;
-    color: #555;
-    margin-top: 6px;
-    white-space: nowrap;
-}
-
-/* --- 상세 보기 모달 (Modal) --- */
-.modal-backdrop {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.modal-backdrop.active {
-    display: flex;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-}
-
-.modal-content h2 {
-    margin-top: 0;
-}
-
-/* --- [신규] 교시 전환 버튼 스타일 --- */
-.btn-mode-switch {
-    background: linear-gradient(135deg, #6c757d, #5a6268);
-    margin-top: 15px;
-}
-.btn-mode-switch:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
-}
-
-/* --- [신규] 특수 버튼 색상 (기존 코드에서 복사) --- */
-.btn-exam { background: linear-gradient(135deg, #dc3545, #c82333) !important; }
-.btn-exam:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3) !important; }
-
-.btn-stats { background: linear-gradient(135deg, #6c757d, #5a6268) !important; }
-.btn-stats:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3) !important; }
-
-.btn-danger {
-    background: linear-gradient(135deg, #dc3545, #c82333) !important;
-    min-width: 100px;
-    max-width: 150px;
-    flex-shrink: 0;
-    margin-left: 10px;
-}
-.btn-danger:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3) !important;
-}
-
-.btn-modal-close { background: linear-gradient(135deg, #6c757d, #5a6268) !important; }
-.btn-modal-close:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3) !important; }
