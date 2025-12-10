@@ -1,16 +1,29 @@
-// 기존 원본 로직 복구 + 디자인 업그레이드
-let QUESTIONS_DB_P3 = [], QUESTIONS_DB_P1_2 = [];
-let currentMode = 'P3';
-let questionsForQuiz = [], currentQuestions = [], currentIndex = 0;
-let score = 0, newIncorrect = [], isReviewMode = false, isExamMode = false;
-let examTimer = null, timeRemaining = 0;
-let QUIZ_STATS = {}, EXAM_HISTORY = [], INCORRECT_LOG = [];
-let currentQuizResults = [];
+// --- 전역 상태 변수 ---
+let QUESTIONS_DB_P3 = [];     
+let QUESTIONS_DB_P1_2 = [];   
+let currentMode = 'P3';     
+let questionsForQuiz = [];    
+let currentQuestions = [];    
+let currentIndex = 0;
+let score = 0;
+let newIncorrect = [];
+let isReviewMode = false;
+let isSingleProblemMode = false; 
+let isExamMode = false; 
+let examTimer = null; 
+let timeRemaining = 0; 
+let QUIZ_STATS = {}; 
+let EXAM_HISTORY = []; 
+let INCORRECT_LOG = []; 
+let currentQuizResults = []; 
+let isShuffleOptions = false; 
 
+// 동적 키 생성 함수
 const INCORRECT_LOG_KEY = () => `clinicalPathologyQuizLog_${currentMode}`;
 const STATS_KEY = () => `clinicalPathologyQuizStats_${currentMode}`;
 const EXAM_HISTORY_KEY = () => `clinicalPathologyExamHistory_${currentMode}`;
 
+// DOM 요소
 const appContainer = document.getElementById('app-container');
 const loadingScreen = document.getElementById('loading-screen');
 const errorMessage = document.getElementById('error-message');
@@ -22,347 +35,664 @@ const resultsScreen = document.getElementById('results-screen');
 const problemListScreen = document.getElementById('problem-list-screen');
 const statsScreen = document.getElementById('stats-screen');
 
+// --- 앱 초기화 ---
 window.addEventListener('DOMContentLoaded', loadApp);
 
 async function loadApp() {
     try {
         const [p3Response, p1_2Response] = await Promise.all([
-            fetch('questions.json').catch(() => ({ok: false})),
-            fetch('questions_1-2.json').catch(() => ({ok: false}))
+            fetch('questions.json').catch(e => ({ error: e })),       
+            fetch('questions_1-2.json').catch(e => ({ error: e }))  
         ]);
 
         if (p3Response.ok) QUESTIONS_DB_P3 = await p3Response.json();
+        else console.error("3교시 DB 로드 실패");
+
         if (p1_2Response.ok) QUESTIONS_DB_P1_2 = await p1_2Response.json();
+        else console.error("1·2교시 DB 로드 실패");
 
         if (QUESTIONS_DB_P3.length === 0 && QUESTIONS_DB_P1_2.length === 0) {
-            throw new Error("문제 파일을 찾을 수 없습니다. questions.json 파일을 추가하세요.");
+            throw new Error("어떤 문제 파일도 불러오지 못했습니다.");
         }
 
-        loadDataForCurrentMode();
+        switchMode('P3'); 
         showScreen('main-menu-screen');
         showMainMenu();
-    } catch (error) {
-        console.error(error);
-        errorMessage.textContent = error.message;
+
+    } catch (error) { 
+        console.error("앱 로딩 실패:", error);
+        errorMessage.textContent = `오류: ${error.message}`;
         showScreen('loading-screen');
     }
 }
 
-function getCurrentDB() {
-    return currentMode === 'P3' ? QUESTIONS_DB_P3 : QUESTIONS_DB_P1_2;
+// --- [최적화] 이미지 프리로딩 함수 ---
+// 현재 문제 이후의 N개 이미지를 미리 다운로드하여 캐시에 저장
+function preloadNextImages(startIndex) {
+    const PRELOAD_COUNT = 3; // 미리 로딩할 개수 (너무 많으면 메모리 부족하므로 3개 정도가 적당)
+    
+    for (let i = 1; i <= PRELOAD_COUNT; i++) {
+        const nextIndex = startIndex + i;
+        if (nextIndex < currentQuestions.length) {
+            const nextQ = currentQuestions[nextIndex];
+            if (nextQ.image_path) {
+                const img = new Image();
+                img.src = nextQ.image_path;
+                // 브라우저가 이 이미지를 캐시에 저장하게 됨
+            }
+        }
+    }
 }
 
-function loadDataForCurrentMode() {
-    INCORRECT_LOG = JSON.parse(localStorage.getItem(INCORRECT_LOG_KEY()) || '[]');
-    QUIZ_STATS = JSON.parse(localStorage.getItem(STATS_KEY()) || '{}');
-    EXAM_HISTORY = JSON.parse(localStorage.getItem(EXAM_HISTORY_KEY()) || '[]');
-}
-
-function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
-    document.body.className = '';
+// --- 유틸리티: 배열 섞기 ---
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 function switchMode(newMode) {
-    if (newMode === currentMode) return;
-    if (newMode === 'P1_2' && QUESTIONS_DB_P1_2.length === 0) {
-        alert("1,2교시 문제 파일을 불러오지 못했습니다.");
-        return;
-    }
+    if (newMode === currentMode) return; 
     currentMode = newMode;
+    document.body.classList.toggle('mode-p1_2', newMode === 'P1_2');
     loadDataForCurrentMode();
-    showMainMenu();
 }
 
-function showMainMenu() {
-    showScreen('main-menu-screen');
-    stopTimer();
+function switchModeAndShowScreen(newMode, screenId, tabId = null) {
+    if (currentMode !== newMode) switchMode(newMode);
+    
+    if (screenId === 'stats-screen') showStatsScreen(tabId); 
+    else showScreen(screenId);
+}
 
-    document.getElementById('mode-title').textContent = currentMode === 'P3' ? '3교시' : '1·2교시';
-    document.getElementById('exam-card').style.display = currentMode === 'P3' ? 'block' : 'none';
+function loadDataForCurrentMode() {
+    loadIncorrectLog();
+    loadQuizStats();
+    loadExamHistory();
+}
+
+function getCurrentDB() {
+    return (currentMode === 'P3') ? QUESTIONS_DB_P3 : QUESTIONS_DB_P1_2;
+}
+
+function loadIncorrectLog() {
+    INCORRECT_LOG = JSON.parse(localStorage.getItem(INCORRECT_LOG_KEY())) || [];
+}
+function saveIncorrectLog() {
+    localStorage.setItem(INCORRECT_LOG_KEY(), JSON.stringify(INCORRECT_LOG));
+}
+function loadExamHistory() {
+    EXAM_HISTORY = JSON.parse(localStorage.getItem(EXAM_HISTORY_KEY())) || [];
+}
+function saveExamHistory() {
+    localStorage.setItem(EXAM_HISTORY_KEY(), JSON.stringify(EXAM_HISTORY));
+}
+function loadQuizStats() {
+    QUIZ_STATS = JSON.parse(localStorage.getItem(STATS_KEY())) || {};
+    const subjects = [...new Set(getCurrentDB().map(q => q.subject || "기타"))];
+    subjects.forEach(subject => {
+        if (!QUIZ_STATS[subject]) QUIZ_STATS[subject] = { correct: 0, total: 0 };
+    });
+}
+function saveQuizStats() {
+    localStorage.setItem(STATS_KEY(), JSON.stringify(QUIZ_STATS));
+}
+
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+    const activeScreen = document.getElementById(screenId);
+    if (activeScreen) activeScreen.classList.add('active');
+    
+    document.body.className = document.body.className.replace(/correct-feedback|incorrect-feedback/g, '').trim();
+    document.body.classList.toggle('mode-p1_2', currentMode === 'P1_2');
+}
+
+// --- 메인 메뉴 ---
+function showMainMenu() {
+    showScreen('main-menu-screen'); 
+    stopTimer(); 
+
+    const subjects = [...new Set(getCurrentDB().map(q => q.subject || "기타"))].sort();
+    let subjectCheckboxesHTML = subjects.map(subject => `
+        <label class="subject-item"><input type="checkbox" class="subject-checkbox" value="${subject}">${subject}</label>
+    `).join('');
+
+    const p1_2_active = currentMode === 'P1_2' ? 'active' : '';
+    const p3_active = currentMode === 'P3' ? 'active' : '';
+    
+    const examTabHTML = (currentMode === 'P3') ? `<button id="tab-exam" class="tab-btn">시험 모드</button>` : '';
+    const examContentHTML = (currentMode === 'P3') ? `
+        <div id="tab-content-exam" class="tab-content">
+            <button id="exam-start-btn-p3" class="btn-exam">⏱️ 3교시 실기 (65문제/65분)</button>
+        </div>` : `
+        <div id="tab-content-exam" class="tab-content">
+            <button id="exam-start-btn-p1" class="btn-exam" style="margin-bottom: 10px;">⏱️ 1교시 이론 (100문제/85분)</button>
+            <button id="exam-start-btn-p2" class="btn-exam">⏱️ 2교시 이론 (115문제/95분)</button>
+        </div>`;
+
+    const modeName = currentMode === 'P3' ? '3교시' : '1·2교시';
+
+    mainMenuScreen.innerHTML = `
+        <div id="mode-switcher">
+            <button id="mode-p1_2-btn" class="mode-btn ${p1_2_active}">1·2교시 (이론)</button>
+            <button id="mode-p3-btn" class="mode-btn ${p3_active}">3교시 (실기)</button>
+        </div>
+        <h1>임상병리 퀴즈 (${modeName})</h1>
+        <div class="main-menu-tab-container">
+            <button id="tab-practice" class="tab-btn active">연습</button>
+            <button id="tab-exam" class="tab-btn">시험 모드</button>
+            <button id="tab-other" class="tab-btn">기타</button>
+        </div>
+
+        <div id="tab-content-practice" class="tab-content active">
+            <h2>풀고 싶은 과목을 선택하세요</h2>
+            <div style="width: 100%; max-width: 500px; display: flex; gap: 10px; margin: 10px 0;">
+                <button id="select-all-btn" style="flex: 1;">전체 선택</button>
+                <button id="deselect-all-btn" style="flex: 1;">전체 해제</button>
+            </div>
+            <div class="subject-grid">${subjectCheckboxesHTML}</div>
+            <button id="start-quiz-btn">선택한 과목으로 퀴즈 시작</button>
+            <button id="review-btn">오답 노트 풀기 (${INCORRECT_LOG.length}개)</button>
+            <button id="problem-list-btn">문제 목록 보기 (전체 ${getCurrentDB().length}개)</button>
+        </div>
+        
+        ${examContentHTML}
+        
+        <div id="tab-content-other" class="tab-content">
+            <div class="toggle-wrapper">
+                <span>선택지 섞기</span>
+                <label class="switch">
+                    <input type="checkbox" id="shuffle-toggle" ${isShuffleOptions ? 'checked' : ''}>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <button id="stats-btn" class="btn-stats">📊 학습 통계</button>
+            <button id="reset-all-btn" class="btn-danger">🚨 모든 기록 초기화</button>
+            <button id="exit-btn" style="background-color: #aaa; margin-top: 20px;">종료 (새로고침)</button>
+        </div>
+    `;
+    
+    document.getElementById('shuffle-toggle').addEventListener('change', (e) => { isShuffleOptions = e.target.checked; });
+
+    document.getElementById('mode-p1_2-btn').addEventListener('click', () => { switchMode('P1_2'); showMainMenu(); });
+    document.getElementById('mode-p3-btn').addEventListener('click', () => { switchMode('P3'); showMainMenu(); });
+    document.getElementById('select-all-btn').addEventListener('click', () => document.querySelectorAll('.subject-checkbox').forEach(cb => cb.checked = true));
+    document.getElementById('deselect-all-btn').addEventListener('click', () => document.querySelectorAll('.subject-checkbox').forEach(cb => cb.checked = false));
+    document.getElementById('start-quiz-btn').addEventListener('click', handleQuizStart);
+    document.getElementById('problem-list-btn').addEventListener('click', showProblemList);
+    document.getElementById('stats-btn').addEventListener('click', () => showStatsScreen());
+    document.getElementById('reset-all-btn').addEventListener('click', handleResetAllData);
+    document.getElementById('exit-btn').addEventListener('click', () => location.reload());
 
     const reviewBtn = document.getElementById('review-btn');
-    reviewBtn.innerHTML = `오답 노트 풀기 (${INCORRECT_LOG.length}개)`;
-    reviewBtn.disabled = INCORRECT_LOG.length === 0;
+    reviewBtn.addEventListener('click', startReviewQuiz);
+    if (INCORRECT_LOG.length === 0) reviewBtn.disabled = true;
 
-    const switchBtn = document.getElementById('switch-mode-btn');
-    switchBtn.innerHTML = currentMode === 'P3' ? '1·2교시로 전환' : '3교시로 전환';
+    if (currentMode === 'P3') {
+        document.getElementById('exam-start-btn-p3').addEventListener('click', () => handleExamStart('P3'));
+    } else {
+        document.getElementById('exam-start-btn-p1').addEventListener('click', () => handleExamStart('P1'));
+        document.getElementById('exam-start-btn-p2').addEventListener('click', () => handleExamStart('P2'));
+    }
 
-    renderSubjectTags();
-
-    document.getElementById('start-quiz-btn').addEventListener('click', handleQuizStart);
-    document.getElementById('review-btn').addEventListener('click', startReviewQuiz);
-    document.getElementById('problem-list-btn').addEventListener('click', showProblemList);
-    document.getElementById('stats-btn').addEventListener('click', showStatsScreen);
-    document.getElementById('switch-mode-btn').addEventListener('click', () => switchMode(currentMode === 'P3' ? 'P1_2' : 'P3'));
-
-    const examBtn = document.getElementById('exam-start-btn');
-    if (examBtn) examBtn.addEventListener('click', handleExamStart);
-
-    document.getElementById('select-all-btn').addEventListener('click', () => {
-        document.querySelectorAll('#subject-tags input[type="checkbox"]').forEach(cb => {
-            cb.checked = true;
-            cb.parentElement.classList.add('selected');
-        });
-    });
-    document.getElementById('deselect-all-btn').addEventListener('click', () => {
-        document.querySelectorAll('#subject-tags input[type="checkbox"]').forEach(cb => {
-            cb.checked = false;
-            cb.parentElement.classList.remove('selected');
-        });
-    });
+    const tabPractice = document.getElementById('tab-practice');
+    const tabExam = document.getElementById('tab-exam');
+    const tabOther = document.getElementById('tab-other');
+    const contentPractice = document.getElementById('tab-content-practice');
+    const contentExam = document.getElementById('tab-content-exam');
+    const contentOther = document.getElementById('tab-content-other');
+    
+    const showMainTab = (tabId) => {
+        [tabPractice, tabExam, tabOther].forEach(t => t && t.classList.remove('active'));
+        [contentPractice, contentExam, contentOther].forEach(c => c && c.classList.remove('active'));
+        
+        if (tabId === 'exam') { tabExam.classList.add('active'); contentExam.classList.add('active'); }
+        else if (tabId === 'other') { tabOther.classList.add('active'); contentOther.classList.add('active'); }
+        else { tabPractice.classList.add('active'); contentPractice.classList.add('active'); }
+    };
+    tabPractice.addEventListener('click', () => showMainTab('practice'));
+    tabExam.addEventListener('click', () => showMainTab('exam'));
+    tabOther.addEventListener('click', () => showMainTab('other'));
 }
 
-function renderSubjectTags() {
-    const container = document.getElementById('subject-tags');
-    const subjects = [...new Set(getCurrentDB().map(q => q.subject || "기타"))].sort();
-    container.innerHTML = subjects.map(s => `
-        <label class="subject-tag">
-            <input type="checkbox" value="${s}">
-            <span>${s}</span>
-        </label>
-    `).join('');
-    container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-        cb.addEventListener('change', () => cb.parentElement.classList.toggle('selected', cb.checked));
-    });
+function handleResetAllData() {
+    const modeName = currentMode === 'P3' ? '3교시' : '1·2교시';
+    if (confirm(`[${modeName} 모드]\n정말 '${modeName}'의 모든 기록 (오답 노트, 연습 통계, 시험 이력)을 초기화하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다.`)) {
+        localStorage.removeItem(INCORRECT_LOG_KEY());
+        localStorage.removeItem(STATS_KEY());
+        localStorage.removeItem(EXAM_HISTORY_KEY());
+        loadDataForCurrentMode(); 
+        alert(`'${modeName}'의 모든 기록이 초기화되었습니다.`);
+        showMainMenu(); 
+    }
 }
 
 function handleQuizStart() {
-    const selectedSubjects = Array.from(document.querySelectorAll('#subject-tags input[type="checkbox"]:checked')).map(cb => cb.value);
-    if (selectedSubjects.length === 0) {
-        alert("하나 이상의 과목을 선택해주세요.");
-        return;
-    }
+    const selectedSubjects = Array.from(document.querySelectorAll('.subject-checkbox:checked')).map(cb => cb.value);
+    if (selectedSubjects.length === 0) { alert("하나 이상의 과목을 선택해주세요."); return; }
     questionsForQuiz = getCurrentDB().filter(q => selectedSubjects.includes(q.subject));
-    document.getElementById('total-questions').textContent = questionsForQuiz.length;
     showNumSelectScreen();
 }
 
 function showNumSelectScreen() {
-    showScreen('num-select-screen');
+    showScreen('num-select-screen'); 
+    const total = questionsForQuiz.length;
+    numSelectScreen.innerHTML = `
+        <h2>몇 문제를 푸시겠습니까?</h2>
+        <p style="font-size: 22px;">(선택된 과목 총 ${total}개)</p>
+        <select id="num-combo"><option>10</option><option>20</option><option>30</option><option>50</option><option>사용자 지정</option></select>
+        <button id="start-btn">시작</button><button id="num-back-to-main-btn">뒤로가기</button>
+    `;
+    document.getElementById('start-btn').addEventListener('click', () => {
+        const choice = document.getElementById('num-combo').value;
+        if (choice === "사용자 지정") showCustomNumScreen();
+        else prepareAndRunQuiz(parseInt(choice, 10));
+    });
     document.getElementById('num-back-to-main-btn').addEventListener('click', showMainMenu);
 }
 
 function showCustomNumScreen() {
-    showScreen('custom-num-screen');
-    const maxNum = questionsForQuiz.length;
-    document.getElementById('max-custom-num').textContent = maxNum;
-    document.getElementById('custom-num-input').max = maxNum;
-    document.getElementById('custom-back-btn').addEventListener('click', showNumSelectScreen);
-    document.getElementById('custom-ok-btn').addEventListener('click', customNumberEntered);
-}
-
-function customNumberEntered() {
-    const num = parseInt(document.getElementById('custom-num-input').value);
-    if (num > 0 && num <= questionsForQuiz.length) {
-        prepareAndRunQuiz(num);
-    } else {
-        alert("1 이상의 숫자를 입력해주세요.");
-    }
+    showScreen('custom-num-screen'); 
+    customNumScreen.innerHTML = `<h2>문제 수를 입력하세요 (최대 ${questionsForQuiz.length}개):</h2><input type="text" id="custom-num-input" inputmode="numeric" pattern="[0-9]*"><button id="ok-btn">확인</button><button id="cancel-btn">취소</button>`;
+    document.getElementById('ok-btn').addEventListener('click', () => {
+        const val = parseInt(document.getElementById('custom-num-input').value, 10);
+        if (val > 0) prepareAndRunQuiz(val); else alert("1 이상의 숫자를 입력해주세요.");
+    });
+    document.getElementById('cancel-btn').addEventListener('click', showNumSelectScreen);
 }
 
 function prepareAndRunQuiz(num) {
-    currentQuestions = [...questionsForQuiz].sort(() => 0.5 - Math.random()).slice(0, num);
+    const count = Math.min(num, questionsForQuiz.length);
+    const shuffled = [...questionsForQuiz].sort(() => 0.5 - Math.random());
+    runQuiz(shuffled.slice(0, count));
+}
+
+function runQuiz(questionList, isReview = false, isSingleMode = false, isExam = false) { 
+    currentQuestions = questionList;
     currentIndex = 0;
     score = 0;
     newIncorrect = [];
-    isReviewMode = false;
-    isExamMode = false;
-    showScreen('quiz-screen');
+    isReviewMode = isReview;
+    isSingleProblemMode = isSingleMode; 
+    isExamMode = isExam; 
+    currentQuizResults = [];
+    quizStartTime = new Date(); 
+    problemTimes = []; 
+
+    if (isExamMode) startTimer();
     showQuestion();
 }
 
+// --- [최적화] 문제 표시 ---
 function showQuestion() {
+    problemStartTime = new Date(); 
+    showScreen('quiz-screen');
     const q = currentQuestions[currentIndex];
-    const wrapper = document.getElementById('quiz-content-wrapper');
-    let optionsHTML = q.options.map((opt, i) => `
-        <label class="option-label">
-            <input type="radio" name="option" value="${i+1}">
-            <span>${opt}</span>
-        </label>
-    `).join('');
+    const timerDisplay = document.getElementById('timer-display'); 
+    
+    let backBtnHTML = isSingleProblemMode ? '<button id="back-to-list-btn" class="back-button">&lt;</button>' : '';
+    let submitBtnText = (isExamMode && currentIndex === currentQuestions.length - 1) ? '결과 보기' : (isExamMode ? '다음 문제' : '제출');
 
-    wrapper.innerHTML = `
-        <div style="padding:20px; text-align:center;">
-            ${q.image_path ? `<img id="quiz-image" src="${q.image_path}" alt="문제 이미지">` : ''}
-            <p id="question-text" style="font-size:18px; margin:16px 0;">${q.question}</p>
-            <div class="options-container">${optionsHTML}</div>
-            <button class="btn" id="submit-answer-btn" style="max-width:300px;">정답 제출</button>
-            <div id="feedback-label" style="font-size:18px; margin-top:16px; min-height:50px;"></div>
-        </div>
-    `;
+    if (isExamMode && timerDisplay) {
+        timerDisplay.style.display = 'block';
+        const m = Math.floor(timeRemaining / 60);
+        const s = timeRemaining % 60;
+        timerDisplay.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    } else if (timerDisplay) {
+        timerDisplay.style.display = 'none';
+    }
 
-    document.getElementById('submit-answer-btn').addEventListener('click', () => {
-        const selected = document.querySelector('input[name="option"]:checked');
-        if (!selected) {
-            alert("정답을 선택해주세요!");
-            return;
-        }
-        checkAnswer(selected.value, q);
-    });
+    let imageHTML = '';
+    if (q.image_path) { 
+        // [최적화] decoding="async" 및 loading="eager" (현재 문제는 즉시 로딩)
+        imageHTML = `<img id="quiz-image" src="${q.image_path}" alt="문제 이미지 (${q.image_path})" decoding="async" onerror="this.style.display='none';">`;
+    }
+
+    let inputHTML = '';
+    if (q.type === "multiple_choice") {
+        let displayOptions = [...q.options];
+        if (isShuffleOptions) shuffleArray(displayOptions);
+
+        const optionsHTML = displayOptions.map(option => 
+            `<label class="option-label"><input type="radio" name="answer" value="${option.split('.')[0]}">${option}</label>`
+        ).join('');
+        inputHTML = `<div class="options-container">${optionsHTML}</div>`;
+    } else { 
+        inputHTML = `<input type="text" id="answer-input" placeholder="정답을 입력하세요">`;
+    }
+
+    const quizWrapper = document.getElementById('quiz-content-wrapper');
+    if (quizWrapper) {
+        quizWrapper.innerHTML = `${backBtnHTML}${imageHTML}<p id="question-text">문제 ${currentIndex + 1}/${currentQuestions.length}\n\n${q.question}</p><div id="feedback-label"></div>${inputHTML}<div id="button-container"><button id="submit-btn">${submitBtnText}</button></div>`;
+    }
+    
+    document.getElementById('submit-btn').addEventListener('click', checkAnswer);
+    if (isSingleProblemMode) document.getElementById('back-to-list-btn').addEventListener('click', showProblemList);
+
+    // [최적화] 다음 문제 이미지들 미리 로딩 (Preload)
+    preloadNextImages(currentIndex);
 }
 
-function checkAnswer(selected, q) {
-    const isCorrect = selected === q.answer;
-    if (isCorrect) score++;
-    else newIncorrect.push(q.id);
+function checkAnswer() {
+    const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) submitBtn.disabled = true;
+    
+    const q = currentQuestions[currentIndex];
+    const inputs = document.querySelectorAll('input[name="answer"], #answer-input');
+    
+    let userAns = "";
+    if (q.type === "multiple_choice") {
+        const checked = document.querySelector('input[name="answer"]:checked');
+        if (!checked && !isExamMode) { alert("답을 선택하세요."); if(submitBtn) submitBtn.disabled=false; return; }
+        userAns = checked ? checked.value : "";
+    } else {
+        const val = document.getElementById('answer-input').value.trim();
+        if (!val && !isExamMode) { alert("답을 입력하세요."); if(submitBtn) submitBtn.disabled=false; return; }
+        userAns = val;
+    }
 
-    const feedback = document.getElementById('feedback-label');
-    feedback.innerHTML = isCorrect ? '<span style="color:green;">정답입니다!</span>' : `<span style="color:red;">오답입니다. 정답: ${q.options[q.answer - 1]}</span><br><small>${q.explanation}</small>`;
-    document.body.className = isCorrect ? 'correct-feedback' : 'incorrect-feedback';
+    inputs.forEach(el => el.disabled = true);
+    if (submitBtn && !isExamMode) submitBtn.style.display = 'none';
 
-    setTimeout(() => {
-        currentIndex++;
-        if (currentIndex < currentQuestions.length) showQuestion();
-        else finishQuiz();
-    }, 2000);
+    let isCorrect = (userAns === q.answer);
+    const timeTaken = new Date() - problemStartTime;
+    problemTimes.push({ questionText: q.question, time: timeTaken });
+
+    if (isExamMode) {
+        if (isCorrect) score++;
+        if (!isCorrect && !newIncorrect.includes(q.id)) newIncorrect.push(q.id);
+        currentQuizResults.push({ subject: q.subject || "기타", isCorrect: isCorrect });
+        goToNextQuestionOrFinish();
+        return;
+    }
+    
+    if (!isReviewMode && !isSingleProblemMode) {
+        currentQuizResults.push({ subject: q.subject || "기타", isCorrect: isCorrect });
+    }
+
+    const feedbackLabel = document.getElementById('feedback-label');
+    const buttonContainer = document.getElementById('button-container');
+
+    if (isCorrect) {
+        feedbackLabel.textContent = "✅ 정답입니다!";
+        feedbackLabel.className = 'correct';
+        document.body.classList.add('correct-feedback');
+        if(!isExamMode) score++;
+        if (isReviewMode) INCORRECT_LOG = INCORRECT_LOG.filter(id => id !== q.id);
+        
+        setTimeout(() => {
+             if (isSingleProblemMode) {
+                const returnBtn = document.createElement('button');
+                returnBtn.textContent = '목록으로 돌아가기';
+                returnBtn.onclick = showProblemList;
+                if(buttonContainer) buttonContainer.appendChild(returnBtn);
+             } else goToNextQuestionOrFinish();
+        }, 1200);
+    } else {
+        feedbackLabel.textContent = `❌ 오답입니다. 정답: ${q.answer}\n[해설] ${q.explanation}`;
+        feedbackLabel.className = 'incorrect';
+        document.body.classList.add('incorrect-feedback');
+        if (!isReviewMode && !newIncorrect.includes(q.id)) newIncorrect.push(q.id);
+
+        const nextBtn = document.createElement('button');
+        if (isSingleProblemMode) { 
+            nextBtn.textContent = '목록으로 돌아가기';
+            nextBtn.onclick = showProblemList;
+        } else {
+            nextBtn.textContent = '다음 문제';
+            nextBtn.onclick = goToNextQuestionOrFinish;
+        }
+        if(buttonContainer) buttonContainer.appendChild(nextBtn);
+    }
+}
+
+function goToNextQuestionOrFinish() {
+    if (!isExamMode) document.body.className = '';
+    currentIndex++;
+    if (currentIndex < currentQuestions.length) showQuestion();
+    else finishQuiz();
 }
 
 function finishQuiz() {
-    const accuracy = (score / currentQuestions.length * 100).toFixed(1);
-    resultsScreen.innerHTML = `
-        <div style="padding:20px; text-align:center;">
-            <h2>퀴즈 결과</h2>
-            <div class="donut-chart-container">
-                <div class="donut-chart" style="--accuracy: ${accuracy}%"></div>
-                <div class="donut-chart-center">${accuracy}%</div>
-            </div>
-            <p>총 문제: ${currentQuestions.length}개 | 맞힌 개수: ${score}개</p>
-            <button class="btn" onclick="reviewMistakes(newIncorrect)">틀린 문제 복습 (${newIncorrect.length}개)</button>
-            <button class="btn btn-secondary" onclick="showMainMenu()">메인으로</button>
-        </div>
-    `;
-    showScreen('results-screen');
-
-    // 통계 업데이트
-    currentQuestions.forEach(q => {
-        if (!QUIZ_STATS[q.subject]) QUIZ_STATS[q.subject] = {correct: 0, total: 0};
-        QUIZ_STATS[q.subject].total++;
-        if (newIncorrect.includes(q.id)) {} else QUIZ_STATS[q.subject].correct++;
-    });
-    localStorage.setItem(STATS_KEY(), JSON.stringify(QUIZ_STATS));
-
-    if (!isReviewMode) {
-        INCORRECT_LOG = [...new Set([...INCORRECT_LOG, ...newIncorrect])].sort((a,b) => a - b);
-        localStorage.setItem(INCORRECT_LOG_KEY(), JSON.stringify(INCORRECT_LOG));
-    }
-}
-
-function reviewMistakes(incorrectIds) {
-    if (incorrectIds.length === 0) {
-        alert("복습할 문제가 없습니다.");
-        showMainMenu();
-        return;
-    }
-    currentQuestions = getCurrentDB().filter(q => incorrectIds.includes(q.id));
-    isReviewMode = true;
-    prepareAndRunQuiz(currentQuestions.length);
-}
-
-function startReviewQuiz() {
-    if (INCORRECT_LOG.length === 0) {
-        alert("오답 노트에 문제가 없습니다.");
-        return;
-    }
-    currentQuestions = getCurrentDB().filter(q => INCORRECT_LOG.includes(q.id));
-    isReviewMode = true;
-    prepareAndRunQuiz(currentQuestions.length);
-}
-
-function showProblemList() {
-    showScreen('problem-list-screen');
-    const list = document.getElementById('problem-list');
-    list.innerHTML = getCurrentDB().map(q => `<li onclick="startSingleProblem(${q.id})">ID ${q.id} (${q.subject}): ${q.question.substring(0,50)}...</li>`).join('');
-    document.getElementById('list-back-to-main-btn').addEventListener('click', showMainMenu);
-}
-
-function startSingleProblem(id) {
-    currentQuestions = [getCurrentDB().find(q => q.id === id)];
-    isSingleProblemMode = true;
-    prepareAndRunQuiz(1);
-}
-
-function showStatsScreen() {
-    showScreen('stats-screen');
-    const statsContent = document.getElementById('stats-content');
-    let totalCorrect = 0, total = 0;
-    const subjectStats = Object.entries(QUIZ_STATS).map(([s, st]) => {
-        totalCorrect += st.correct;
-        total += st.total;
-        return {name: s, accuracy: st.total ? (st.correct / st.total * 100) : 0};
-    }).sort((a,b) => b.accuracy - a.accuracy);
-
-    const overall = total ? (totalCorrect / total * 100).toFixed(1) : 0;
-    statsContent.innerHTML = `
-        <div class="card">
-            <h3>전체 정답률: ${overall}%</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-                ${subjectStats.map(s => `<div style="text-align:center;"><p>${s.name}</p><p style="font-size:24px; font-weight:bold;">${s.accuracy.toFixed(1)}%</p></div>`).join('')}
-            </div>
-        </div>
-        <button class="btn btn-secondary" onclick="showMainMenu()">메인으로</button>
-    `;
-    document.getElementById('stats-back-to-main-btn').addEventListener('click', showMainMenu);
-}
-
-function handleExamStart() {
-    if (currentMode === 'P1_2') {
-        alert("1,2교시에서는 시험 모드를 지원하지 않습니다.");
-        return;
-    }
-    const examQuestions = generateExamQuestions();
-    if (examQuestions.length > 0) {
-        timeRemaining = 65 * 60;
-        isExamMode = true;
-        prepareAndRunQuiz(65);
-        startTimer();
-    }
-}
-
-function generateExamQuestions() {
-    const blueprint = [
-        {subject: "조직학", count: 9}, {subject: "세포학", count: 7}, {subject: "임상화학", count: 14},
-        {subject: "핵의학", count: 2}, {subject: "혈액학", count: 11}, {subject: "수혈학", count: 5},
-        {subject: "요화학", count: 1}, {subject: "미생물학", count: 6}, {subject: "진균학", count: 2},
-        {subject: "바이러스학", count: 2}, {subject: "기생충학", count: 2}, {subject: "혈청학", count: 4}
-    ];
-    let examQuestions = [];
-    const pools = {};
-    getCurrentDB().forEach(q => {
-        const s = q.subject || "기타";
-        if (!pools[s]) pools[s] = [];
-        pools[s].push(q);
-    });
-    for (const item of blueprint) {
-        const pool = pools[item.subject] || [];
-        if (pool.length < item.count) {
-            alert(`${item.subject} 과목 문제가 부족합니다.`);
-            return [];
+    stopTimer();
+    
+    if (!isReviewMode && !isSingleProblemMode) {
+        if (currentQuizResults.length > 0) {
+            if (isExamMode) {
+                const breakdown = {};
+                currentQuizResults.forEach(r => {
+                    if (!breakdown[r.subject]) breakdown[r.subject] = { correct: 0, total: 0 };
+                    breakdown[r.subject].total++;
+                    if (r.isCorrect) breakdown[r.subject].correct++;
+                });
+                EXAM_HISTORY.push({
+                    date: new Date().toISOString(),
+                    total: currentQuestions.length,
+                    correct: score,
+                    incorrectIds: newIncorrect,
+                    subjectBreakdown: breakdown
+                });
+                saveExamHistory();
+            } else {
+                currentQuizResults.forEach(r => {
+                    if (!QUIZ_STATS[r.subject]) QUIZ_STATS[r.subject] = { correct: 0, total: 0 };
+                    QUIZ_STATS[r.subject].total++;
+                    if (r.isCorrect) QUIZ_STATS[r.subject].correct++;
+                });
+                saveQuizStats();
+            }
         }
-        const shuffled = [...pool].sort(() => 0.5 - Math.random());
-        examQuestions = examQuestions.concat(shuffled.slice(0, item.count));
+        INCORRECT_LOG = [...new Set([...INCORRECT_LOG, ...newIncorrect])].sort((a,b)=>a-b);
+        saveIncorrectLog();
+    } else if (isReviewMode) {
+        saveIncorrectLog();
     }
-    return examQuestions;
+
+    showScreen('results-screen');
+    const total = currentQuestions.length;
+    const accuracy = total > 0 ? (score/total)*100 : 0;
+    const resultTitle = isExamMode ? "📝 시험 결과" : "📊 퀴즈 결과";
+    
+    const totalTime = new Date() - quizStartTime;
+    const timeStr = `${Math.floor(totalTime/60000)}분 ${Math.floor((totalTime%60000)/1000)}초`;
+
+    let slowestStr = "N/A";
+    if (problemTimes.length > 0) {
+        const slow = problemTimes.reduce((m, c) => c.time > m.time ? c : m);
+        slowestStr = `(${(slow.time/1000).toFixed(1)}초) ${slow.questionText.substring(0,30)}...`;
+    }
+
+    resultsScreen.innerHTML = `
+        <h2>${resultTitle}</h2>
+        <div class="donut-chart-container"><div class="donut-chart" style="--accuracy: ${accuracy}%"></div><div class="donut-chart-center">${accuracy.toFixed(1)}%</div></div>
+        <p style="font-size: 22px; text-align: center;">총 문제: ${total}개<br>맞힌 개수: ${score}개<br>틀린 개수: ${newIncorrect.length}개</p>
+        <div style="background-color:#f8f8f8; padding:15px; border-radius:8px; margin:15px 0; text-align:left; width:100%; max-width:600px;">
+            <p><strong>⏱️ 총 소요 시간:</strong> ${timeStr}</p>
+            <p><strong>🐌 가장 오래 걸린 문제:</strong> ${slowestStr}</p>
+        </div>
+        <button id="review-new-mistakes-btn">방금 틀린 문제 복습하기 (${newIncorrect.length}개)</button>
+        <button id="result-back-to-main-btn">메인 메뉴로 돌아가기</button>
+    `;
+    
+    const reviewBtn = document.getElementById('review-new-mistakes-btn');
+    if (newIncorrect.length === 0 || isExamMode) reviewBtn.style.display = 'none';
+    else reviewBtn.onclick = () => {
+        runQuiz(getCurrentDB().filter(q => newIncorrect.includes(q.id))); 
+    };
+    
+    document.getElementById('result-back-to-main-btn').onclick = showMainMenu;
+}
+
+function handleExamStart(examType) {
+    const examQuestions = generateExamQuestions(examType);
+    if (examQuestions.length > 0) {
+        if (examType === 'P1') timeRemaining = 85 * 60;
+        else if (examType === 'P2') timeRemaining = 95 * 60;
+        else timeRemaining = 65 * 60;
+
+        runQuiz(examQuestions, false, false, true); 
+    }
+}
+
+function generateExamQuestions(examType) {
+    let blueprint = [];
+    let targetDB = [];
+
+    const BP_P1 = [
+        { s: "의료법규", c: 20 }, { s: "공중보건", c: 10 }, { s: "해부학", c: 10 }, 
+        { s: "조직학", c: 21 }, { s: "유전학", c: 1 }, { s: "세포학", c: 8 }, 
+        { s: "심전도", c: 9 }, { s: "뇌파", c: 6 }, { s: "근전도", c: 4 }, 
+        { s: "폐기능", c: 5 }, { s: "심초음파", c: 6 }
+    ];
+
+    const BP_P2 = [
+        { s: "임상화학", c: 27 }, { s: "요화학", c: 7 }, { s: "핵의학", c: 4 }, 
+        { s: "혈액학", c: 22 }, { s: "유전학", c: 1 }, { s: "수혈학", c: 12 }, 
+        { s: "미생물학", c: 20 }, { s: "진균학", c: 3 }, { s: "바이러스학", c: 3 }, 
+        { s: "기생충학", c: 3 }, { s: "혈청학", c: 13 }
+    ];
+
+    const BP_P3 = [
+        { s:"조직학",c:9 }, { s:"세포학",c:7 }, { s:"임상화학",c:14 }, 
+        { s:"핵의학",c:2 }, { s:"혈액학",c:11 }, { s:"수혈학",c:5 }, 
+        { s:"요화학",c:1 }, { s:"미생물학",c:6 }, { s:"진균학",c:2 }, 
+        { s:"바이러스학",c:2 }, { s:"기생충학",c:2 }, { s:"혈청학",c:4 }
+    ];
+
+    if (examType === 'P1') { blueprint = BP_P1; targetDB = QUESTIONS_DB_P1_2; }
+    else if (examType === 'P2') { blueprint = BP_P2; targetDB = QUESTIONS_DB_P1_2; }
+    else { blueprint = BP_P3; targetDB = QUESTIONS_DB_P3; }
+
+    let qList = [];
+    const pools = {};
+    targetDB.forEach(q => {
+        let subj = q.subject || "기타";
+        if (!pools[subj]) pools[subj] = [];
+        pools[subj].push(q);
+    });
+
+    for(const item of blueprint) {
+        const p = pools[item.s] || [];
+        if(p.length < item.c) { console.warn(`${item.s} 문제 부족: 필요 ${item.c}, 보유 ${p.length}`); }
+        qList = qList.concat(p.sort(()=>0.5-Math.random()).slice(0, item.c));
+    }
+    
+    if (qList.length === 0) alert("생성된 문제가 없습니다. JSON 파일을 확인해주세요.");
+    return qList;
 }
 
 function startTimer() {
     const display = document.getElementById('timer-display');
-    display.style.display = 'block';
     examTimer = setInterval(() => {
         timeRemaining--;
-        const m = Math.floor(timeRemaining / 60).toString().padStart(2,'0');
-        const s = (timeRemaining % 60).toString().padStart(2,'0');
-        display.textContent = `${m}:${s}`;
-        if (timeRemaining <= 0) {
-            clearInterval(examTimer);
-            alert("시간 종료!");
-            finishQuiz();
-        }
+        if(display) display.textContent = `${Math.floor(timeRemaining/60).toString().padStart(2,'0')}:${(timeRemaining%60).toString().padStart(2,'0')}`;
+        if(timeRemaining<=0) { stopTimer(); alert("시간 종료!"); finishQuiz(); }
     }, 1000);
 }
+function stopTimer() { if(examTimer) { clearInterval(examTimer); examTimer = null; } }
 
-function stopTimer() {
-    if (examTimer) clearInterval(examTimer);
-    document.getElementById('timer-display').style.display = 'none';
+function showProblemList() {
+    showScreen('problem-list-screen');
+    const html = getCurrentDB().map(q => `<li class="problem-list-item" onclick="startSingleProblem(${q.id})">ID ${q.id} (${q.subject}): ${q.question.substring(0,40)}...</li>`).join('');
+    problemListScreen.innerHTML = `<h2>문제 목록</h2><ul class="problem-list-container">${html}</ul><button onclick="showMainMenu()">메인 메뉴로 돌아가기</button>`;
 }
+function startSingleProblem(id) { runQuiz([getCurrentDB().find(q=>q.id===id)], false, true); }
+
+function startReviewQuiz() {
+    if (!INCORRECT_LOG || INCORRECT_LOG.length === 0) {
+        alert("오답 노트에 문제가 없습니다.");
+        return;
+    }
+    const reviewQuestions = getCurrentDB().filter(q => INCORRECT_LOG.includes(q.id));
+    runQuiz(reviewQuestions, true); 
+}
+
+function showStatsScreen(defaultTab = 'practice') { 
+    showScreen('stats-screen');
+    const p1_2_active = currentMode === 'P1_2' ? 'active' : '';
+    const p3_active = currentMode === 'P3' ? 'active' : '';
+    const modeSwitcherHTML = `<div id="mode-switcher"><button id="stats-mode-p1_2" class="mode-btn ${p1_2_active}">1·2교시</button><button id="stats-mode-p3" class="mode-btn ${p3_active}">3교시</button></div>`;
+
+    const { practiceStatsHTML, overallAccuracy, totalAttempts } = generatePracticeStats();
+    const examHistoryHTML = renderExamHistoryGraph();
+    const examTabHTML = '<button id="tab-exam" class="tab-btn">시험 이력</button>';
+    const examContentHTML = `<div id="exam-stats-content" class="tab-content"><h3>최근 시험 이력</h3>${examHistoryHTML}</div>`;
+
+    statsScreen.innerHTML = `${modeSwitcherHTML}<h2>📊 학습 통계 (${currentMode==='P3'?'3교시':'1·2교시'})</h2><div style="display:flex;width:100%;max-width:800px;border-bottom:2px solid #eee;margin-bottom:20px;"><button id="tab-practice" class="tab-btn">연습 통계</button>${examTabHTML}</div><div id="practice-stats-content" class="tab-content"><div class="stats-summary"><div class="summary-box total"><h4>총 정답률</h4><p>${overallAccuracy.toFixed(1)}%</p></div><div class="summary-box total"><h4>누적 문제</h4><p>${totalAttempts}개</p></div></div><h3>과목별 정답률</h3>${practiceStatsHTML}</div>${examContentHTML}<button id="stats-back-to-main-btn" style="margin-top:30px;">메인 메뉴로 돌아가기</button><div id="session-modal" class="modal-backdrop"><div id="modal-content-inner" class="modal-content"></div></div>`;
+    
+    document.getElementById('stats-back-to-main-btn').onclick = showMainMenu;
+    document.getElementById('stats-mode-p1_2').onclick = () => switchModeAndShowScreen('P1_2', 'stats-screen', defaultTab);
+    document.getElementById('stats-mode-p3').onclick = () => switchModeAndShowScreen('P3', 'stats-screen', defaultTab);
+    
+    const tabs = { practice: document.getElementById('tab-practice'), exam: document.getElementById('tab-exam') };
+    const contents = { practice: document.getElementById('practice-stats-content'), exam: document.getElementById('exam-stats-content') };
+    
+    const activateTab = (t) => {
+        Object.values(tabs).forEach(el => el && el.classList.remove('active'));
+        Object.values(contents).forEach(el => el && el.classList.remove('active'));
+        if(tabs[t]) tabs[t].classList.add('active');
+        if(contents[t]) contents[t].classList.add('active');
+    };
+
+    tabs.practice.onclick = () => activateTab('practice');
+    if(tabs.exam) {
+        tabs.exam.onclick = () => activateTab('exam');
+        contents.exam.onclick = (e) => {
+            const bar = e.target.closest('.bar-vertical');
+            if(bar) showExamSessionDetail(parseInt(bar.dataset.index, 10));
+        };
+    }
+    document.getElementById('session-modal').onclick = (e) => { if(e.target.id==='session-modal') closeModal(); };
+    activateTab(defaultTab);
+}
+
+function generatePracticeStats() {
+    let totalCorrect=0, totalAttempts=0, subjectStats=[];
+    for(const s in QUIZ_STATS) {
+        const d = QUIZ_STATS[s];
+        totalCorrect += d.correct; totalAttempts += d.total;
+        subjectStats.push({ name: s, correct: d.correct, total: d.total, accuracy: d.total>0?(d.correct/d.total)*100:0 });
+    }
+    subjectStats.sort((a,b) => b.accuracy - a.accuracy);
+    const overallAccuracy = totalAttempts>0 ? (totalCorrect/totalAttempts)*100 : 0;
+    
+    const weak = subjectStats.length>0 ? subjectStats.reduce((m,s)=>s.accuracy<m.accuracy?s:m) : {name:'N/A',accuracy:0};
+    const strong = subjectStats.length>0 ? subjectStats.reduce((m,s)=>s.accuracy>m.accuracy?s:m) : {name:'N/A',accuracy:0};
+    
+    const html = `<div class="stats-summary"><div class="summary-box weak"><h4>📉 취약</h4><p>${weak.name}</p><span>(${weak.accuracy.toFixed(0)}%)</span></div><div class="summary-box strong"><h4>📈 우수</h4><p>${strong.name}</p><span>(${strong.accuracy.toFixed(0)}%)</span></div></div><div class="stats-bar-graph-container">` + subjectStats.map(s => `
+        <div class="bar-item"><div class="bar-label">${s.name}</div><div class="bar-wrapper"><div class="bar ${s.accuracy>=75?'high-accuracy':s.accuracy<40?'low-accuracy':''}" style="width:${s.accuracy}%">${s.accuracy>=50?s.accuracy.toFixed(0)+'%':''}</div></div><div class="bar-label" style="width:80px;text-align:right;">(${s.correct}/${s.total})</div></div>`).join('') + `</div>`;
+    return { practiceStatsHTML: html, overallAccuracy, totalAttempts, weakSubject: weak, strongSubject: strong };
+}
+
+function renderExamHistoryGraph() {
+    if (EXAM_HISTORY.length === 0) return "<p style='text-align:center'>기록 없음</p>";
+    const recent = EXAM_HISTORY.slice(-10);
+    const html = `<div class="exam-bar-graph-container">` + recent.map((s, i) => {
+        const acc = (s.correct/s.total)*100;
+        const date = new Date(s.date).toLocaleDateString('ko-KR', {month:'2-digit',day:'2-digit'});
+        return `<div class="bar-vertical-wrapper"><div class="bar-vertical" data-index="${EXAM_HISTORY.length-recent.length+i}" style="height:${acc}%"><span class="bar-percentage">${acc.toFixed(0)}%</span></div><span class="bar-vertical-label">${i+1}회</span><span class="bar-vertical-label">${date}</span></div>`;
+    }).join('') + `</div>`;
+    return html;
+}
+
+function showExamSessionDetail(idx) {
+    const s = EXAM_HISTORY[idx];
+    const acc = (s.correct/s.total)*100;
+    const modal = document.getElementById('modal-content-inner');
+    
+    let detailHTML = s.subjectBreakdown ? Object.keys(s.subjectBreakdown).map(sub => {
+        const d = s.subjectBreakdown[sub];
+        const subAcc = (d.correct/d.total)*100;
+        return `<div class="bar-item"><div class="bar-label">${sub}</div><div class="bar-wrapper"><div class="bar ${subAcc>=75?'high-accuracy':subAcc<40?'low-accuracy':''}" style="width:${subAcc}%">${subAcc>=50?subAcc.toFixed(0)+'%':''}</div></div><div class="bar-label" style="width:80px;text-align:right;">(${d.correct}/${d.total})</div></div>`;
+    }).join('') : '<p>상세 정보 없음</p>';
+
+    modal.innerHTML = `<h2>${idx+1}회차 상세</h2><p>점수: ${s.correct}/${s.total} (${acc.toFixed(1)}%)</p><hr>${detailHTML}<hr><button id="modal-review" class="btn-exam">오답 리뷰 (${s.incorrectIds.length}개)</button><button id="modal-close" class="btn-modal-close">닫기</button>`;
+    
+    document.getElementById('modal-review').onclick = () => { closeModal(); reviewMistakes(s.incorrectIds); };
+    document.getElementById('modal-close').onclick = closeModal;
+    document.getElementById('session-modal').classList.add('active');
+}
+function closeModal() { document.getElementById('session-modal').classList.remove('active'); }
