@@ -66,6 +66,21 @@ async function loadApp() {
     }
 }
 
+// --- [최적화] 이미지 프리로딩 함수 (복구됨) ---
+function preloadNextImages(startIndex) {
+    const PRELOAD_COUNT = 3; 
+    for (let i = 1; i <= PRELOAD_COUNT; i++) {
+        const nextIndex = startIndex + i;
+        if (nextIndex < currentQuestions.length) {
+            const nextQ = currentQuestions[nextIndex];
+            if (nextQ.image_path) {
+                const img = new Image();
+                img.src = nextQ.image_path;
+            }
+        }
+    }
+}
+
 // --- 유틸리티: 배열 섞기 ---
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -144,7 +159,6 @@ function showMainMenu() {
     const p1_2_active = currentMode === 'P1_2' ? 'active' : '';
     const p3_active = currentMode === 'P3' ? 'active' : '';
     
-    // 시험 버튼 표시 로직
     let examButtonHTML = '';
     if (currentMode === 'P3') {
         examButtonHTML = `
@@ -204,7 +218,6 @@ function showMainMenu() {
         </div>
     `;
     
-    // --- 이벤트 리스너 ---
     document.getElementById('shuffle-toggle').addEventListener('change', (e) => { isShuffleOptions = e.target.checked; });
 
     document.getElementById('mode-p1_2-btn').addEventListener('click', () => { switchMode('P1_2'); showMainMenu(); });
@@ -221,7 +234,6 @@ function showMainMenu() {
     reviewBtn.addEventListener('click', startReviewQuiz);
     if (INCORRECT_LOG.length === 0) reviewBtn.disabled = true;
 
-    // 시험 버튼 이벤트 (모드별)
     if (currentMode === 'P3') {
         document.getElementById('exam-start-btn-p3').addEventListener('click', () => handleExamStart('P3'));
     } else {
@@ -360,6 +372,9 @@ function showQuestion() {
     
     document.getElementById('submit-btn').addEventListener('click', checkAnswer);
     if (isSingleProblemMode) document.getElementById('back-to-list-btn').addEventListener('click', showProblemList);
+
+    // [최적화] 다음 이미지 미리 로드 (이 함수가 복구되었습니다!)
+    preloadNextImages(currentIndex);
 }
 
 function checkAnswer() {
@@ -601,20 +616,17 @@ function showStatsScreen(defaultTab = 'practice') {
     const p1_2_active = currentMode === 'P1_2' ? 'active' : '';
     const p3_active = currentMode === 'P3' ? 'active' : '';
     
-    // [버그 수정] 통계창 모드 스위치 버튼 ID 유니크하게 변경
+    // [버그 수정됨] 유니크 ID 적용
     const modeSwitcherHTML = `<div id="mode-switcher"><button id="stats-mode-p1_2" class="mode-btn ${p1_2_active}">1·2교시</button><button id="stats-mode-p3" class="mode-btn ${p3_active}">3교시</button></div>`;
 
     const { practiceStatsHTML, overallAccuracy, totalAttempts } = generatePracticeStats();
     const examHistoryHTML = renderExamHistoryGraph();
-    // [수정] 1,2교시도 시험 이력 탭 표시
     const examTabHTML = '<button id="tab-exam" class="tab-btn">시험 이력</button>';
     const examContentHTML = `<div id="exam-stats-content" class="tab-content"><h3>최근 시험 이력</h3>${examHistoryHTML}</div>`;
 
     statsScreen.innerHTML = `${modeSwitcherHTML}<h2>📊 학습 통계 (${currentMode==='P3'?'3교시':'1·2교시'})</h2><div style="display:flex;width:100%;max-width:800px;border-bottom:2px solid #eee;margin-bottom:20px;"><button id="tab-practice" class="tab-btn">연습 통계</button>${examTabHTML}</div><div id="practice-stats-content" class="tab-content"><div class="stats-summary"><div class="summary-box total"><h4>총 정답률</h4><p>${overallAccuracy.toFixed(1)}%</p></div><div class="summary-box total"><h4>누적 문제</h4><p>${totalAttempts}개</p></div></div><h3>과목별 정답률</h3>${practiceStatsHTML}</div>${examContentHTML}<button id="stats-back-to-main-btn" style="margin-top:30px;">메인 메뉴로 돌아가기</button><div id="session-modal" class="modal-backdrop"><div id="modal-content-inner" class="modal-content"></div></div>`;
     
     document.getElementById('stats-back-to-main-btn').onclick = showMainMenu;
-    
-    // [버그 수정] 통계창 모드 전환 이벤트 연결 (유니크 ID 사용)
     document.getElementById('stats-mode-p1_2').onclick = () => switchModeAndShowScreen('P1_2', 'stats-screen', defaultTab);
     document.getElementById('stats-mode-p3').onclick = () => switchModeAndShowScreen('P3', 'stats-screen', defaultTab);
     
