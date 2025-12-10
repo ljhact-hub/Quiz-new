@@ -66,24 +66,6 @@ async function loadApp() {
     }
 }
 
-// --- [최적화] 이미지 프리로딩 함수 ---
-// 현재 문제 이후의 N개 이미지를 미리 다운로드하여 캐시에 저장
-function preloadNextImages(startIndex) {
-    const PRELOAD_COUNT = 3; // 미리 로딩할 개수 (너무 많으면 메모리 부족하므로 3개 정도가 적당)
-    
-    for (let i = 1; i <= PRELOAD_COUNT; i++) {
-        const nextIndex = startIndex + i;
-        if (nextIndex < currentQuestions.length) {
-            const nextQ = currentQuestions[nextIndex];
-            if (nextQ.image_path) {
-                const img = new Image();
-                img.src = nextQ.image_path;
-                // 브라우저가 이 이미지를 캐시에 저장하게 됨
-            }
-        }
-    }
-}
-
 // --- 유틸리티: 배열 섞기 ---
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -162,15 +144,20 @@ function showMainMenu() {
     const p1_2_active = currentMode === 'P1_2' ? 'active' : '';
     const p3_active = currentMode === 'P3' ? 'active' : '';
     
-    const examTabHTML = (currentMode === 'P3') ? `<button id="tab-exam" class="tab-btn">시험 모드</button>` : '';
-    const examContentHTML = (currentMode === 'P3') ? `
-        <div id="tab-content-exam" class="tab-content">
+    // 시험 버튼 표시 로직
+    let examButtonHTML = '';
+    if (currentMode === 'P3') {
+        examButtonHTML = `
+            <h3 style="margin-bottom: 5px; margin-top: 20px;">시험 모드</h3>
             <button id="exam-start-btn-p3" class="btn-exam">⏱️ 3교시 실기 (65문제/65분)</button>
-        </div>` : `
-        <div id="tab-content-exam" class="tab-content">
+        `;
+    } else {
+        examButtonHTML = `
+            <h3 style="margin-bottom: 5px; margin-top: 20px;">시험 모드</h3>
             <button id="exam-start-btn-p1" class="btn-exam" style="margin-bottom: 10px;">⏱️ 1교시 이론 (100문제/85분)</button>
             <button id="exam-start-btn-p2" class="btn-exam">⏱️ 2교시 이론 (115문제/95분)</button>
-        </div>`;
+        `;
+    }
 
     const modeName = currentMode === 'P3' ? '3교시' : '1·2교시';
 
@@ -198,7 +185,9 @@ function showMainMenu() {
             <button id="problem-list-btn">문제 목록 보기 (전체 ${getCurrentDB().length}개)</button>
         </div>
         
-        ${examContentHTML}
+        <div id="tab-content-exam" class="tab-content">
+            ${examButtonHTML}
+        </div>
         
         <div id="tab-content-other" class="tab-content">
             <div class="toggle-wrapper">
@@ -215,6 +204,7 @@ function showMainMenu() {
         </div>
     `;
     
+    // --- 이벤트 리스너 ---
     document.getElementById('shuffle-toggle').addEventListener('change', (e) => { isShuffleOptions = e.target.checked; });
 
     document.getElementById('mode-p1_2-btn').addEventListener('click', () => { switchMode('P1_2'); showMainMenu(); });
@@ -231,6 +221,7 @@ function showMainMenu() {
     reviewBtn.addEventListener('click', startReviewQuiz);
     if (INCORRECT_LOG.length === 0) reviewBtn.disabled = true;
 
+    // 시험 버튼 이벤트 (모드별)
     if (currentMode === 'P3') {
         document.getElementById('exam-start-btn-p3').addEventListener('click', () => handleExamStart('P3'));
     } else {
@@ -326,7 +317,6 @@ function runQuiz(questionList, isReview = false, isSingleMode = false, isExam = 
     showQuestion();
 }
 
-// --- [최적화] 문제 표시 ---
 function showQuestion() {
     problemStartTime = new Date(); 
     showScreen('quiz-screen');
@@ -347,7 +337,6 @@ function showQuestion() {
 
     let imageHTML = '';
     if (q.image_path) { 
-        // [최적화] decoding="async" 및 loading="eager" (현재 문제는 즉시 로딩)
         imageHTML = `<img id="quiz-image" src="${q.image_path}" alt="문제 이미지 (${q.image_path})" decoding="async" onerror="this.style.display='none';">`;
     }
 
@@ -371,9 +360,6 @@ function showQuestion() {
     
     document.getElementById('submit-btn').addEventListener('click', checkAnswer);
     if (isSingleProblemMode) document.getElementById('back-to-list-btn').addEventListener('click', showProblemList);
-
-    // [최적화] 다음 문제 이미지들 미리 로딩 (Preload)
-    preloadNextImages(currentIndex);
 }
 
 function checkAnswer() {
@@ -614,16 +600,21 @@ function showStatsScreen(defaultTab = 'practice') {
     showScreen('stats-screen');
     const p1_2_active = currentMode === 'P1_2' ? 'active' : '';
     const p3_active = currentMode === 'P3' ? 'active' : '';
+    
+    // [버그 수정] 통계창 모드 스위치 버튼 ID 유니크하게 변경
     const modeSwitcherHTML = `<div id="mode-switcher"><button id="stats-mode-p1_2" class="mode-btn ${p1_2_active}">1·2교시</button><button id="stats-mode-p3" class="mode-btn ${p3_active}">3교시</button></div>`;
 
     const { practiceStatsHTML, overallAccuracy, totalAttempts } = generatePracticeStats();
     const examHistoryHTML = renderExamHistoryGraph();
+    // [수정] 1,2교시도 시험 이력 탭 표시
     const examTabHTML = '<button id="tab-exam" class="tab-btn">시험 이력</button>';
     const examContentHTML = `<div id="exam-stats-content" class="tab-content"><h3>최근 시험 이력</h3>${examHistoryHTML}</div>`;
 
     statsScreen.innerHTML = `${modeSwitcherHTML}<h2>📊 학습 통계 (${currentMode==='P3'?'3교시':'1·2교시'})</h2><div style="display:flex;width:100%;max-width:800px;border-bottom:2px solid #eee;margin-bottom:20px;"><button id="tab-practice" class="tab-btn">연습 통계</button>${examTabHTML}</div><div id="practice-stats-content" class="tab-content"><div class="stats-summary"><div class="summary-box total"><h4>총 정답률</h4><p>${overallAccuracy.toFixed(1)}%</p></div><div class="summary-box total"><h4>누적 문제</h4><p>${totalAttempts}개</p></div></div><h3>과목별 정답률</h3>${practiceStatsHTML}</div>${examContentHTML}<button id="stats-back-to-main-btn" style="margin-top:30px;">메인 메뉴로 돌아가기</button><div id="session-modal" class="modal-backdrop"><div id="modal-content-inner" class="modal-content"></div></div>`;
     
     document.getElementById('stats-back-to-main-btn').onclick = showMainMenu;
+    
+    // [버그 수정] 통계창 모드 전환 이벤트 연결 (유니크 ID 사용)
     document.getElementById('stats-mode-p1_2').onclick = () => switchModeAndShowScreen('P1_2', 'stats-screen', defaultTab);
     document.getElementById('stats-mode-p3').onclick = () => switchModeAndShowScreen('P3', 'stats-screen', defaultTab);
     
