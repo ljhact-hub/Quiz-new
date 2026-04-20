@@ -3198,5 +3198,325 @@
     ],
     "answer": "2",
     "explanation": "병기는 암이 얼마나 퍼졌는지를 나타내며, 수술 여부나 항암 치료 등을 결정하는 지표가 됩니다."
+  },
+  {
+    "id": 201,
+    "subject": "세포손상과 적응",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "위산 역류로 인해 식도 하부의 편평상피가 원주상피로 대체되는 '바레트 식도(Barrett esophagus)' 현상은 세포의 어떤 적응 반응에 해당하는가?",
+    "options": [
+      "1. 비대(Hypertrophy)",
+      "2. 증식(Hyperplasia)",
+      "3. 위축(Atrophy)",
+      "4. 화생(Metaplasia)",
+      "5. 이형성(Dysplasia)"
+    ],
+    "answer": "4",
+    "explanation": "화생(Metaplasia)은 만성적인 자극에 의해 한 유형의 분화된 성숙 세포가 다른 유형의 세포로 대체되는 적응 과정입니다. 바레트 식도는 악성 전환(샘암종)의 원인이 될 수 있습니다."
+  },
+  {
+    "id": 202,
+    "subject": "세포손상과 적응",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "세균이나 진균 감염 병소, 또는 뇌의 허혈성 경색 시 주로 관찰되며 죽은 세포들이 소화되어 크림 같은 고름이나 액체 덩어리를 형성하는 괴사의 유형은?",
+    "options": [
+      "1. 응고괴사(Coagulative necrosis)",
+      "2. 액화괴사(Liquefactive necrosis)",
+      "3. 건락괴사(Caseous necrosis)",
+      "4. 지방괴사(Fat necrosis)",
+      "5. 섬유소괴사(Fibrinoid necrosis)"
+    ],
+    "answer": "2",
+    "explanation": "액화괴사는 미생물 감염으로 인해 백혈구가 축적되어 세포들이 소화되거나, 중추신경계(뇌)의 경색 시 발생하여 액체 상태(농)로 변하는 형태의 괴사입니다."
+  },
+  {
+    "id": 203,
+    "subject": "세포손상과 적응",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "세포자멸사(Apoptosis)의 내인성(미토콘드리아) 경로에서, 세포자멸사를 '억제'하는 역할을 수행하는 인자로 알맞은 것은?",
+    "options": [
+      "1. BAX",
+      "2. BAK",
+      "3. BCL2",
+      "4. BIM",
+      "5. Cytochrome C"
+    ],
+    "answer": "3",
+    "explanation": "BCL2, BCL-XL, MCL1은 미토콘드리아 경로에서 시토크롬 C의 유출을 막아 세포자멸사를 억제하는 단백질입니다. 반면 BAX와 BAK는 세포자멸사 증진 인자입니다."
+  },
+  {
+    "id": 204,
+    "subject": "염증과 복구",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "급성 염증 시 혈관 투과성이 증가하면서 혈관 밖으로 유출되는 체액으로, 단백질 함량이 높고 세포 파편이 포함되어 있으며 비중이 1.020 이상인 것은?",
+    "options": [
+      "1. 누출액(Transudate)",
+      "2. 삼출액(Exudate)",
+      "3. 림프액(Lymph fluid)",
+      "4. 육아조직(Granulation tissue)",
+      "5. 점출혈(Petechia)"
+    ],
+    "answer": "2",
+    "explanation": "단백질이 풍부하고 세포 성분을 포함하며 비중이 높은 염증성 체액을 삼출액(Exudate)이라 합니다. 반대로 정수압 증가 등에 의해 빠져나온 단백질이 적은 체액은 누출액(Transudate)입니다."
+  },
+  {
+    "id": 205,
+    "subject": "염증과 복구",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "간 일부를 절제했을 때 남아있는 세포들이 증식하여 본래대로 회복할 수 있는 것처럼, 평소에는 분열하지 않고 쉬고 있으나 필요 시 분열이 가능한 '안정화된 조직(Stable tissue)'에 해당하는 것은?",
+    "options": [
+      "1. 피부의 편평상피세포",
+      "2. 골수의 조혈모세포",
+      "3. 위장관 상피세포",
+      "4. 간세포(Hepatocyte)",
+      "5. 뇌신경세포(Neuron)"
+    ],
+    "answer": "4",
+    "explanation": "간세포, 콩팥 실질세포, 섬유모세포 등은 안정화된 조직(Stable tissue)으로 평소에는 세포주기의 G0기에 머물지만 손상 시 분열할 수 있습니다. 신경세포는 영구동결조직입니다."
+  },
+  {
+    "id": 206,
+    "subject": "체액과 혈류 역동장애",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "혈전증(Thrombosis)을 유발하기 쉬운 3가지 주요 조건을 '피르호 3주징(Virchow triad)'이라고 합니다. 다음 중 이에 해당하지 않는 것은?",
+    "options": [
+      "1. 혈관 내피세포의 손상",
+      "2. 혈류의 정체 및 와류",
+      "3. 섬유소 용해(Fibrinolysis) 활성의 증가",
+      "4. 혈액 응고능의 항진(선천성/후천성)",
+      "5. 혈관염 등으로 인한 내피세포 활성화"
+    ],
+    "answer": "3",
+    "explanation": "피르호 3주징은 혈관 내피세포 손상, 비정상적 혈류(정체 및 와류), 혈액 응고능 항진입니다. 섬유소 용해 활성의 증가는 오히려 혈전을 녹이는 역할을 합니다."
+  },
+  {
+    "id": 207,
+    "subject": "체액과 혈류 역동장애",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "이중 혈액 공급(Dual blood supply)을 받는 구조를 가지고 있어, 동맥이나 정맥이 폐색되어 경색(Infarct)이 일어날 때 피가 스며들어 붉게 보이는 '출혈성 경색(Red infarct)'이 호발하는 장기는?",
+    "options": [
+      "1. 심장",
+      "2. 신장",
+      "3. 비장",
+      "4. 폐",
+      "5. 뇌"
+    ],
+    "answer": "4",
+    "explanation": "폐, 위장관 등 이중 혈액 공급을 받는 장기나 정맥 폐색이 일어난 곳에서는 주로 적색경색(출혈성 경색)이 생깁니다. 심장, 신장, 비장 등 종말동맥을 가지는 장기는 백색경색(빈혈성 경색)이 호발합니다."
+  },
+  {
+    "id": 208,
+    "subject": "신생물",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "양성 종양(Benign tumor)과 구별하여 악성 종양(Malignant tumor)임을 단정 지을 수 있는 가장 확실하고 강력한 임상적, 형태학적 증거는 무엇인가?",
+    "options": [
+      "1. 종양세포의 다형성(Pleomorphism)",
+      "2. 비정상적 유사분열(Mitosis)",
+      "3. 타 장기로의 전이(Metastasis)",
+      "4. 캡슐(Capsule)의 형성",
+      "5. 괴사(Necrosis) 동반"
+    ],
+    "answer": "3",
+    "explanation": "종양의 전이(Metastasis)는 악성 종양만이 가지는 고유한 특성으로, 양성과 악성을 구분하는 가장 명확하고 강력한 기준입니다."
+  },
+  {
+    "id": 209,
+    "subject": "신생물",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "상피세포의 형성이상(Dysplasia)이 악화되어 상피층 전체 두께를 침범하는 심한 비정상적 증식을 보이지만, 아직 기저막(Basement membrane)은 뚫고 나가지 않은 상태를 지칭하는 용어는?",
+    "options": [
+      "1. 샘암종(Adenocarcinoma)",
+      "2. 제자리암종(Carcinoma in situ, CIS)",
+      "3. 양성 샘종(Benign adenoma)",
+      "4. 역형성(Anaplasia)",
+      "5. 육종(Sarcoma)"
+    ],
+    "answer": "2",
+    "explanation": "제자리암종(Carcinoma in situ)은 악성 종양 세포가 상피층의 전 층을 차지하고 있으나 기저막을 침범하지 않은 국소적인 암의 초기 단계를 의미합니다."
+  },
+  {
+    "id": 210,
+    "subject": "면역병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "알레르기성 비염, 기관지 천식, 음식물 알레르기 및 아나필락시스 쇼크와 관련이 있으며, IgE 항체가 비만세포(Mast cell)를 자극하여 히스타민 등을 분비하게 만드는 과민반응은?",
+    "options": [
+      "1. 제1형 과민반응(즉시형)",
+      "2. 제2형 과민반응(항체매개형)",
+      "3. 제3형 과민반응(면역복합체형)",
+      "4. 제4형 과민반응(세포매개형)",
+      "5. 지연형 과민반응"
+    ],
+    "answer": "1",
+    "explanation": "제1형 과민반응은 IgE 항체와 비만세포에 의해 매개되는 즉시형 반응으로, 두드러기, 천식, 아나필락시스 등이 대표적입니다."
+  },
+  {
+    "id": 211,
+    "subject": "면역병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "전신홍반루푸스(SLE)의 발병 기전으로, 혈액 내에 형성된 항원-항체 복합체가 전신 혈관이나 신장 사구체 등에 침착되어 보체를 활성화시키고 염증을 일으키는 과민반응의 유형은?",
+    "options": [
+      "1. 제1형 과민반응",
+      "2. 제2형 과민반응",
+      "3. 제3형 과민반응",
+      "4. 제4형 과민반응",
+      "5. 선천면역 결핍"
+    ],
+    "answer": "3",
+    "explanation": "제3형 과민반응은 용해성 항원과 항체가 결합한 면역복합체(Immune complex)가 조직에 침착하여 조직 손상(사구체신염, 혈관염 등)을 유발하는 반응입니다."
+  },
+  {
+    "id": 212,
+    "subject": "면역병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "그레이브스병(Graves disease)에서 갑상선기능항진증이 발생하는 기전으로 알맞은 것은?",
+    "options": [
+      "1. 면역복합체가 갑상선 조직에 침착하여 염증을 유발한다.",
+      "2. 자가항체가 갑상선 자극 호르몬(TSH) 수용체에 결합하여 세포를 지속적으로 활성화시킨다.",
+      "3. 세포독성 T세포가 갑상선 여포세포를 직접 파괴한다.",
+      "4. 아세틸콜린 수용체에 대한 항체가 근육 수축을 억제한다.",
+      "5. 요오드 섭취 부족으로 인해 갑상선이 대상성으로 비대해진다."
+    ],
+    "answer": "2",
+    "explanation": "그레이브스병은 TSH 수용체에 대한 자극성 자가항체가 생성되어 세포의 기능을 과도하게 항진시키는 특이한 형태의 제2형 과민반응입니다."
+  },
+  {
+    "id": 213,
+    "subject": "내분비병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "하시모토 갑상선염(Hashimoto thyroiditis)의 조직학적 특징으로 옳지 않은 것은?",
+    "options": [
+      "1. 림프구와 형질세포의 광범위한 침윤",
+      "2. 림프여포(배중심)의 형성",
+      "3. 세포질이 풍부하고 호산성을 띠는 옥시필 세포(Oncocytic change/Hürthle cell) 출현",
+      "4. 갑상선 여포세포의 위축 및 파괴",
+      "5. 비정상적으로 길고 다형성을 보이는 유두(Papillae) 구조의 융합성 형성"
+    ],
+    "answer": "5",
+    "explanation": "유두(Papillae) 구조 및 핵의 텅 빈 모양(Orphan Annie eye) 등은 갑상선 유두암종(PTC)의 전형적인 특징입니다. 하시모토 갑상선염은 림프구 침윤, 배중심 형성, 온코시틱 체인지가 핵심입니다."
+  },
+  {
+    "id": 214,
+    "subject": "내분비병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "뇌하수체 전엽의 선종 중 성장호르몬(GH)을 과도하게 분비하여 성인에게는 말단비대증(Acromegaly), 소아에게는 거인증(Gigantism)을 유발하는 것은?",
+    "options": [
+      "1. 생식샘자극세포 샘종(Gonadotroph adenoma)",
+      "2. 신체자극세포 샘종(Somatotroph adenoma)",
+      "3. 유즙분비세포 샘종(Lactotroph adenoma)",
+      "4. 부신피질자극세포 샘종(Corticotroph adenoma)",
+      "5. 갑상선자극세포 샘종(Thyrotroph adenoma)"
+    ],
+    "answer": "2",
+    "explanation": "성장호르몬(GH) 분비 종양은 Somatotroph PitNET/adenoma로, IGF-1 분비를 자극하여 신체 조직의 과도한 성장을 유발합니다."
+  },
+  {
+    "id": 215,
+    "subject": "신경병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "뇌 조직에 허혈(Ischemia) 및 저산소성 손상이 발생했을 때, 현미경 상에서 뉴런의 세포질이 강한 호산성(붉은색)을 띠고 핵이 농축되어 보이는 초기 변화 소견은?",
+    "options": [
+      "1. 저산소성 세포 변화(Hypoxic cell change, Red neuron)",
+      "2. 부푼 뉴런(Swollen neuron)",
+      "3. 색소 융해(Chromatolysis)",
+      "4. 마리네스코 소체(Marinesco body)",
+      "5. 로젠탈 섬유(Rosenthal fiber)"
+    ],
+    "answer": "1",
+    "explanation": "급성 저산소성 손상을 입은 뉴런은 세포질이 수축하고 강한 호산성을 띠며, 뚜렷하게 붉게 관찰되는데 이를 Red neuron이라고 합니다."
+  },
+  {
+    "id": 216,
+    "subject": "신경병리",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "배아 발생 시기(약 4주경) 신경관(Neural tube)이 정상적으로 닫히지 않아 발생하는 결손 기형으로, 두개골과 뇌조직 대부분이 형성되지 않는 가장 심각한 형태는?",
+    "options": [
+      "1. 전전뇌증(Holoprosencephaly)",
+      "2. 무뇌증(Anencephaly)",
+      "3. 댄디-워커 증후군(Dandy-Walker syndrome)",
+      "4. 이분척추(Spina bifida)",
+      "5. 뇌류(Encephalocele)"
+    ],
+    "answer": "2",
+    "explanation": "무뇌증(Anencephaly)은 신경관 결손(Neural tube defect) 중 전두부 신경공이 닫히지 않아 뇌와 두개골 형성이 실패하는 중증 기형입니다."
+  },
+  {
+    "id": 217,
+    "subject": "염증과 복구",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "결핵(Tuberculosis)에서 특징적으로 관찰되는 육아종(Granuloma)의 형성에 가장 주된 역할을 하는 염증 세포는 무엇인가?",
+    "options": [
+      "1. 호중구(Neutrophil)",
+      "2. 비만세포(Mast cell)",
+      "3. 상피모양세포(Epithelioid cell)로 변형된 대식세포",
+      "4. 호산구(Eosinophil)",
+      "5. 적혈구(RBC)"
+    ],
+    "answer": "3",
+    "explanation": "육아종성 염증은 T림프구에 의해 활성화된 대식세포가 상피모양세포(Epithelioid cell)나 다핵거대세포로 형태를 바꾸어 덩어리를 이루는 것이 핵심 기전입니다."
+  },
+  {
+    "id": 218,
+    "subject": "세포손상과 적응",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "세포의 노화나 퇴행성 변화 과정을 나타내는 지표로, 지질 중합체와 단백질로 구성되어 세포질 내에 갈색으로 축적되는 내인성 색소는?",
+    "options": [
+      "1. 리포푸신(Lipofuscin)",
+      "2. 헤모시데린(Hemosiderin)",
+      "3. 멜라닌(Melanin)",
+      "4. 빌리루빈(Bilirubin)",
+      "5. 콜레스테롤(Cholesterol)"
+    ],
+    "answer": "1",
+    "explanation": "리포푸신(Lipofuscin)은 서서히 진행되는 만성적인 세포 손상과 노화를 나타내는 갈색 지질 색소('소모성 색소')입니다."
+  },
+  {
+    "id": 219,
+    "subject": "염증과 복구",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "상처 치유 과정에서 손상된 조직을 복구하기 위해 신생혈관(Angiogenesis)이 생성되고 섬유모세포가 증식하여 형성되는 붉고 연한 미성숙 조직은?",
+    "options": [
+      "1. 육아조직(Granulation tissue)",
+      "2. 육아종(Granuloma)",
+      "3. 켈로이드(Keloid)",
+      "4. 화농성 삼출물(Pus)",
+      "5. 흉터조직(Scar tissue)"
+    ],
+    "answer": "1",
+    "explanation": "상처의 수복 과정 중 조직 결손부를 채우기 위해 신생 모세혈관과 섬유모세포 등으로 구성되어 형성된 조직을 육아조직(Granulation tissue)이라고 부릅니다."
+  },
+  {
+    "id": 220,
+    "subject": "세포손상과 적응",
+    "image_path": "",
+    "type": "multiple_choice",
+    "question": "허혈 등에 의해 세포 내 ATP 생성이 감소되었을 때 나타나는 생화학적, 형태학적 변화로 옳지 않은 것은?",
+    "options": [
+      "1. Na+-K+ 펌프 기능 저하로 세포 내 칼슘(Ca2+)과 물이 유입된다.",
+      "2. 혐기성 해당과정(Anaerobic glycolysis)이 증가한다.",
+      "3. 젖산(Lactic acid)이 축적되어 세포 내 pH가 상승한다.",
+      "4. 리보솜이 탈락하여 단백질 합성이 저하된다.",
+      "5. 세포종창(Cellular swelling)과 세포질망(ER)의 확장이 일어난다."
+    ],
+    "answer": "3",
+    "explanation": "ATP 고갈 시 혐기성 해당과정이 활성화되어 젖산(Lactic acid)이 축적되며, 이는 세포 내 pH를 '감소(산성화)'시켜 여러 효소의 활성 저하 및 염색질 응축을 유발합니다."
   }
 ]
