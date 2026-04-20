@@ -1,1 +1,12 @@
-
+[
+{
+  "id": 340,
+  "subject": "임상화학",
+  "image_path": "images/340.png",
+  "type": "short_answer", 
+  "question": "혈액가스분석기에서 pO₂ 전극의 다른 이름은 무엇인가?",
+  "options": [], 
+  "answer": "클라크 전극", 
+  "explanation": "pO₂ 전극은 Clark 전극이라고도 부릅니다."
+}
+]
