@@ -1,1426 +1,322 @@
-{
+[
+  {
     "id": 1,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스의 기초",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "14세 환자가 팔 골절로 내원하였다. 6주 후 석고붕대를 제거한 후에 골절 부위를 관찰했더니 골절 부위에 심각한 근육수축이 일어났다. 이 위축의 기전은?",
+    "question": "다음 중 생명체(Living things)의 기본 특징에 해당하지 않는 것은?",
     "options": [
-      "1. 혈액 공급감소",
-      "2. 신경분포 소실",
-      "3. 작업부하 감소",
-      "4. 부적절한 영양",
-      "5. 내분비자극 소실"
+      "1. 대사 작용 (Metabolism)",
+      "2. 항상성 (Homeostasis)",
+      "3. 자가 조립에 의한 캡시드 형성 (Self-assembly of capsid)",
+      "4. 자극에 대한 반응 (Response to stimuli)",
+      "5. 세포 체제 (Cellular organization)"
     ],
     "answer": "3",
-    "explanation": "골절에 의해 근육을 사용하지 않아서 발생한 병적 위축으로, '작업부하 감소(불사용 위축)'에 해당합니다."
+    "explanation": "생명체의 특징에는 세포 체제, 번식, 대사, 항상성, 유전, 자극에 대한 반응, 성장, 진화 등이 포함됩니다[cite: 36, 39, 40, 41, 42, 43, 44, 45, 46]. 캡시드 자가 조립은 바이러스 입자 형성의 특징입니다[cite: 222, 232]."
   },
   {
     "id": 2,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스의 구조",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "65세 환자가 고혈압, 심부전약을 먹고 있던 중 심장 초음파검사 결과 좌심실 근육조직이 두꺼워진 것을 볼 수 있었다. 관련된 세포적응은?",
+    "question": "일반적인 바이러스의 크기를 측정할 때 가장 적합한 단위는?",
     "options": [
-      "1. 비대(Hypertrophy)",
-      "2. 증식(Hyperplasia)",
-      "3. 위축(Atrophy)",
-      "4. 화생(Metaplasia)",
-      "5. 이형성(Dysplasia)"
+      "1. 센티미터 (cm)",
+      "2. 밀리미터 (mm)",
+      "3. 마이크로미터 (μm)",
+      "4. 나노미터 (nm)",
+      "5. 옹스트롬 (Å)"
     ],
-    "answer": "1",
-    "explanation": "심장 근육세포는 분열 능력이 없는 영구동결조직이므로 세포의 수가 늘어나는 증식은 불가능하며, 기능적 요구(고혈압) 증가에 의해 세포의 크기가 커지는 비대(Hypertrophy)가 발생합니다."
+    "answer": "4",
+    "explanation": "일반적인 바이러스의 크기는 나노미터(nm) 범위입니다[cite: 165, 167]."
   },
   {
     "id": 3,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스의 구조",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "간암 말기 환자에게 간이식을 한 공여자의 간이 시간이 지남에 따라 원래 크기의 간으로 돌아왔다. 위에서 관찰되는 세포 변화의 예는?",
+    "question": "바이러스의 뉴클레오캡시드(Nucleocapsid)를 구성하는 핵심 요소 두 가지는 무엇인가?",
     "options": [
-      "1. 비대",
-      "2. 증식",
-      "3. 위축",
-      "4. 화생",
-      "5. 이형성"
+      "1. 외피(Envelope)와 핵산(Nucleic acid)",
+      "2. 캡시드(Capsid)와 핵산(Nucleic acid)",
+      "3. 당단백질 스파이크(Glycoprotein spikes)와 캡소미어(Capsomer)",
+      "4. 지질 이중층(Lipid bilayer)과 캡시드(Capsid)",
+      "5. 리보솜(Ribosome)과 핵산(Nucleic acid)"
     ],
     "answer": "2",
-    "explanation": "간세포는 필요 시 세포 분열이 가능한 안정화된 조직(Stable tissue)입니다. 크기가 원래대로 돌아온 것은 세포 분열을 통해 세포 수가 증가하는 증식(Hyperplasia)에 해당합니다."
+    "explanation": "뉴클레오캡시드(Nucleocapsid)는 바이러스의 유전 물질인 핵산(Nucleic acid)과 이를 둘러싸는 단백질 껍질인 캡시드(Capsid)로 구성됩니다[cite: 232, 233, 234]."
   },
   {
     "id": 4,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스의 구조",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "만성적인 위산 역류로 인해 식도 하부의 편평상피가 원주상피로 변화하는 바레트 식도(Barrett esophagus) 현상과 가장 관련 깊은 세포 적응은?",
+    "question": "외피 보유 바이러스(Enveloped viruses)의 지질 이중층(Lipid bilayer)은 어디에서 유래하는가?",
     "options": [
-      "1. 비대",
-      "2. 증식",
-      "3. 위축",
-      "4. 화생",
-      "5. 이형성"
+      "1. 바이러스의 자체적인 대사 과정을 통해 합성된다.",
+      "2. 바이러스의 핵산 내 암호화된 효소에 의해 생성된다.",
+      "3. 감염된 숙주 세포(host cell)로부터 훔쳐온(stolen) 것이다.",
+      "4. 바이러스 캡소미어 단백질이 변형되어 형성된다.",
+      "5. 혈류 내의 유리지질을 흡수하여 형성된다."
     ],
-    "answer": "4",
-    "explanation": "화생(Metaplasia)은 만성적 자극에 대한 적응으로 한 유형의 성숙한 세포가 다른 유형의 세포로 대체되는 현상입니다. 바레트 식도는 악성 전환(샘암종)의 원인이 될 수 있습니다."
+    "answer": "3",
+    "explanation": "외피 보유 바이러스의 지질 이중층은 바이러스가 조립 후 빠져나올 때 숙주 세포로부터 탈취한(stolen from host cell) 것입니다[cite: 264, 265]."
   },
   {
     "id": 5,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스 분류",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "허혈(Ischemia)로 인해 세포 내 ATP가 생성되지 않을 때 일어나는 세포의 반응으로 틀린 것은?",
+    "question": "국제바이러스분류위원회(ICTV)의 분류 체계에서 과(Family) 단위에 사용되는 접미사는?",
     "options": [
-      "1. pH가 증가한다.",
-      "2. 단백질의 생성이 감소한다.",
-      "3. Ca2+의 세포 내 유입이 증가한다.",
-      "4. Glycogen 생성이 저하(소모)된다.",
-      "5. 세포막의 Na+ 펌프 기능이 저하되어 세포종창이 발생한다."
+      "1. -virales",
+      "2. -viridae",
+      "3. -virinae",
+      "4. -virus",
+      "5. -phage"
     ],
-    "answer": "1",
-    "explanation": "ATP 고갈 시 세포는 혐기성 해당과정(Anaerobic glycolysis)을 증가시킵니다. 이로 인해 젖산(Lactic acid)이 축적되어 세포 내 pH는 증가가 아니라 '감소(산성화)'하게 됩니다."
+    "answer": "2",
+    "explanation": "ICTV 분류에서 목(Order)은 -virales, 과(Family)는 -viridae, 아과(Subfamily)는 -virinae, 속(Genus)은 -virus 접미사를 사용합니다[cite: 383, 384, 385, 386]."
   },
   {
     "id": 6,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스 분류",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "78세 남환이 왼쪽 측복부 통증으로 콩팥절제술을 시행하였다. 조직검사 상 세포의 핵은 없어졌지만 세포와 조직의 윤곽(형태)은 며칠 동안 유지되어 있는 소견을 보였다. 이 괴사의 종류는?",
+    "question": "데이비드 볼티모어(David Baltimore)의 바이러스 분류 체계는 어떤 기준을 바탕으로 바이러스를 7개 클래스로 나누는가?",
     "options": [
-      "1. 응고괴사(Coagulative necrosis)",
-      "2. 액화괴사(Liquefactive necrosis)",
-      "3. 건락괴사(Caseous necrosis)",
-      "4. 지방괴사(Fat necrosis)",
-      "5. 섬유소괴사(Fibrinoid necrosis)"
+      "1. 숙주 세포의 종류",
+      "2. 캡시드의 형태적 대칭성",
+      "3. 핵산의 종류 (Type of nucleic acid)",
+      "4. 외피의 존재 유무",
+      "5. 유발하는 질병의 임상 증상"
     ],
-    "answer": "1",
-    "explanation": "뇌를 제외한 모든 장기(신장, 심장 등)의 허혈성 경색 시 단백질의 변성으로 인해 조직의 뼈대가 보존되는 응고괴사가 발생합니다."
+    "answer": "3",
+    "explanation": "볼티모어 분류는 바이러스가 가진 핵산의 종류(dsDNA, ssRNA 등)를 기준으로 7개의 클래스로 분류합니다[cite: 366, 367]."
   },
   {
     "id": 7,
-    "subject": "세포손상과 적응",
+    "subject": "특수 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "세균이나 진균 감염, 혹은 중추신경계(뇌)의 허혈성 경색 시 주로 발생하며 죽은 세포들이 소화되어 크림 같은 고름(농)을 형성하는 괴사의 종류는?",
+    "question": "거대 바이러스(예: Mamavirus) 내에 존재하며 이를 감염시키는 'Sputnik'과 같은 바이러스를 무엇이라 부르는가?",
     "options": [
-      "1. 응고괴사",
-      "2. 액화괴사",
-      "3. 건락괴사",
-      "4. 지방괴사",
-      "5. 섬유소괴사"
+      "1. Retrovirus",
+      "2. Bacteriophage",
+      "3. Virophage",
+      "4. Prion",
+      "5. Viroid"
     ],
-    "answer": "2",
-    "explanation": "백혈구의 효소에 의해 세포가 완전히 소화되어 액체 상태로 변하는 것을 액화괴사(Liquefactive necrosis)라고 합니다."
+    "answer": "3",
+    "explanation": "Sputnik처럼 다른 거대 바이러스(Mamavirus 등) 내부의 Subviral agent를 바이로파지(Virophage)라고 합니다[cite: 314, 315, 316, 317]."
   },
   {
     "id": 8,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스 명명법",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "결핵(Tuberculosis) 감염 병소에서 가장 특징적으로 나타나며, 육안으로 치즈 같은 부스러진 단면을 보이고 현미경 상 육아종(Granuloma) 형성을 동반하는 괴사는?",
+    "question": "인플루엔자 바이러스의 명명법인 'A / Sydney / 05 / 97 (H3N2)'에서 '97'이 의미하는 것은?",
     "options": [
-      "1. 응고괴사",
-      "2. 액화괴사",
-      "3. 건락괴사",
-      "4. 지방괴사",
-      "5. 괴저괴사"
+      "1. 바이러스의 분리 연도 (Year isolated)",
+      "2. 바이러스의 아형 (Virus subtype)",
+      "3. 처음 분리된 장소 (Place virus isolated)",
+      "4. 균주 번호 (Strain number)",
+      "5. 바이러스의 유형 (Virus type)"
     ],
-    "answer": "3",
-    "explanation": "치즈와 같은 형태를 보이는 건락괴사(Caseous necrosis)는 결핵균 감염의 특징적인 소견입니다."
+    "answer": "1",
+    "explanation": "명명법에서 마지막의 두 자리 숫자(97)는 바이러스가 분리된 연도(Year isolated)를 의미합니다[cite: 421, 426, 427]."
   },
   {
     "id": 9,
-    "subject": "세포손상과 적응",
+    "subject": "종양 생물학",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "세포자멸사(Apoptosis)의 내인성(미토콘드리아) 경로에서, 세포자멸사를 억제(Anti-apoptotic)하는 인자로 알맞은 것은?",
+    "question": "정상 세포의 정상적인 성장과 분열을 촉진하는 세포 내 유전자로, 돌연변이 시 암을 유발할 수 있는 것은?",
     "options": [
-      "1. BAX",
-      "2. BAK",
-      "3. BCL2",
-      "4. BIM",
-      "5. Cytochrome C"
+      "1. Tumor suppressor gene",
+      "2. Viral oncogene (v-onc)",
+      "3. Proto-oncogene",
+      "4. Apoptosis gene",
+      "5. Provirus"
     ],
     "answer": "3",
-    "explanation": "BCL2, BCL-XL, MCL1 등은 미토콘드리아에서 시토크롬 C가 유출되는 것을 막아 세포자멸사를 억제합니다. 반면 BAX와 BAK는 증진 인자입니다."
+    "explanation": "원시종양유전자(Proto-oncogene)는 정상 세포의 성장과 분열을 촉진하며, 이 유전자에 이상이 생기면 발암유전자가 될 수 있습니다[cite: 495, 681, 682, 686]."
   },
   {
     "id": 10,
-    "subject": "세포손상과 적응",
+    "subject": "종양 생물학",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "과도하게 생성된 활성산소종(자유기)을 분해하여 세포 손상을 막아주는 항산화 효소로 옳지 않은 것은?",
+    "question": "종양 억제 유전자(Tumor suppressor genes)에 대한 설명으로 옳은 것은?",
     "options": [
-      "1. Superoxide dismutase (SOD)",
-      "2. Catalase",
-      "3. Glutathione peroxidase",
-      "4. Phospholipase",
-      "5. 해당 사항 없음"
+      "1. 정상 세포가 암세포로 전환되는 것을 억제하는 역할을 한다.",
+      "2. 이 유전자가 과발현(turned on)될 때 주로 암이 발생한다.",
+      "3. 바이러스가 세포 내로 직접 주입하는 유전자이다.",
+      "4. 레트로바이러스의 역전사효소를 암호화한다.",
+      "5. 세포의 사멸(apoptosis)을 영구적으로 차단한다."
     ],
-    "answer": "4",
-    "explanation": "자유기 분해 효소 3가지는 SOD, Catalase, Glutathione peroxidase입니다. Phospholipase는 세포막 인지질을 분해하여 오히려 막 손상을 유발하는 효소입니다."
+    "answer": "1",
+    "explanation": "종양 억제 유전자는 정상 세포가 암세포로 변하는 것을 억제하며, 이 기능이 꺼질 때(turned off) 암을 유발합니다[cite: 497, 498, 499]."
   },
   {
     "id": 11,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스 유전학",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "혈중 칼슘 농도는 정상이나 국소적으로 죽어가는 괴사 조직이나 손상된 심장 판막 등에 칼슘이 침착되어 돌처럼 굳어지는 병적 석회화의 유형은?",
+    "question": "레트로바이러스 유전자 중 역전사효소(Reverse transcriptase), RNase H, Integrase 등의 다기능 단백질을 암호화하는 유전자는?",
     "options": [
-      "1. 전이석회화 (Metastatic calcification)",
-      "2. 비정상조직석회화 (Dystrophic calcification)",
-      "3. 지방괴사 (Fat necrosis)",
-      "4. 화생 (Metaplasia)",
-      "5. 리포푸신 침착 (Lipofuscin deposition)"
+      "1. gag",
+      "2. pol",
+      "3. env",
+      "4. src",
+      "5. LTR"
     ],
     "answer": "2",
-    "explanation": "괴사 조직에 칼슘이 쌓이는 현상은 비정상조직석회화(Dystrophic)이며, 고칼슘혈증으로 인해 정상 조직에 칼슘이 쌓이는 것은 전이석회화(Metastatic)입니다."
+    "explanation": "pol 유전자는 역전사효소, RNase H, 헬리카제, 인테그라제 활성을 가진 다기능 단백질을 암호화합니다[cite: 560]."
   },
   {
     "id": 12,
-    "subject": "세포손상과 적응",
+    "subject": "바이러스 유전학",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "세포의 노화나 만성적인 손상 과정에서 지질 중합체와 단백질이 복합체를 이루어 세포질 내에 갈색으로 축적되는 퇴행성 색소는?",
+    "question": "레트로바이러스에서 ssRNA 게놈을 보호하는 기질(Matrix) 및 코어(Core) 단백질을 암호화하는 유전자는?",
     "options": [
-      "1. 멜라닌 (Melanin)",
-      "2. 헤모시데린 (Hemosiderin)",
-      "3. 리포푸신 (Lipofuscin)",
-      "4. 빌리루빈 (Bilirubin)",
-      "5. 콜레스테롤 (Cholesterol)"
+      "1. gag",
+      "2. pol",
+      "3. env",
+      "4. v-onc",
+      "5. c-myc"
     ],
-    "answer": "3",
-    "explanation": "리포푸신(Lipofuscin)은 서서히 진행되는 세포의 퇴행성 변화(노화)를 지시하는 소모성 갈색 지질 색소입니다."
+    "answer": "1",
+    "explanation": "gag 유전자는 레트로바이러스의 ssRNA 게놈을 보호하는 기질 및 코어 단백질을 암호화합니다[cite: 559]."
   },
   {
     "id": 13,
-    "subject": "염증과 복구",
+    "subject": "종양 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "급성 염증 시 혈관 투과성이 증가하면서 빠져나오는 체액으로, 단백질 함량이 높고 세포 파편을 포함하며 비중이 1.020 이상인 것은?",
+    "question": "사람의 DNA 종양 바이러스(DNA tumor viruses)가 숙주 세포의 정상적인 주기를 방해하기 위해 공통으로 표적으로 삼아 억제하는 숙주 세포의 종양 억제 단백질은?",
     "options": [
-      "1. 누출액(Transudate)",
-      "2. 삼출액(Exudate)",
-      "3. 림프액(Lymph fluid)",
-      "4. 장액(Serous fluid)",
-      "5. 육아조직(Granulation tissue)"
+      "1. p53 및 Rb",
+      "2. c-myc 및 c-src",
+      "3. BRCA1 및 BRCA2",
+      "4. IL-6 및 Bcl-2",
+      "5. CD40 및 Notch"
     ],
-    "answer": "2",
-    "explanation": "염증에 의해 혈관 투과성이 증가하여 단백질과 세포가 많이 포함된 끈적한 액체를 삼출액(Exudate)이라고 합니다."
+    "answer": "1",
+    "explanation": "DNA 종양 바이러스들은 발암 과정을 위해 공통적으로 숙주의 대표적 종양 억제 유전자 산물인 Rb와 p53을 표적으로 삼아 비활성화시킵니다[cite: 724]."
   },
   {
     "id": 14,
-    "subject": "염증과 복구",
+    "subject": "종양 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "급성 염증의 가장 초기 혈역학적 변화로, 히스타민 등의 화학 매개체에 의해 모세혈관이 확장되면서 가장 먼저 나타나는 임상적 증후 두 가지는?",
+    "question": "엡스타인-바 바이러스(EBV, HHV-4) 감염과 가장 밀접한 관련이 있는 B 림프구의 고형 종양은?",
     "options": [
-      "1. 부종과 통증",
-      "2. 발열(Heat)과 발적(Redness)",
-      "3. 기능상실과 화농",
-      "4. 육아종 형성과 섬유화",
-      "5. 백혈구 변연화와 유출"
+      "1. 카포시 육종 (Kaposi's sarcoma)",
+      "2. 간세포암 (Hepatocellular carcinoma)",
+      "3. 버킷 림프종 (Burkitt's Lymphoma)",
+      "4. 자궁경부암 (Cervical cancer)",
+      "5. 성인 T세포 백혈병 (Adult T-cell leukemia)"
     ],
-    "answer": "2",
-    "explanation": "혈관이 확장되어 혈류량이 증가하면 그 부위로 따뜻한 피가 많이 몰리게 되므로 발열과 발적이 가장 먼저 발생합니다."
+    "answer": "3",
+    "explanation": "EBV 감염은 면역력이 약화된 환자에서 B 림프구의 고형 종양인 버킷 림프종(Burkitt's Lymphoma) 발병과 깊은 연관이 있습니다[cite: 728, 733, 738]."
   },
   {
     "id": 15,
-    "subject": "염증과 복구",
+    "subject": "종양 생물학",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "급성 염증 과정에서 가장 주도적으로 동원되어 염증 병소에서 세균을 탐식하고 사멸시키는 역할을 하는 대표적인 백혈구는?",
+    "question": "버킷 림프종(Burkitt's Lymphoma)의 종양 세포에서 특징적으로 관찰되는 유전적 이상(Genetic aberration)은 무엇인가?",
     "options": [
-      "1. 림프구 (Lymphocyte)",
-      "2. 호산구 (Eosinophil)",
-      "3. 중성구 (Neutrophil)",
-      "4. 대식세포 (Macrophage)",
-      "5. 형질세포 (Plasma cell)"
+      "1. p53 유전자의 점 돌연변이",
+      "2. 8번 염색체의 c-myc 유전자가 면역글로불린 유전자 위치로 이동",
+      "3. Philadelphia 염색체 (t(9;22)) 형성",
+      "4. 바이러스의 v-src 유전자의 무작위 삽입",
+      "5. Rb 유전자의 결실"
     ],
-    "answer": "3",
-    "explanation": "급성 염증의 주력 세포는 중성구(호중구)이며, 만성 염증의 주력 세포는 림프구와 대식세포입니다."
+    "answer": "2",
+    "explanation": "버킷 림프종은 8번 염색체의 c-myc 유전자가 14, 22, 2번 염색체의 면역글로불린 유전자 부근으로 이동하여 비정상적으로 과발현되는 특징이 있습니다[cite: 742, 743, 744]."
   },
   {
     "id": 16,
-    "subject": "염증과 복구",
+    "subject": "종양 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "제1형 과민반응(알레르기, 두드러기, 천식 등) 시 항원에 결합한 IgE에 의해 자극받아 '히스타민'을 대량으로 분비하여 혈관 확장을 일으키는 세포는?",
+    "question": "주로 AIDS 환자나 면역 억제자에게 나타나는 희귀 피부암인 카포시 육종(Kaposi's sarcoma)을 유발하는 원인 바이러스는?",
     "options": [
-      "1. 호중구",
-      "2. 비만세포(Mast cell)",
-      "3. 대식세포",
-      "4. T 림프구",
-      "5. 수지상세포"
+      "1. 사람유두종바이러스 (HPV)",
+      "2. 엡스타인-바 바이러스 (EBV)",
+      "3. C형 간염 바이러스 (HCV)",
+      "4. 사람헤르페스바이러스 8형 (HHV-8)",
+      "5. 사람 T-림프친화바이러스 (HTLV-1)"
     ],
-    "answer": "2",
-    "explanation": "비만세포(Mast cell)는 IgE 항체와 결합하여 히스타민을 분비함으로써 즉각적인 알레르기 및 급성 염증 반응을 매개합니다."
+    "answer": "4",
+    "explanation": "카포시 육종 연관 헤르페스바이러스(KSHV)는 인간 헤르페스바이러스 8형(HHV-8)으로 명명되며, 카포시 육종을 유발합니다[cite: 748, 750, 751]."
   },
   {
     "id": 17,
-    "subject": "염증과 복구",
+    "subject": "종양 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "다음 중 일생 동안 계속해서 분열이 가능하여 손상 시 완벽하게 재생될 수 있는 '항상 세포분열 가능한 조직(Labile tissue)'이 아닌 것은?",
+    "question": "간세포암(HCC)을 유발하는 간염 바이러스 중, 자신의 DNA를 숙주의 게놈에 통합(Integrated into host)시키는 특징을 가진 것은?",
     "options": [
-      "1. 위장관 상피세포",
-      "2. 조혈모세포",
-      "3. 피부의 편평상피세포",
-      "4. 요로 이행상피",
-      "5. 간세포 (Hepatocyte)"
+      "1. A형 간염 바이러스 (HAV)",
+      "2. B형 간염 바이러스 (HBV)",
+      "3. C형 간염 바이러스 (HCV)",
+      "4. D형 간염 바이러스 (HDV)",
+      "5. E형 간염 바이러스 (HEV)"
     ],
-    "answer": "5",
-    "explanation": "간, 콩팥 실질, 섬유모세포 등은 평소에는 쉬고 있다가 필요할 때 분열하는 '안정화된 조직(Stable tissue)'입니다."
+    "answer": "2",
+    "explanation": "B형 간염 바이러스(HBV)와 C형 간염 바이러스(HCV) 모두 간암을 유발할 수 있으나, 숙주 DNA에 통합되는 것은 HBV입니다 (HCV RNA는 통합되지 않음)[cite: 756, 760]."
   },
   {
     "id": 18,
-    "subject": "염증과 복구",
+    "subject": "종양 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "상처 치유 과정에서 결손된 조직을 메우기 위해 신생혈관(Angiogenesis)이 생성되고 섬유모세포가 증식하여 형성된 붉고 연한 미성숙 조직을 무엇이라 하는가?",
+    "question": "사람유두종바이러스(HPV)의 통합된 초기 유전자 중 숙주 세포의 종양 억제 단백질인 p53을 불활성화시키는 유전자는?",
     "options": [
-      "1. 육아종 (Granuloma)",
-      "2. 육아조직 (Granulation tissue)",
-      "3. 반흔 (Scar)",
-      "4. 켈로이드 (Keloid)",
-      "5. 고름집 (Abscess)"
+      "1. E2",
+      "2. E4",
+      "3. E5",
+      "4. E6",
+      "5. E7"
     ],
-    "answer": "2",
-    "explanation": "육아조직(Granulation tissue)은 복구의 핵심 단계로 신생 혈관과 섬유모세포로 이루어져 있으며, 켈로이드나 흉터로 이행할 수 있습니다. (육아종 Granuloma와 헷갈리지 마세요!)"
+    "answer": "4",
+    "explanation": "HPV의 통합된 유전자 중 E6는 숙주의 p53 단백질을 표적으로 삼아 불활성화시킵니다[cite: 726, 727, 840, 841, 842]."
   },
   {
     "id": 19,
-    "subject": "체액과 혈류 역동장애",
+    "subject": "종양 바이러스",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "전신 부종의 발병 기전과 원인 질환의 연결로 옳지 않은 것은?",
+    "question": "사람유두종바이러스(HPV)의 통합된 유전자 중 숙주 세포의 종양 억제 단백질인 망막모세포종 단백질(pRb)을 표적으로 삼는 유전자는?",
     "options": [
-      "1. 정수압 증가 - 울혈성 심부전",
-      "2. 정수압 증가 - 우심실 기능 상실",
-      "3. 삼투압 감소 (저단백혈증) - 신증후군",
-      "4. 삼투압 감소 (저단백혈증) - 간경화(간기능 상실)",
-      "5. 림프관 폐쇄 - 신부전증"
+      "1. E1A",
+      "2. E1B",
+      "3. E6",
+      "4. E7",
+      "5. LMP1"
     ],
-    "answer": "5",
-    "explanation": "신부전증은 소디움과 수분 정체로 인해 혈관 내 혈액량이 증가하여 정수압을 상승시켜 부종을 유발합니다. 림프관 폐쇄는 주로 종양이나 림프절 수술 등으로 인해 국소적 부종을 일으킵니다."
+    "answer": "4",
+    "explanation": "HPV의 E7 단백질은 세포 주기 조절에 관여하는 종양 억제 단백질인 pRb를 불활성화시킵니다[cite: 726, 727, 840, 841, 842]."
   },
   {
     "id": 20,
-    "subject": "체액과 혈류 역동장애",
+    "subject": "바이러스 치료",
     "image_path": "",
     "type": "multiple_choice",
-    "question": "간경화(Liver cirrhosis)가 심해져 문맥압 고혈압이 발생했을 때, 갈 곳 잃은 정맥혈이 우회로를 찾으면서 식도 정맥에 비정상적으로 꽈리처럼 부풀어 오르는 치명적인 합병증은?",
+    "question": "정상 세포에는 해를 끼치지 않고, 암세포만을 표적으로 삼아 감염 및 복제하여 암세포의 용해(Lysis)를 유도하는 바이러스 치료법을 무엇이라 하는가?",
     "options": [
-      "1. 폐울혈 (Pulmonary congestion)",
-      "2. 식도 정맥류 (Esophageal varix)",
-      "3. 위궤양 (Gastric ulcer)",
-      "4. 치핵 (Hemorrhoid)",
-      "5. 비장비대 (Splenomegaly)"
+      "1. 유전자 치료 (Gene therapy)",
+      "2. 종양용해 바이러스 치료 (Oncolytic Virotherapy)",
+      "3. 면역억제 치료 (Immunosuppression)",
+      "4. 화학요법 (Chemotherapy)",
+      "5. 방사선요법 (Radiation therapy)"
     ],
     "answer": "2",
-    "explanation": "간경화 시 혈류가 막혀 식도 정맥류가 발생하며, 파열 시 대량 토혈을 유발할 수 있습니다."
-  },
-  {
-    "id": 21,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "혈전(Thrombus)이 형성되기 쉬운 3가지 주된 조건인 'Virchow triad(피르호 3주징)'에 해당하지 않는 것은?",
-    "options": [
-      "1. 혈관 내피세포의 손상",
-      "2. 혈류의 정체 및 와류",
-      "3. 혈액 응고능의 항진",
-      "4. 섬유소 용해(Fibrinolysis)계의 활성화",
-      "5. 장기간 병상 누워있기(Bed rest)로 인한 정맥 저류"
-    ],
-    "answer": "4",
-    "explanation": "섬유소 용해계(Plasmin 등)가 활성화되면 형성된 혈전을 녹여버리게 되므로 혈전 생성의 원인이 될 수 없습니다."
-  },
-  {
-    "id": 22,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "다리의 심부정맥(Deep vein)에 형성된 거대한 혈전이 떨어져 나와 혈류를 타고 이동하다가 생명을 위협할 수 있는 가장 치명적인 색전증 부위는?",
-    "options": [
-      "1. 뇌동맥",
-      "2. 심장 관상동맥",
-      "3. 폐동맥 (Pulmonary embolism)",
-      "4. 콩팥동맥",
-      "5. 장간막동맥"
-    ],
-    "answer": "3",
-    "explanation": "다리 정맥에서 발생한 혈전은 하대정맥을 타고 우심방, 우심실을 거쳐 폐동맥을 막아 치명적인 폐색전증(Pulmonary embolism)을 유발합니다."
-  },
-  {
-    "id": 23,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "혈관이 막혀 발생하는 경색(Infarct) 중, 심장, 신장, 비장과 같이 이중 혈액 공급이 없는 '종말동맥(End-artery)' 구조를 가진 장기에서 주로 발생하는 것은?",
-    "options": [
-      "1. 백색경색(White infarct)",
-      "2. 적색경색(Red infarct)",
-      "3. 출혈성 경색",
-      "4. 패혈성 경색",
-      "5. 액화괴사성 경색"
-    ],
-    "answer": "1",
-    "explanation": "혈액 공급이 한 곳으로만 이루어지는 신장, 비장, 심장 등은 막히면 피가 완전히 차단되어 하얗게 변하는 빈혈성 경색(백색경색)이 호발합니다."
-  },
-  {
-    "id": 24,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "과다 출혈, 심한 구토와 설사, 화상 등으로 인해 체내 절대적인 혈액(수분)량이 감소하여 전신 장기 관류에 실패하는 쇼크의 종류는?",
-    "options": [
-      "1. 심인성 쇼크 (Cardiogenic shock)",
-      "2. 저혈량성 쇼크 (Hypovolemic shock)",
-      "3. 패혈성 쇼크 (Septic shock)",
-      "4. 아나필락시스 쇼크 (Anaphylactic shock)",
-      "5. 신경성 쇼크 (Neurogenic shock)"
-    ],
-    "answer": "2",
-    "explanation": "혈액이나 체액 손실로 인한 쇼크는 저혈량성 쇼크입니다."
-  },
-  {
-    "id": 25,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "패혈성 쇼크나 양수 색전증 등 심각한 병적 상태에서 발생하며, 미세혈관 내에 광범위한 혈전이 형성됨과 동시에 혈액 응고 인자가 고갈되어 전신적인 심한 출혈을 유발하는 치명적인 합병증은?",
-    "options": [
-      "1. 특발성 혈소판 감소성 자반증 (ITP)",
-      "2. 파종혈관내응고 (DIC)",
-      "3. 파필러리 증후군",
-      "4. 심부정맥혈전증 (DVT)",
-      "5. 대동맥류 파열"
-    ],
-    "answer": "2",
-    "explanation": "DIC(Disseminated intravascular coagulation)는 미세혈전 생성과 응고인자 고갈로 인한 전신 출혈이 동시에 나타나는 매우 위험한 상태입니다."
-  },
-  {
-    "id": 26,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "양성 종양(Benign tumor)과 악성 종양(Malignant tumor)을 구분할 때, **악성 종양임을 단정지을 수 있는 가장 확실하고 강력한 증거**는 무엇인가?",
-    "options": [
-      "1. 캡슐(피막)의 유무",
-      "2. 종양의 빠른 성장 속도",
-      "3. 핵의 다형성 및 비정상적 유사분열",
-      "4. 국소 침윤(Local invasion)",
-      "5. 전이(Metastasis)"
-    ],
-    "answer": "5",
-    "explanation": "전이(Metastasis)는 악성 종양에서만 나타나는 고유한 특성으로, 양성과 악성을 구분하는 가장 강력한 기준입니다."
-  },
-  {
-    "id": 27,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "종양의 명명법 중, 이름에 '-oma(종)'가 붙어 양성 종양처럼 보이지만 실제로는 **악성 종양**인 예외적인 경우가 아닌 것은?",
-    "options": [
-      "1. 림프종 (Lymphoma)",
-      "2. 흑색종 (Melanoma)",
-      "3. 중피종 (Mesothelioma)",
-      "4. 정상피종 (Seminoma)",
-      "5. 섬유선종 (Fibroadenoma)"
-    ],
-    "answer": "5",
-    "explanation": "유방 등에 흔히 생기는 섬유선종(Fibroadenoma)은 진짜 양성 종양입니다. 1~4번은 'oma'로 끝나지만 모두 예외적인 악성 종양들입니다."
-  },
-  {
-    "id": 28,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "종양세포가 상피층의 전 층을 차지하는 심한 이형성(Dysplasia)을 보이지만, 아직 기저막(Basement membrane)을 침범하여 뚫고 나가지 않은 초기 암의 단계를 이르는 용어는?",
-    "options": [
-      "1. 양성 샘종 (Adenoma)",
-      "2. 제자리암종 (Carcinoma in situ, CIS)",
-      "3. 미분화암종 (Anaplastic carcinoma)",
-      "4. 편평세포암종 (Squamous cell carcinoma)",
-      "5. 과형성 (Hyperplasia)"
-    ],
-    "answer": "2",
-    "explanation": "기저막을 침범하지 않은 상태의 상피 내 악성 종양을 제자리암종(상피내암, CIS)이라고 부릅니다."
-  },
-  {
-    "id": 29,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "종양의 예후를 판정하는 기준 중, 종양세포가 정상 세포와 얼마나 닮았는지(분화도)를 현미경으로 관찰하여 결정하는 것은?",
-    "options": [
-      "1. 병기 (Staging)",
-      "2. 등급 (Grading)",
-      "3. 전이 (Metastasis)",
-      "4. 이형성 (Dysplasia)",
-      "5. 다형성 (Pleomorphism)"
-    ],
-    "answer": "2",
-    "explanation": "세포의 분화도와 유사분열 수 등을 현미경으로 평가하는 것은 '등급(Grading)'입니다. 크기나 림프절 전이 등을 평가하는 TNM 체계는 '병기(Staging)'입니다."
-  },
-  {
-    "id": 30,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "상피 세포에서 기원한 악성 종양(암종, Carcinoma)이 전이될 때 가장 선호하는 초기 전이 경로는?",
-    "options": [
-      "1. 림프관 전이 (Lymphatic spread)",
-      "2. 혈관 전이 (Hematogenous spread)",
-      "3. 체강 파종 (Seeding of body cavities)",
-      "4. 직접 침윤 (Direct extension)",
-      "5. 신경 주위 전이 (Perineural spread)"
-    ],
-    "answer": "1",
-    "explanation": "상피 기원의 암종(Carcinoma)은 주로 림프관을 타고 림프절로 전이되는 반면, 결합조직 기원의 육종(Sarcoma)은 주로 혈관을 타고 전이됩니다."
-  },
-  {
-    "id": 31,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "다음 중 면역 체계에서 전문적인 '항원 제시 세포(Antigen Presenting Cell, APC)' 역할을 수행하여 보조 T세포(CD4+)에게 항원을 인식시키는 대표적인 세포 두 가지는?",
-    "options": [
-      "1. 중성구와 호산구",
-      "2. B 림프구와 자연살해세포(NK cell)",
-      "3. 대식세포(Macrophage)와 수지상세포(Dendritic cell)",
-      "4. 비만세포(Mast cell)와 적혈구",
-      "5. 세포독성 T세포와 조절 T세포"
-    ],
-    "answer": "3",
-    "explanation": "대식세포와 수지상세포는 MHC class II 분자를 통해 외부 항원을 CD4+ T세포에게 제시하는 전문적인 APC 역할을 합니다."
-  },
-  {
-    "id": 32,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "특정 항원에 노출된 후 몇 분 내에 IgE 항체와 비만세포(Mast cell)에 의해 히스타민이 대량 방출되면서 두드러기, 천식, 아나필락시스 등을 유발하는 과민반응은?",
-    "options": [
-      "1. 제1형 과민반응 (즉시형)",
-      "2. 제2형 과민반응 (항체 매개형)",
-      "3. 제3형 과민반응 (면역복합체형)",
-      "4. 제4형 과민반응 (세포 매개형)",
-      "5. 자가면역반응"
-    ],
-    "answer": "1",
-    "explanation": "제1형 과민반응은 IgE와 비만세포가 관여하는 알레르기 및 아나필락시스 반응입니다."
-  },
-  {
-    "id": 33,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "용해성 항원과 항체가 결합한 면역복합체(Immune complex)가 혈류를 떠돌다 신장 사구체나 관절, 혈관벽에 침착되어 조직을 파괴하는 과민반응 유형은?",
-    "options": [
-      "1. 제1형 과민반응",
-      "2. 제2형 과민반응",
-      "3. 제3형 과민반응",
-      "4. 제4형 과민반응",
-      "5. 면역결핍증"
-    ],
-    "answer": "3",
-    "explanation": "면역복합체에 의해 보체가 활성화되고 조직이 파괴되는 것은 제3형 과민반응으로, 전신홍반루푸스(SLE)가 대표적입니다."
-  },
-  {
-    "id": 34,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "우리 몸의 정상적인 면역 체계가 자기 자신(Self)의 항원을 공격하지 않도록 억제하는 '면역 관용(Immunologic tolerance)'이 파괴되었을 때 발생하는 질환군은?",
-    "options": [
-      "1. 면역결핍증 (예: AIDS)",
-      "2. 기회감염 (Opportunistic infection)",
-      "3. 자가면역질환 (Autoimmune disease)",
-      "4. 신생물 (Neoplasia)",
-      "5. 아나필락시스 쇼크"
-    ],
-    "answer": "3",
-    "explanation": "자기 자신을 적으로 인식하여 공격하는 질환을 자가면역질환이라 하며, 조절 T세포(Treg) 등의 관용 기전 파괴가 원인입니다."
-  },
-  {
-    "id": 35,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "얼굴에 나비 모양의 홍반이 나타나며 관절, 신장 등 전신 장기를 침범하는 '전신홍반루푸스(SLE)' 환자에서 특징적으로 관찰되는 진단적 자가항체는?",
-    "options": [
-      "1. Anti-TSH receptor antibody",
-      "2. Anti-acetylcholine receptor antibody",
-      "3. Anti-dsDNA 및 Anti-Sm antibody",
-      "4. Rheumatoid factor (RF)",
-      "5. Anti-CCP antibody"
-    ],
-    "answer": "3",
-    "explanation": "전신홍반루푸스(SLE)의 고도로 특이적인 마커는 이중가닥 DNA(dsDNA)에 대한 항체와 Sm 항원 항체입니다."
-  },
-  {
-    "id": 36,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "그레이브스병(Graves disease)에서 갑상선기능항진증이 발생하는 면역병리학적 기전은?",
-    "options": [
-      "1. 면역복합체가 갑상선에 침착되어 염증을 일으킨다.",
-      "2. 세포독성 T세포가 갑상선 여포세포를 모두 파괴한다.",
-      "3. 자가항체가 갑상선 자극 호르몬(TSH) 수용체에 결합하여 수용체를 지속적으로 자극한다.",
-      "4. 요오드 부족으로 보상성 비대가 일어난다.",
-      "5. IgE 항체가 갑상선 내 비만세포를 자극한다."
-    ],
-    "answer": "3",
-    "explanation": "제2형 과민반응의 일종으로, 파괴가 아니라 자가항체가 수용체를 자극하여 호르몬이 과다 분비되게 만드는 특이한 기전입니다."
-  },
-  {
-    "id": 37,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "세포자멸사(Apoptosis) 시 형태학적으로 관찰되는 가장 특징적인 핵(Nuclear)의 변화 소견은 무엇인가?",
-    "options": [
-      "1. 핵 용해 (Karyolysis)",
-      "2. 핵 농축 (Pyknosis)",
-      "3. 염색질 응축 (Chromatin condensation)",
-      "4. 핵 비대 (Nuclear hypertrophy)",
-      "5. 다핵 거대세포 형성"
-    ],
-    "answer": "3",
-    "explanation": "괴사 시에는 주로 핵농축, 핵붕괴, 핵용해가 나타나며, 세포자멸사에서는 염색질 응축과 절단(Apoptotic body 형성)이 특징적입니다."
-  },
-  {
-    "id": 38,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "세포 손상 시 미토콘드리아나 세포막이 손상되면서 유출되어 주변 세포에 심각한 독성을 나타내며 단백질 변형 및 DNA 손상을 유발하는 물질은?",
-    "options": [
-      "1. 글리코겐",
-      "2. 리포푸신",
-      "3. 젖산 (Lactic acid)",
-      "4. 활성산소종 (Reactive Oxygen Species, ROS)",
-      "5. ATP"
-    ],
-    "answer": "4",
-    "explanation": "활성산소종(자유기)은 세포막 지질 과산화, 단백질 변형, DNA 돌연변이를 일으키는 파괴적인 손상 기전의 핵심 물질입니다."
-  },
-  {
-    "id": 39,
-    "subject": "염증과 복구",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "염증 부위에 림프구와 형질세포, 그리고 '상피모양세포(Epithelioid cell)'로 변형된 대식세포가 결절을 이루며 침윤해 있는 현미경 소견을 지칭하는 용어는?",
-    "options": [
-      "1. 장액성 염증",
-      "2. 육아조직",
-      "3. 육아종 (Granuloma)",
-      "4. 화농성 염증",
-      "5. 누출액"
-    ],
-    "answer": "3",
-    "explanation": "결핵 등에서 흔히 보이는 육아종(Granuloma)은 상피모양 대식세포와 림프구가 덩어리를 이루는 특수한 만성 염증 형태입니다."
-  },
-  {
-    "id": 40,
-    "subject": "염증과 복구",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "세균 감염 부위로 혈관 내 백혈구가 이동하기 위해 가장 먼저 일어나는 혈역학적 과정(과정 1)은 무엇인가?",
-    "options": [
-      "1. 혈관 수축",
-      "2. 내피세포 틈새 축소",
-      "3. 림프관 폐쇄",
-      "4. 혈관 확장(Vasodilation) 및 혈류 정체",
-      "5. 섬유소 용해"
-    ],
-    "answer": "4",
-    "explanation": "염증이 시작되면 화학 매개체에 의해 세동맥이 확장되어 피가 몰리고, 혈류가 느려지면서(정체) 백혈구가 혈관 벽으로 밀려나가는 변연화가 시작됩니다."
-  },
-  {
-    "id": 41,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "대표적인 종양억제유전자(Tumor suppressor gene)로, DNA 손상 시 세포주기를 정지시키거나 세포자멸사를 유도하여 '유전체의 수호자'라 불리는 유전자는?",
-    "options": [
-      "1. KRAS",
-      "2. HER2",
-      "3. P53",
-      "4. MYC",
-      "5. BCL2"
-    ],
-    "answer": "3",
-    "explanation": "P53은 대표적인 종양억제유전자로, 이 유전자에 돌연변이가 생기면 손상된 세포가 죽지 않고 증식하여 암이 됩니다."
-  },
-  {
-    "id": 42,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "암의 병기(Staging)를 결정하는 TNM system에서 각각의 문자가 의미하는 바가 올바르게 짝지어진 것은?",
-    "options": [
-      "1. T: 종양의 침윤 두께/크기, N: 림프절 전이, M: 원격 전이",
-      "2. T: 종양세포의 다형성, N: 괴사 유무, M: 전이",
-      "3. T: 치료 반응성, N: 림프절, M: 발병 부위",
-      "4. T: 종양 크기, N: 신생혈관 형성, M: 전이",
-      "5. T: 전이 유무, N: 종양 크기, M: 림프절"
-    ],
-    "answer": "1",
-    "explanation": "T(Tumor size/invasion), N(Node, 림프절 전이), M(Metastasis, 원격 전이)를 의미합니다."
-  },
-  {
-    "id": 43,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "혈전이 떨어져 나와 폐동맥을 막는 폐색전증(Pulmonary embolism)이 발생했을 때, 환자가 급사(Sudden death)할 수 있는 가장 흔한 기전적 원인은?",
-    "options": [
-      "1. 급성 뇌출혈",
-      "2. 우심실 기능 부전(Acute cor pulmonale) 및 혈류 차단",
-      "3. 식도 정맥류 파열",
-      "4. 문맥압 항진",
-      "5. 패혈증"
-    ],
-    "answer": "2",
-    "explanation": "큰 혈전이 폐동맥의 주 가지를 막으면 폐로 피를 보내야 하는 우심실에 급격한 과부하가 걸려 우심부전으로 급사할 수 있습니다."
-  },
-  {
-    "id": 44,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "다음 중 비정상적인 출혈이 지연되거나 전신에 점출혈이 생기는 '출혈성 질환'의 원인이 아닌 것은?",
-    "options": [
-      "1. 혈소판 감소증",
-      "2. 혈액 응고인자 결핍 (예: 혈우병)",
-      "3. 과도한 섬유소 용해 (DIC 등)",
-      "4. 비타민 C 결핍 (괴혈병)",
-      "5. 정수압의 과도한 증가"
-    ],
-    "answer": "5",
-    "explanation": "정수압 증가는 부종(Edema)의 원인이며, 지혈 기능 자체와는 거리가 멉니다."
-  },
-  {
-    "id": 45,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "장기 이식 후 수개월에서 수년이 지나 발생하며, 신장의 사구체 혈관이 서서히 좁아지고 섬유화가 일어나는 거부반응의 유형은?",
-    "options": [
-      "1. 초급성 거부반응",
-      "2. 급성 세포매개 거부반응",
-      "3. 급성 항체매개 거부반응",
-      "4. 만성 거부반응",
-      "5. 이식편대숙주질환(GVHD)"
-    ],
-    "answer": "4",
-    "explanation": "오랜 시간에 걸쳐 혈관 내막이 두꺼워지고 조직이 섬유화되면서 점진적으로 기능이 소실되는 것은 만성 거부반응(Chronic rejection)입니다."
-  },
-  {
-    "id": 46,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "류마티스 관절염(Rheumatoid arthritis)에서 관절 연골과 뼈를 직접적으로 파괴하며 융합(Ankylosis)을 유발하는, 활막의 증식으로 형성된 조직 덩어리의 이름은?",
-    "options": [
-      "1. 판누스 (Pannus)",
-      "2. 결절종 (Rheumatoid nodule)",
-      "3. 켈로이드 (Keloid)",
-      "4. 골극 (Osteophyte)",
-      "5. 통풍 결절 (Tophus)"
-    ],
-    "answer": "1",
-    "explanation": "비화농성 증식성 활막염으로 인해 형성된 두꺼운 염증성 조직 덩어리를 판누스(Pannus)라고 하며, 이것이 뼈와 연골을 갉아먹습니다."
-  },
-  {
-    "id": 47,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "다음 중 연부조직(Mesenchyme) 기원의 악성 종양과 발생 부위의 연결이 올바른 것은?",
-    "options": [
-      "1. 지방육종 (Liposarcoma) - 지방세포",
-      "2. 횡문근육종 (Rhabdomyosarcoma) - 평활근",
-      "3. 평활근육종 (Leiomyosarcoma) - 골격근",
-      "4. 혈관육종 (Angiosarcoma) - 림프관",
-      "5. 골육종 (Osteosarcoma) - 연골세포"
-    ],
-    "answer": "1",
-    "explanation": "지방육종은 지방, 횡문근육종은 골격근, 평활근육종은 평활근 기원입니다."
-  },
-  {
-    "id": 48,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "세포 손상 시 세포막의 투과성이 망가지는 원인으로 관련이 적은 것은?",
-    "options": [
-      "1. ATP 고갈로 인한 인지질 합성 감소",
-      "2. 세포질 내 칼슘 증가로 인한 Phospholipase 활성화",
-      "3. 활성산소종에 의한 지질 과산화",
-      "4. 세포골격의 손상",
-      "5. 혐기성 해당과정 억제"
-    ],
-    "answer": "5",
-    "explanation": "세포 손상 시에는 ATP 고갈 보상을 위해 오히려 혐기성 해당과정이 증가합니다."
-  },
-  {
-    "id": 49,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "혈관이 없는 피부 점막이나 뇌 조직에 발생하며, 원래 존재하지 않던 종류의 정상 조직이 엉뚱한 부위에서 증식하는 양성 종양과 같은 발달 이상은?",
-    "options": [
-      "1. 과오종 (Hamartoma)",
-      "2. 이소종 (Choristoma)",
-      "3. 기형종 (Teratoma)",
-      "4. 피지낭종",
-      "5. 흑색종"
-    ],
-    "answer": "2",
-    "explanation": "정상 조직이 엉뚱한 부위(이소성)에서 증식하는 종양성 병변을 이소종(Choristoma)이라 합니다. 반면 원래 그 부위에 있는 정상 조직이 무질서하게 덩어리진 것은 과오종(Hamartoma)입니다."
-  },
-  {
-    "id": 50,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "중추신경계(CNS)에서 수초(Myelin sheath)를 형성하며, 손상 시 다발성 경화증(Multiple sclerosis)과 같은 탈수초성 질환을 유발하는 신경교세포는?",
-    "options": [
-      "1. 성상교세포 (Astrocyte)",
-      "2. 희소돌기아교세포 (Oligodendrocyte)",
-      "3. 미세아교세포 (Microglia)",
-      "4. 뇌실막세포 (Ependymal cell)",
-      "5. 슈반세포 (Schwann cell)"
-    ],
-    "answer": "2",
-    "explanation": "중추신경계에서 수초를 형성하는 세포는 희소돌기아교세포(Oligodendrocyte)입니다. (말초신경계는 슈반세포입니다.)"
-  },
-  {
-    "id": 51,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "다음 중 중추신경계의 수초(Myelin sheath)가 파괴되는 탈수초 질환(Demyelinating disease)의 대표적인 예는?",
-    "options": [
-      "1. 알츠하이머병 (Alzheimer disease)",
-      "2. 파킨슨병 (Parkinson's disease)",
-      "3. 헌팅톤 무도병 (Huntington's chorea)",
-      "4. 다발성 경화증 (Multiple sclerosis)",
-      "5. 픽병 (Pick disease)"
-    ],
-    "answer": "4",
-    "explanation": "다발성 경화증(Multiple sclerosis)은 중추신경계의 수초를 형성하는 희소돌기아교세포(Oligodendrocyte)와 수초가 자가면역 기전에 의해 파괴되는 대표적인 탈수초 질환입니다."
-  },
-  {
-    "id": 52,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "외상이나 종양, 염증 등으로 인해 뇌 부종(Brain edema)이 발생하여 뇌압이 심하게 상승했을 때, 두개골 내의 좁은 공간을 견디지 못한 뇌 조직이 틈새를 뚫고 밀려 내려오는 치명적인 합병증을 무엇이라 하는가?",
-    "answer": "뇌탈출 (Brain herniation)",
-    "explanation": "뇌압이 심하게 상승하면 딱딱한 두개골에 갇힌 뇌 조직이 압력을 이기지 못하고 대후두공 등의 틈새로 빠져나가는 뇌탈출(Herniation)이 발생하며, 이는 호흡중추 등을 압박해 즉사에 이르게 할 수 있습니다."
-  },
-  {
-    "id": 53,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "크로이츠펠트-야콥병(CJD) 등 프리온 질환 환자의 뇌 조직 검사에서 관찰되는 가장 특징적인 병리 소견은?",
-    "options": [
-      "1. 신경섬유 농축체 (Neurofibrillary tangle)",
-      "2. 루이 소체 (Lewy body)",
-      "3. 해면상 변화 (Spongiosis, spongiform change)",
-      "4. 로젠탈 섬유 (Rosenthal fiber)",
-      "5. 쿠루판 (Kuru plaque)"
-    ],
-    "answer": "3",
-    "explanation": "CJD와 같은 프리온 질환에서는 대뇌피질의 신경세포와 신경아교세포 내에 수많은 작은 구멍이 뚫려 마치 스펀지처럼 보이는 해면상 변화(Spongiosis)가 나타나는 것이 특징입니다."
-  },
-  {
-    "id": 54,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "태아의 발달 단계에서 신경관(Neural tube)이 정상적으로 닫히지 않아 발생하는 결손 기형 중, 전두부 신경공이 닫히지 않아 뇌와 두개골 대부분이 형성되지 않는 가장 심각한 형태의 기형은 무엇인가?",
-    "answer": "무뇌증 (Anencephaly)",
-    "explanation": "무뇌증(Anencephaly)은 신경관 결손 중 두개골과 뇌 실질이 형성되지 않고 혈관 덩어리(뇌혈관덤이)만 남는 가장 중증의 치명적 기형입니다."
-  },
-  {
-    "id": 55,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "뇌하수체 전엽 종양 중 성장호르몬(GH)을 과도하게 분비하여, 소아에서는 거인증(Gigantism)을, 성인에서는 말단비대증(Acromegaly)을 일으키는 종양의 이름은?",
-    "answer": "신체자극세포 샘종 (Somatotroph adenoma)",
-    "explanation": "신체자극세포 샘종(Somatotroph adenoma, GH adenoma)은 성장호르몬을 과다 분비하여 신체 말단이 비대해지거나 과도하게 성장하는 질환을 유발합니다."
-  },
-  {
-    "id": 56,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "갑상선 질환 중 갑상선 종대를 동반하는 '갑상선 기능 저하증'의 가장 흔한 원인은?",
-    "options": [
-      "1. 독성 샘종 (Toxic adenoma)",
-      "2. 그레이브스병 (Graves disease)",
-      "3. 리델 갑상선염 (Riedel thyroiditis)",
-      "4. 하시모토 갑상선염 (Hashimoto's thyroiditis)",
-      "5. 아급성 갑상선염 (Subacute thyroiditis)"
-    ],
-    "answer": "4",
-    "explanation": "하시모토 갑상선염은 자가면역 기전에 의해 갑상선 세포가 서서히 파괴되는 만성 염증 질환으로, 갑상선 기능 저하증을 유발하는 가장 흔한 원인입니다."
-  },
-  {
-    "id": 57,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "갑상선 암종 중 가장 발생 빈도가 높으며, 현미경 소견 상 'Ground glass opacity (텅 빈 핵)', 'Nuclear groove (핵의 홈)', 'Pseudoinclusion (가성 봉입체)' 등 특징적인 핵의 모양과 사모마 소체(Psammoma body)가 관찰되는 암종은?",
-    "answer": "갑상선 유두암종 (Papillary thyroid carcinoma, PTC)",
-    "explanation": "갑상선 유두암종(PTC)은 갑상선 암 중 가장 흔하며, 특징적인 핵의 3대 변화(투명한 핵, 핵 주름, 가성 봉입체)와 석회화된 사모마 소체를 통해 진단합니다."
-  },
-  {
-    "id": 58,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "쿠싱 증후군(Cushing syndrome) 환자 중에서 정상 부신 피질(Adrenal cortex)의 '위축(Atrophy)'이 동반되는 경우의 원인으로 가장 알맞은 것은?",
-    "options": [
-      "1. 부신 피질 종양에 의한 쿠싱 증후군",
-      "2. 뇌하수체 전엽 종양에 의한 쿠싱병",
-      "3. 폐암에 의한 이소성 ACTH 증후군",
-      "4. 의인성(Iatrogenic) 쿠싱 증후군 (스테로이드 장기 투여)",
-      "5. 양측성 부신 과다 형성증"
-    ],
-    "answer": "4",
-    "explanation": "외부에서 스테로이드 약물을 장기간 투여받아 발생한 의인성 쿠싱 증후군의 경우, 몸 자체의 ACTH 분비가 강력하게 억제되므로 양쪽 부신 피질이 자극을 받지 못해 위축(Atrophy)됩니다."
-  },
-  {
-    "id": 59,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "다발성 내분비 종양 제1형(MEN 1) 증후군에서 종양이 호발하는 3가지 주요 내분비 기관(3P)은 뇌하수체(Pituitary), 부갑상선(Parathyroid), 그리고 나머지 하나는 무엇인가?",
-    "answer": "췌장 (Pancreas)",
-    "explanation": "MEN 1 증후군(Wermer syndrome)은 MEN1 유전자의 돌연변이로 인해 Pituitary(뇌하수체), Parathyroid(부갑상선), Pancreas(췌장)에 동시에 내분비 종양이 발생하는 질환입니다."
-  },
-  {
-    "id": 60,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "환경 및 직업적 발암 물질 중에서 '석면(Asbestos)'에 만성적으로 노출된 작업자에게서 발병 위험이 매우 높게 나타나는 악성 종양은?",
-    "options": [
-      "1. 백혈병 (Leukemia)",
-      "2. 중피종 (Mesothelioma)",
-      "3. 혈관육종 (Angiosarcoma)",
-      "4. 위암 (Stomach cancer)",
-      "5. 방광암 (Bladder cancer)"
-    ],
-    "answer": "2",
-    "explanation": "석면(Asbestos) 가루의 장기 흡입은 흉막이나 복막에 발생하는 매우 치명적인 원발성 악성 종양인 중피종(Mesothelioma) 및 폐암의 강력한 원인입니다."
-  },
-  {
-    "id": 61,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "종양세포가 상피층의 전 층을 차지하는 심한 이형성(Dysplasia)을 보이지만, 아직 기저막(Basement membrane)을 뚫고 주변 조직으로 침윤하지 않은 초기 암의 단계를 뜻하는 용어는?",
-    "answer": "제자리암종 (Carcinoma in situ, CIS)",
-    "explanation": "제자리암종(상피내암)은 악성 세포가 상피층 내에 국한되어 있는 상태로, 이 단계에서 치료하면 예후가 매우 좋으나 방치 시 기저막을 뚫고 침윤성 암(Invasive carcinoma)으로 진행합니다."
-  },
-  {
-    "id": 62,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "세포의 DNA 손상 시 세포주기를 정지시키거나 회복 불가능 시 세포자멸사(Apoptosis)를 유도하여 '유전체의 수호자'라 불리며, 인체 암의 50% 이상에서 돌연변이가 발견되는 대표적인 종양 억제 유전자는?",
-    "options": [
-      "1. Rb",
-      "2. APC",
-      "3. p53 (TP53)",
-      "4. BRCA1",
-      "5. NF1"
-    ],
-    "answer": "3",
-    "explanation": "TP53 유전자가 생성하는 p53 단백질은 세포주기 조절 및 DNA 수리에 관여하는 가장 핵심적인 종양 억제 유전자(Tumor suppressor gene)입니다."
-  },
-  {
-    "id": 63,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "어떤 종양이 양성(Benign)인지 악성(Malignant)인지 판별할 때, 악성 종양임을 단정 지을 수 있는 가장 확실하고 절대적인 임상적, 형태학적 기준 하나는 무엇인가?",
-    "answer": "전이 (Metastasis)",
-    "explanation": "원발 병소에서 멀리 떨어진 다른 장기로 종양 세포가 이동하여 자라는 '전이(Metastasis)'는 오직 악성 종양(암)에서만 나타나는 고유한 특성입니다."
-  },
-  {
-    "id": 64,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "양성 종양의 명명법은 보통 기원 조직 뒤에 '-oma(종)'를 붙입니다. 다음 중 이름은 '-oma'로 끝나지만 실제로는 악성 종양(암)인 예외적인 경우가 아닌 '진짜 양성 종양'은?",
-    "options": [
-      "1. 림프종 (Lymphoma)",
-      "2. 흑색종 (Melanoma)",
-      "3. 중피종 (Mesothelioma)",
-      "4. 정상피종 (Seminoma)",
-      "5. 섬유선종 (Fibroadenoma)"
-    ],
-    "answer": "5",
-    "explanation": "섬유선종(Fibroadenoma)은 유방에 흔히 생기는 양성 종양입니다. 반면 림프종, 흑색종, 중피종, 정상피종 등은 이름과 달리 악성 종양입니다."
-  },
-  {
-    "id": 65,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "위염, 잘 낫지 않는 위궤양, 그리고 위에 발생하는 MALT 림프종(MALToma) 및 위암의 주된 발병 원인으로 꼽히는 나선형의 세균 이름은?",
-    "answer": "헬리코박터 파일로리 (Helicobacter pylori)",
-    "explanation": "헬리코박터 파일로리균 감염은 만성 위염을 거쳐 위궤양을 유발하며, 위 상피의 변형을 통해 위암 및 MALT 림프종 발생의 강력한 원인이 됩니다."
-  },
-  {
-    "id": 66,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "음식물 알레르기, 기관지 천식, 아나필락시스 쇼크 등을 유발하며, 항원에 재노출 시 비만세포(Mast cell) 표면의 IgE 항체가 교차 결합하여 히스타민 등을 즉각적으로 분비하게 만드는 과민반응은?",
-    "options": [
-      "1. 제1형 과민반응 (즉시형)",
-      "2. 제2형 과민반응 (항체 매개형)",
-      "3. 제3형 과민반응 (면역복합체형)",
-      "4. 제4형 과민반응 (세포 매개형)",
-      "5. 지연형 과민반응"
-    ],
-    "answer": "1",
-    "explanation": "제1형 과민반응은 IgE 항체와 비만세포, 호산구가 주도하는 알레르기 반응으로 항원 노출 후 수 분 내에 즉각적인 혈관 확장과 평활근 수축을 일으킵니다."
-  },
-  {
-    "id": 67,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "얼굴의 나비 모양 홍반, 관절염, 신장염 등 전신 장기를 침범하는 제3형 과민반응 질환인 전신 홍반 루푸스(SLE) 환자에서 관찰되는, 진단적 가치가 가장 특이적(Specific)인 자가항체 두 가지 중 하나를 쓰시오.",
-    "answer": "Anti-dsDNA (또는 Anti-Sm antibody)",
-    "explanation": "SLE 진단에 있어 항핵항체(ANA)는 민감도는 높으나 특이도가 낮고, 항 이중가닥 DNA 항체(Anti-dsDNA)와 Anti-Sm 항체가 루푸스를 확진하는 데 매우 특이적인 표지자입니다."
-  },
-  {
-    "id": 68,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "류마티스 관절염(Rheumatoid arthritis)의 전형적인 임상 및 병리학적 양상으로 거리가 먼 것은?",
-    "options": [
-      "1. 손의 PIP, MCP 관절 및 발의 작은 관절에서 시작하여 점차 진행된다.",
-      "2. 한쪽 관절만 침범하는 비대칭성(Asymmetrical) 관절염이 주된 특징이다.",
-      "3. 아침에 관절이 뻣뻣해지고 붓는 조조강직(Morning stiffness) 현상이 나타난다.",
-      "4. 증식된 활막이 판누스(Pannus)를 형성하여 연골과 뼈를 파괴한다.",
-      "5. 진행 시 관절이 융합되어 굳어지는 관절강직(Ankylosis)을 초래한다."
-    ],
-    "answer": "2",
-    "explanation": "류마티스 관절염은 자가면역 질환이므로 신체 양측에 동일하게 발생하는 '대칭적(Symmetrical)' 관절 침범이 핵심적인 임상 소견입니다."
-  },
-  {
-    "id": 69,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "신장 이식 수술 후 수 분에서 수 시간 내에 이식된 장기가 괴사되는 '초급성 거부반응(Hyperacute rejection)'의 주된 원인은, 수혜자의 혈액 내에 이식 항원에 대한 이것이 '이미 존재(사전 형성)'하고 있기 때문입니다. 이것은 무엇인가?",
-    "answer": "항체 (Preformed antibody)",
-    "explanation": "과거의 수혈, 임신, 재이식 등을 통해 이미 수혜자의 피 속에 기증자 항원에 대항하는 사전 형성 항체(Preformed antibody)가 존재할 경우, 이식 직후 즉각적으로 초급성 거부반응이 발생합니다."
-  },
-  {
-    "id": 70,
-    "subject": "유전질환",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "염색체의 수적 이상으로 인해 발생하며, 다운 증후군(Down syndrome) 환자에서 관찰되는 전형적인 핵형(Karyotype)의 특징은?",
-    "options": [
-      "1. 13번 염색체가 3개 (Trisomy 13)",
-      "2. 18번 염색체가 3개 (Trisomy 18)",
-      "3. 21번 염색체가 3개 (Trisomy 21)",
-      "4. 성염색체가 XO 형태",
-      "5. 성염색체가 XXY 형태"
-    ],
-    "answer": "3",
-    "explanation": "다운 증후군은 21번 염색체가 3개 존재하는 상염색체 이상 질환으로, 지적 장애와 심장 기형, 특유의 안면 외양을 가집니다."
-  },
-  {
-    "id": 71,
-    "subject": "유전질환",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "부모로부터 물려받은 대립 유전자 중 하나는 발현되고 다른 하나는 DNA 메틸화(Methylation) 등의 후성유전학적 기전에 의해 전사가 억제되어 침묵(Silencing)하는 현상을 무엇이라 하는가?",
-    "answer": "유전체 각인 (Genomic imprinting)",
-    "explanation": "유전체 각인은 특정 유전자가 부계 또는 모계 중 어느 쪽에서 유래했는지에 따라 발현 여부가 결정되는 현상으로 프래더-윌리 증후군, 엔젤만 증후군 등의 원인이 됩니다."
-  },
-  {
-    "id": 72,
-    "subject": "환경과 영양질환",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "만성 알코올 중독자에게서 비타민 B1(Thiamine)의 결핍으로 인해 안구운동 장애, 정신 장애, 기억력 감퇴 등의 신경학적 증상이 나타나는 증후군은?",
-    "options": [
-      "1. 괴혈병 (Scurvy)",
-      "2. 구루병 (Rickets)",
-      "3. 펠라그라 (Pellagra)",
-      "4. 베르니케-코르사코프 증후군 (Wernicke-Korsakoff syndrome)",
-      "5. 악성 빈혈 (Pernicious anemia)"
-    ],
-    "answer": "4",
-    "explanation": "알코올 중독은 영양 불균형을 초래하며 특히 비타민 B1(티아민) 부족으로 인한 뇌 손상으로 베르니케-코르사코프 증후군을 유발합니다."
-  },
-  {
-    "id": 73,
-    "subject": "환경과 영양질환",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "자동차 배기가스의 질소산화물과 산소가 태양광(자외선)에 의해 광화학 반응을 일으켜 생성되며, 대기권 내에 존재 시 독성이 강해 호흡기계 세포에 치명적인 손상을 주는 대표적인 외부 대기 오염 물질은?",
-    "answer": "오존 (Ozone, O3)",
-    "explanation": "성층권의 오존은 자외선을 막아주지만, 지표면 대기권의 오존은 자동차 배기가스로부터 생성된 광화학 스모그의 주성분으로 호흡기 점막을 강력하게 손상시킵니다."
-  },
-  {
-    "id": 74,
-    "subject": "환경과 영양질환",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "진행된 암이나 후천성 면역결핍증(AIDS) 환자에게서 흔히 동반되는 심각한 합병증으로, 염증성 사이토카인(TNF 등)과 단백질 분해 유도 인자에 의해 극심한 체중 감소, 피로, 식욕 부진, 전신 근육 위축을 초래하는 현상은?",
-    "options": [
-      "1. 비만증",
-      "2. 종말증 / 악액질 (Cachexia)",
-      "3. 거대적혈구모구 빈혈",
-      "4. 패혈증",
-      "5. 지방간"
-    ],
-    "answer": "2",
-    "explanation": "종말증(Cachexia)은 식사량 부족뿐만 아니라 종양이나 염증세포가 분비하는 물질에 의해 신체의 지방과 근육 단백질이 비정상적으로 소모되는 상태입니다."
-  },
-  {
-    "id": 75,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "심부전 환자나 간경화 환자에서 흔히 볼 수 있는 만성 수동 울혈(Chronic passive congestion)의 결과로, 간소엽의 중심부는 울혈로 붉게 보이고 주변부는 지방변성으로 노랗게 보여 마치 향신료 단면처럼 보이는 간의 형태학적 명칭은?",
-    "answer": "육두구 간 (Nutmeg liver)",
-    "explanation": "혈액이 우심방으로 돌아가지 못하고 간 정맥에 울혈되면 간세포 괴사와 지방변성이 혼재되어 특징적인 육두구(Nutmeg) 무늬를 띠게 됩니다."
-  },
-  {
-    "id": 76,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "다리의 심부정맥(Deep vein)에 발생한 혈전이 떨어져 나와 정맥 혈류를 타고 이동하다가 생명을 위협할 수 있는 폐색전증(Pulmonary embolism)을 일으켰습니다. 혈전이 형성되기 쉬운 3대 조건인 '피르호 3주징(Virchow triad)'에 속하지 않는 것은?",
-    "options": [
-      "1. 혈관 내피세포의 손상",
-      "2. 혈류의 정체 및 와류",
-      "3. 혈액 응고능의 항진",
-      "4. 장기간의 침상 안정 (Bed rest)",
-      "5. 혈관 내 플라스민(Plasmin) 활성의 과도한 증가"
-    ],
-    "answer": "5",
-    "explanation": "플라스민(Plasmin)은 섬유소 용해계의 효소로 이미 생성된 혈전을 녹이는(용해) 역할을 하므로, 이 활성이 증가하면 혈전 형성이 오히려 억제됩니다."
-  },
-  {
-    "id": 77,
-    "subject": "체액과 혈류 역동장애",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "패혈증, 중증 외상, 뱀독 등으로 인해 전신의 미세혈관 내에 광범위한 미세 혈전이 형성되고, 이로 인해 응고인자와 혈소판이 급격히 소모되어 오히려 전신적인 심한 출혈을 유발하는 치명적인 증후군은?",
-    "answer": "파종혈관내응고 (Disseminated intravascular coagulation, DIC)",
-    "explanation": "DIC는 혈전 형성과 출혈이 동시에 발생하는 모순적이고 극단적인 지혈 장애 상태로, 원인 질환의 매우 위험한 합병증입니다."
-  },
-  {
-    "id": 78,
-    "subject": "염증과 복구",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "우리 몸의 세포는 재생 능력에 따라 3가지로 분류됩니다. 다음 중 평소에는 세포 분열을 멈추고 쉬고(G0기) 있다가, 장기 일부가 손상되거나 잘려 나가면 다시 분열하여 조직을 재생할 수 있는 '안정화된 조직(Stable tissue)'의 대표적인 예는?",
-    "options": [
-      "1. 위장관 상피세포",
-      "2. 뇌 신경세포 (Neuron)",
-      "3. 심장 근육세포",
-      "4. 간세포 (Hepatocyte)",
-      "5. 골수의 조혈모세포"
-    ],
-    "answer": "4",
-    "explanation": "간세포, 신장 실질세포 등은 안정 세포로 복구 능력이 제한적이지만 필요 시 분열합니다. 위장관 상피나 조혈모세포는 항상 분열하는 불안정 조직이며, 뇌신경과 심근은 영구동결 조직입니다."
-  },
-  {
-    "id": 79,
-    "subject": "염증과 복구",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "결핵(Tuberculosis)이나 매독 감염 시 특징적으로 나타나는 만성 염증의 한 형태로, 항원을 소화하지 못한 '상피모양 대식세포(Epithelioid macrophage)'들이 둥글게 결절 모양으로 뭉쳐서 덩어리를 이룬 병변을 무엇이라 하는가?",
-    "answer": "육아종 (Granuloma)",
-    "explanation": "육아종(Granuloma)은 처리하기 힘든 이물질이나 결핵균 등에 대항하기 위해 대식세포와 림프구가 방어벽을 치듯 뭉친 특이한 염증 형태입니다."
-  },
-  {
-    "id": 80,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "급성 췌장염이 발생했을 때, 췌장 조직이 파괴되면서 방출된 지질분해효소(Lipase)에 의해 복강 내 지방이 녹아내리고, 유리된 지방산이 체액의 칼슘과 결합하여 백묵(chalk) 같이 하얗고 단단한 병변을 형성하는 현상은?",
-    "options": [
-      "1. 응고괴사",
-      "2. 액화괴사",
-      "3. 지방괴사 (Fat necrosis)",
-      "4. 건락괴사",
-      "5. 섬유소괴사"
-    ],
-    "answer": "3",
-    "explanation": "지방괴사는 췌장염 시 지방세포가 효소에 의해 소화되고 칼슘 비누화(Saponification) 반응이 동반되는 특징적인 괴사 유형입니다."
-  },
-  {
-    "id": 81,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "가역적 세포 손상 시 세포 내 ATP 고갈로 인해 Na+-K+ 펌프 기능이 저하되면, 세포 내로 나트륨과 물이 과도하게 유입되어 세포가 부풀어 오릅니다. 이러한 가장 일차적인 형태학적 변화를 무엇이라 하는가?",
-    "answer": "세포 종창 (Cellular swelling)",
-    "explanation": "세포 종창은 이온 및 체액 항상성 유지 실패로 인해 세포가 물을 머금고 팽창하는 가역적 손상의 첫 징후입니다."
-  },
-  {
-    "id": 82,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "미토콘드리아 경로를 통한 세포자멸사(Apoptosis) 과정에서 미토콘드리아 막 투과성을 조절하는 BCL2 패밀리 단백질 중, 세포자멸사를 '증진(Pro-apoptotic)'시켜 세포 사멸을 유도하는 인자는?",
-    "options": [
-      "1. BCL2",
-      "2. BCL-XL",
-      "3. MCL1",
-      "4. BAX (또는 BAK)",
-      "5. P53"
-    ],
-    "answer": "4",
-    "explanation": "BAX와 BAK는 미토콘드리아 막에 구멍을 내어 시토크롬 C를 세포질로 유출시킴으로써 세포자멸사를 실행하게 만드는 증진 인자입니다. (BCL2 등은 억제 인자입니다.)"
-  },
-  {
-    "id": 83,
-    "subject": "세포손상과 적응",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "혈중 칼슘 농도가 높은 고칼슘혈증(Hypercalcemia) 상태일 때, 피를 타고 돌던 칼슘이 위점막, 신장, 폐 등의 '정상 조직'에 침착되는 병적 석회화의 유형은?",
-    "answer": "전이성 석회화 (Metastatic calcification)",
-    "explanation": "조직 손상이 없더라도 혈중 칼슘이 너무 높아 정상 조직에 칼슘이 쌓이는 것을 전이(성) 석회화라고 하며, 반대로 죽은 괴사 조직에 쌓이는 것은 영양불량(성) 석회화입니다."
-  },
-  {
-    "id": 84,
-    "subject": "여성 생식계",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "자궁경부암(Cervical cancer)의 발생 원인 및 예방에 대한 설명으로 알맞은 것은?",
-    "options": [
-      "1. 주로 고령의 여성에서만 발생하며 연령이 높아질수록 발병률이 급증한다.",
-      "2. 고위험군 인유두종 바이러스(High-risk HPV)인 16형, 18형의 지속적 감염이 필수적 원인이다.",
-      "3. 세포검사(Pap smear)로는 조기 발견이 불가능하다.",
-      "4. 주로 원격 전이(혈관 전이)에 의해 사망에 이른다.",
-      "5. HPV 백신은 감염 후 치료 목적으로 접종하는 것이 가장 효과적이다."
-    ],
-    "answer": "2",
-    "explanation": "자궁경부암의 거의 모든 사례는 고위험군 HPV 감염과 관련이 있습니다. Pap test로 쉽게 조기 진단이 가능하며, 백신은 노출 전(성경험 전) 예방 접종이 권장됩니다."
-  },
-  {
-    "id": 85,
-    "subject": "여성 생식계",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "난소의 생식세포(Germ cell)에서 기원하는 양성 종양으로, 종양 내부에 모발, 피지, 치아, 연골 등 외배엽, 중배엽, 내배엽 기원의 여러 조직이 혼재되어 관찰되는 낭성 종양의 이름은?",
-    "answer": "성숙 기형종 (Mature cystic teratoma)",
-    "explanation": "기형종(Teratoma)은 전능성(Totipotent) 생식세포에서 유래하여 모든 배엽의 성숙한 조직을 만들어낼 수 있는 흔한 양성 난소 종양입니다."
-  },
-  {
-    "id": 86,
-    "subject": "비뇨기계",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "소아에서 신증후군(Nephrotic syndrome)을 일으키는 가장 흔한 사구체 질환으로, 광학현미경 검사 상 사구체는 정상으로 보이나 전자현미경에서 족세포의 발돌기(Foot process) 소실이 융합되어 관찰되며 스테로이드 치료에 반응이 매우 좋은 질환은?",
-    "options": [
-      "1. 막성 신장병 (Membranous nephropathy)",
-      "2. 미세변화병 (Minimal change disease, MCD)",
-      "3. 국소분절사구체경화증 (FSGS)",
-      "4. 급성 사슬알균감염후 사구체신염 (PSGN)",
-      "5. IgA 신병증 (IgA nephropathy)"
-    ],
-    "answer": "2",
-    "explanation": "미세변화병(MCD)은 소아 신증후군의 주원인으로 대량의 단백뇨를 유발하지만 광학현미경으로는 이상을 발견할 수 없고(미세 변화), 스테로이드에 극적으로 호전됩니다."
-  },
-  {
-    "id": 87,
-    "subject": "비뇨기계",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "상기도 감염이나 위장관 감염 후 수일 내에 육안적 혈뇨가 반복적으로 나타나는 질환으로, 면역형광검사(IF) 상 신장 사구체의 메산지움(Mesangium) 부위에 비정상적인 특정 면역글로불린이 침착되는 한국인에서 가장 흔한 원발성 사구체 신염의 이름은?",
-    "answer": "IgA 신병증 (IgA nephropathy)",
-    "explanation": "IgA 신병증은 메산지움에 IgA 면역복합체가 침착되어 혈뇨를 유발하며, 전 세계적 및 한국에서 가장 흔한 사구체 질환입니다."
-  },
-  {
-    "id": 88,
-    "subject": "혈액 및 림프절",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "위 전체 절제술을 받은 환자에게서 수년 후 발생할 수 있는 빈혈의 종류와 그 원인으로 가장 알맞게 짝지어진 것은?",
-    "options": [
-      "1. 철 결핍성 빈혈 - 십이지장 흡수 장애",
-      "2. 재생불량성 빈혈 - 조혈모세포 파괴",
-      "3. 거대적혈구모구 빈혈 (Megaloblastic anemia) - 내인성 인자(Intrinsic factor) 결핍에 의한 비타민 B12 흡수 장애",
-      "4. 용혈성 빈혈 - 적혈구 막 결함",
-      "5. 미세혈관병성 용혈빈혈 - 혈전 형성"
-    ],
-    "answer": "3",
-    "explanation": "위 벽세포에서 분비되는 '내인자(Intrinsic factor)'가 없으면 회장에서 비타민 B12를 흡수할 수 없어 적혈구의 DNA 합성에 장애가 생기고 거대적혈구가 형성됩니다."
-  },
-  {
-    "id": 89,
-    "subject": "혈액 및 림프절",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "골수 밖의 말초 혈액이나 조직에 특정 백혈구가 증가하는 원인을 연결할 때, 천식이나 기생충 감염, 특정 약물 알레르기 상황에서 주로 수치가 증가하는 백혈구의 종류는?",
-    "answer": "호산구 (Eosinophil)",
-    "explanation": "호산구 증가지(Eosinophilia)는 주로 알레르기 질환(천식 등)과 기생충 감염에 대한 면역 반응 시 두드러지게 관찰됩니다."
-  },
-  {
-    "id": 90,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "신장 등 장기 이식 시 나타나는 거부반응 중, '급성 항체매개 거부반응(Acute antibody-mediated rejection)'의 조직학적 진단에 있어 사구체와 모세혈관에 침착되어 예후가 나쁨을 시사하는 중요한 보체 분해 산물 마커는?",
-    "options": [
-      "1. C3a",
-      "2. C4d",
-      "3. C5b",
-      "4. MAC",
-      "5. IgE"
-    ],
-    "answer": "2",
-    "explanation": "급성 항체매개 거부반응(ABMR) 시 항원-항체 반응으로 보체계가 활성화되며, 그 분해 산물인 C4d가 세뇨관 주위 모세혈관(PTC)에 특징적으로 침착되어 진단의 핵심 마커가 됩니다."
-  },
-  {
-    "id": 91,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "자가면역질환을 억제하기 위해 인체 내에서 스스로 '면역 관용(Tolerance)'을 유지하는 기전 중, 가슴샘(Thymus)과 골수에서 자기 항원에 강하게 반응하는 T세포나 B세포를 미리 인식하여 제거(클론 삭제)하는 과정을 무엇이라 하는가?",
-    "answer": "중추 관용 (Central tolerance)",
-    "explanation": "중추 림프기관에서 자가반응성 림프구를 제거하는 중추 관용과 말초 조직에서 활성을 억제하는 말초 관용(조절 T세포 등)이 실패할 때 자가면역질환이 발생합니다."
-  },
-  {
-    "id": 92,
-    "subject": "면역병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "후천성 면역결핍증(AIDS)의 원인인 HIV 바이러스가 가장 주된 타겟으로 삼아 결합하여 파괴시킴으로써, 인체의 적응 면역 체계를 붕괴시키는 세포는?",
-    "options": [
-      "1. CD8+ 세포독성 T세포 (Cytotoxic T cell)",
-      "2. B 림프구",
-      "3. CD4+ 보조 T세포 (Helper T cell)",
-      "4. 자연살해세포 (NK cell)",
-      "5. 중성구 (Neutrophil)"
-    ],
-    "answer": "3",
-    "explanation": "HIV는 CD4 수용체를 가진 보조 T세포(Helper T cell)와 대식세포를 주로 감염시키며, 이들 세포가 파괴되어 CD4 수치가 일정 수준 이하로 떨어질 때 치명적인 기회감염이 발생합니다."
-  },
-  {
-    "id": 93,
-    "subject": "위장관 질환",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "소아에게 주로 발생하며, 장벽(특히 직장 및 결장 부위)에 신경절 세포(Ganglion cell)가 선천적으로 결손되어 장운동이 멈추고 그 상부의 장이 거대하게 확장되는 질환은?",
-    "answer": "거대결장 (Hirschsprung disease / 선천성 거대결장증)",
-    "explanation": "히르슈슈프룽병은 장 신경신경총 발달이 중간에 정지하여 장의 이완이 불가능해져 배변 장애와 거대 결장을 유발합니다."
-  },
-  {
-    "id": 94,
-    "subject": "위장관 질환",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "대장 내시경 검사에서 발견되는 용종(Polyp) 중, 악성 암(대장암)으로 발전할 위험성을 예측하는 데 있어 가장 중요하게 고려해야 하는 인자는?",
-    "options": [
-      "1. 용종의 크기 (Size)",
-      "2. 환자의 성별",
-      "3. 용종의 위치 (맹장 vs 직장)",
-      "4. 색깔과 출혈 여부",
-      "5. 점액 분비량"
-    ],
-    "answer": "1",
-    "explanation": "샘종(Adenoma)성 용종이 악성으로 변환될 위험을 예측하는 가장 중요하고 독립적인 지표는 '용종의 크기'입니다. (크기가 클수록 암 발생 위험 증가)"
-  },
-  {
-    "id": 95,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "면역조직화학염색(IHC)의 목적 중 하나로, 미분화 세포의 기원 조직을 판별하는 데 유용합니다. 상피세포 기원의 악성 종양(암종, Carcinoma)을 확인하기 위해 사용하는 대표적인 상피 마커는 무엇인가?",
-    "answer": "Cytokeratin (사이토케라틴)",
-    "explanation": "상피세포(Epithelial) 오리진은 Cytokeratin으로, 간엽조직(Mesenchymal) 오리진은 Vimentin으로, 백혈구는 LCA로 염색하여 종양의 기원을 찾습니다."
-  },
-  {
-    "id": 96,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "뇌 손상, 허혈, 출혈 등 중추신경계(CNS)에 비특이적인 병리적 손상이 가해졌을 때, 흉터 조직을 형성하여 빈 공간을 메우는 역할을 주로 수행하는 신경아교세포는?",
-    "options": [
-      "1. 미세아교세포 (Microglia)",
-      "2. 희소돌기아교세포 (Oligodendrocyte)",
-      "3. 성상교세포 (Astrocyte)",
-      "4. 뇌실막세포 (Ependymal cell)",
-      "5. 슈반세포 (Schwann cell)"
-    ],
-    "answer": "3",
-    "explanation": "중추신경계에서 상처 복구(Gliosis)의 주력 세포는 성상교세포(Astrocyte)로, 손상 시 비대해지고 돌기를 뻗어 신경교흉터(Glial scar)를 형성합니다."
-  },
-  {
-    "id": 97,
-    "subject": "신경병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "허혈 등 뇌 조직에 급성 비가역적 손상이 일어났을 때 광학현미경 상에서 관찰되는 뉴런(Neuron)의 초기 변화로, 세포질이 수축하고 강한 붉은색(호산성)을 띠며 핵이 농축되어 보이는 형태학적 소견을 무엇이라 하는가?",
-    "answer": "Red neuron (적색 신경세포 / 저산소성 세포 변화)",
-    "explanation": "급성 저산소증/허혈성 손상을 입은 뉴런은 헤마톡실린-에오신 염색에서 뚜렷하게 붉은색을 띠게 되며 이를 붉은 신경세포(Red neuron)라 부릅니다."
-  },
-  {
-    "id": 98,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "갑상선 수질암종(Medullary thyroid carcinoma)에 대한 설명으로 옳은 것은?",
-    "options": [
-      "1. 갑상선의 여포세포(Follicular cell)에서 기원한다.",
-      "2. 혈중 칼시토닌(Calcitonin) 수치를 상승시키며 이를 종양 마커로 활용할 수 있다.",
-      "3. 현미경 소견 상 전형적인 유두(Papillae) 구조를 보인다.",
-      "4. 가장 예후가 좋아 사망률이 낮다.",
-      "5. 방사선 노출이 가장 강력한 원인이다."
-    ],
-    "answer": "2",
-    "explanation": "수질암종은 여포세포가 아닌 C세포(Parafollicular cell)에서 기원하며 칼시토닌을 분비합니다. 가족성으로 MEN 2 증후군과 연관되어 나타날 수 있습니다."
-  },
-  {
-    "id": 99,
-    "subject": "내분비병리",
-    "image_path": "",
-    "type": "short_answer",
-    "question": "갑상선 여포암종(Follicular carcinoma)과 양성인 여포샘종(Follicular adenoma)을 조직학적으로 감별할 때 악성을 시사하는 가장 핵심적인 두 가지 침윤 기준은 피막 침윤(Capsular invasion)과 무엇인가?",
-    "answer": "혈관 침윤 (Vascular invasion)",
-    "explanation": "갑상선 여포 종양에서 피막(Capsule)을 뚫고 나가거나 종양 내 혹은 피막 주위의 혈관을 침범(Vascular invasion)한 증거가 있어야만 악성인 여포암종으로 진단할 수 있습니다."
-  },
-  {
-    "id": 100,
-    "subject": "신생물",
-    "image_path": "",
-    "type": "multiple_choice",
-    "question": "종양의 병기(Staging) 및 등급(Grading)에 대한 설명으로 알맞은 것은?",
-    "options": [
-      "1. 등급(Grading)은 종양의 크기와 원격 전이 유무를 평가하는 체계이다.",
-      "2. TNM 병기 체계에서 T는 치료법, N은 림프절 전이, M은 발병 부위를 의미한다.",
-      "3. 환자의 임상적 예후와 생존율을 예측하는 데에는 분화도(Grading)보다 병기(Staging)가 더 중요한 지표로 쓰인다.",
-      "4. 잘 분화된(Well-differentiated) 종양은 분화가 안 된 종양에 비해 성장 속도가 빠르고 악성도가 높다.",
-      "5. 악성 종양의 등급은 주변 조직 침윤 깊이로만 결정된다."
-    ],
-    "answer": "3",
-    "explanation": "병기(Staging, TNM)는 종양 크기/침윤(T), 림프절 전이(N), 원격 전이(M)를 평가하며, 현미경적 세포 분화도를 뜻하는 등급(Grading)보다 임상 예후 판정에 훨씬 더 결정적이고 강력한 지표입니다."
+    "explanation": "종양용해 바이러스(Oncolytic viruses)를 사용하는 Virotherapy는 정상 세포 손상 없이 암세포만을 표적으로 삼아 감염, 복제 및 용해를 유도하는 치료법입니다[cite: 1002, 1003, 1005, 1006, 1008]."
   }
 ]
